@@ -4,10 +4,11 @@ import { products } from "@/data/products";
 import { useCart } from "@/context/CartContext";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, use } from "react";
 
-export default function ProductDetailPage({ params }: { params: { id: string } }) {
-  const product = products.find((p) => p.id === params.id);
+export default function ProductDetailPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = use(params);
+  const product = products.find((p) => p.id === id);
   const { addToCart } = useCart();
   const [quantity, setQuantity] = useState(1);
   const [added, setAdded] = useState(false);
