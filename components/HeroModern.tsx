@@ -58,6 +58,11 @@ export default function HeroModern() {
       {/* Gradient overlay for depth */}
       <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-transparent to-transparent z-20 pointer-events-none" />
 
+      {/* Scanline effect */}
+      <div className="absolute inset-0 z-20 pointer-events-none overflow-hidden">
+        <div className="absolute w-full h-1 bg-gradient-to-r from-transparent via-[#00F0FF]/30 to-transparent scanline" />
+      </div>
+
       {/* Content */}
       <motion.div
         style={{ y }}
@@ -71,13 +76,13 @@ export default function HeroModern() {
             transition={{ duration: 0.8 }}
             className="mb-6"
           >
-            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-400/20 backdrop-blur-sm">
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border-flow">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00FF41] opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00FF41] pulse-green"></span>
               </span>
-              <span className="text-blue-300 text-sm font-medium">
-                Advanced Radar Technology
+              <span className="text-[#00F0FF] text-sm font-medium font-tech bracket-icon">
+                ONLINE
               </span>
             </span>
           </motion.div>
@@ -92,7 +97,7 @@ export default function HeroModern() {
             <span className="block text-white">
               Next-Generation
             </span>
-            <span className="block bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 text-transparent bg-clip-text">
+            <span className="block bg-gradient-to-r from-[#00F0FF] to-[#00FF41] text-transparent bg-clip-text text-glitch">
               Radar Systems
             </span>
           </motion.h1>
@@ -102,9 +107,12 @@ export default function HeroModern() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-xl md:text-2xl text-blue-100/80 mb-10 max-w-3xl mx-auto leading-relaxed"
+            className="text-xl md:text-2xl text-[#8B9DC3] mb-10 max-w-3xl mx-auto leading-relaxed"
           >
-            Commercial & Industrial radar solutions powered by 77GHz, 80GHz, and 120GHz technology.
+            Commercial & Industrial radar solutions powered by{' '}
+            <span className="font-tech text-[#00F0FF]">77GHz</span>,{' '}
+            <span className="font-tech text-[#00F0FF]">80GHz</span>, and{' '}
+            <span className="font-tech text-[#00F0FF]">120GHz</span> technology.
             Precision detection for the modern world.
           </motion.p>
 
@@ -119,10 +127,10 @@ export default function HeroModern() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="group relative px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-lg font-semibold text-white text-lg overflow-hidden shadow-lg shadow-blue-500/50"
+                className="group relative px-8 py-4 bg-[#00F0FF] rounded-lg font-semibold text-[#0B1021] text-lg overflow-hidden glow-cyan"
               >
                 <span className="relative z-10 flex items-center gap-2">
-                  Explore Products
+                  <span className="bracket-icon">EXPLORE PRODUCTS</span>
                   <svg
                     className="w-5 h-5 group-hover:translate-x-1 transition-transform"
                     fill="none"
@@ -137,7 +145,6 @@ export default function HeroModern() {
                     />
                   </svg>
                 </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-cyan-600 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity" />
               </motion.button>
             </Link>
 
@@ -145,9 +152,9 @@ export default function HeroModern() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 border-2 border-blue-400/50 backdrop-blur-sm rounded-lg font-semibold text-blue-100 text-lg hover:bg-blue-500/10 hover:border-blue-400 transition-all"
+                className="glass-strong px-8 py-4 rounded-lg font-semibold text-[#00F0FF] text-lg hover:bg-[#00F0FF]/10 border-flow transition-all"
               >
-                Learn More
+                <span className="bracket-icon">LEARN MORE</span>
               </motion.button>
             </Link>
           </motion.div>
@@ -164,11 +171,11 @@ export default function HeroModern() {
               { value: '200+', label: 'Customers' },
               { value: '10+', label: 'Countries' },
             ].map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="text-4xl font-bold text-white mb-2">
-                  {stat.value}
+              <div key={index} className="text-center glass rounded-lg p-4">
+                <div className="text-4xl font-bold font-tech text-[#00F0FF] mb-2">
+                  <span className="bracket-icon">{stat.value}</span>
                 </div>
-                <div className="text-blue-300 text-sm uppercase tracking-wider">
+                <div className="text-[#8B9DC3] text-sm uppercase tracking-wider font-tech">
                   {stat.label}
                 </div>
               </div>
@@ -187,9 +194,9 @@ export default function HeroModern() {
         <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 1.5, repeat: Infinity }}
-          className="flex flex-col items-center gap-2 text-blue-300"
+          className="flex flex-col items-center gap-2 text-[#00F0FF]"
         >
-          <span className="text-sm uppercase tracking-wider">Scroll</span>
+          <span className="text-sm uppercase tracking-wider font-tech bracket-icon">SCROLL</span>
           <svg
             className="w-6 h-6"
             fill="none"
@@ -199,7 +206,7 @@ export default function HeroModern() {
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
-              strokeWidth={2}
+              strokeWidth={1.5}
               d="M19 14l-7 7m0 0l-7-7m7 7V3"
             />
           </svg>
