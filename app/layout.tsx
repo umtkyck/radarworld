@@ -4,6 +4,7 @@ import "./globals.css";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { CartProvider } from "@/context/CartContext";
+import Providers from "@/components/Providers";
 
 // Use local fonts with system fallbacks for better performance and reliability
 const inter = localFont({
@@ -124,13 +125,15 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
       <body className="antialiased font-sans">
-        <CartProvider>
-          <Navigation />
-          <main className="min-h-screen">
-            {children}
-          </main>
-          <Footer />
-        </CartProvider>
+        <Providers>
+          <CartProvider>
+            <Navigation />
+            <main className="min-h-screen">
+              {children}
+            </main>
+            <Footer />
+          </CartProvider>
+        </Providers>
       </body>
     </html>
   );

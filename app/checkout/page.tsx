@@ -2,10 +2,10 @@
 
 import { useCart } from "@/context/CartContext";
 import { loadStripe } from "@stripe/stripe-js";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { Lock, CreditCard, ShoppingBag, ArrowRight, ChevronLeft, Truck, Shield } from "lucide-react";
 
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || ""
@@ -13,21 +13,26 @@ const stripePromise = loadStripe(
 
 export default function CheckoutPage() {
   const { items, total } = useCart();
-  const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
+  const shipping = total >= 1000 ? 0 : 99;
+  const finalTotal = total + shipping;
+
   if (items.length === 0) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-4xl font-bold mb-4 text-gray-900">No Items to Checkout</h1>
-          <p className="text-gray-600 mb-8">Your cart is empty.</p>
-          <Link
-            href="/shop"
-            className="bg-blue-900 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-800 transition-colors inline-block"
-          >
-            Browse Products
+      <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center px-6">
+        <div className="text-center max-w-md">
+          <div className="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-6">
+            <ShoppingBag size={40} className="text-zinc-600" />
+          </div>
+          <h1 className="text-3xl font-bold text-white mb-4">No Items to Checkout</h1>
+          <p className="text-zinc-400 mb-8">Your cart is empty.</p>
+          <Link href="/shop">
+            <button className="px-8 py-4 bg-white text-black rounded-full font-semibold hover:bg-zinc-200 transition-colors inline-flex items-center gap-2">
+              Browse Products
+              <ArrowRight size={20} />
+            </button>
           </Link>
         </div>
       </div>
@@ -39,7 +44,6 @@ export default function CheckoutPage() {
     setError("");
 
     try {
-      // Create checkout session
       const response = await fetch("/api/checkout", {
         method: "POST",
         headers: {
@@ -54,7 +58,6 @@ export default function CheckoutPage() {
 
       const { sessionId } = await response.json();
 
-      // Redirect to Stripe Checkout
       const stripe = await stripePromise;
       if (!stripe) {
         throw new Error("Stripe failed to load");
@@ -73,19 +76,37 @@ export default function CheckoutPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="container mx-auto px-4 py-12">
-        <h1 className="text-4xl font-bold mb-8 text-gray-900">Checkout</h1>
+    <div className="min-h-screen bg-[#0a0a0a]">
+      {/* Header */}
+      <div className="border-b border-white/5">
+        <div className="container mx-auto px-6 py-4">
+          <div className="flex items-center gap-2 text-sm">
+            <Link href="/" className="text-zinc-500 hover:text-white transition-colors">Home</Link>
+            <span className="text-zinc-600">/</span>
+            <Link href="/cart" className="text-zinc-500 hover:text-white transition-colors">Cart</Link>
+            <span className="text-zinc-600">/</span>
+            <span className="text-zinc-400">Checkout</span>
+          </div>
+        </div>
+      </div>
+
+      <div className="container mx-auto px-6 py-8">
+        <Link href="/cart" className="inline-flex items-center gap-2 text-zinc-400 hover:text-white transition-colors mb-8">
+          <ChevronLeft size={20} />
+          Back to Cart
+        </Link>
+
+        <h1 className="text-3xl font-bold text-white mb-8">Checkout</h1>
 
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Order Items */}
-          <div className="lg:col-span-2">
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <h2 className="text-2xl font-bold mb-6">Order Items</h2>
+          <div className="lg:col-span-2 space-y-6">
+            <div className="bg-white/[0.02] border border-white/5 rounded-2xl p-6">
+              <h2 className="text-xl font-bold text-white mb-6">Order Items ({items.length})</h2>
               <div className="space-y-4">
                 {items.map((item) => (
-                  <div key={item.id} className="flex gap-4 border-b pb-4">
-                    <div className="w-20 h-20 bg-gray-200 rounded overflow-hidden flex-shrink-0 relative">
+                  <div key={item.id} className="flex gap-4 pb-4 border-b border-white/5 last:border-0 last:pb-0">
+                    <div className="w-20 h-20 bg-zinc-900 rounded-xl overflow-hidden flex-shrink-0 relative">
                       <Image
                         src={item.image}
                         alt={item.name}
@@ -96,10 +117,10 @@ export default function CheckoutPage() {
                         quality={75}
                       />
                     </div>
-                    <div className="flex-grow">
-                      <h3 className="font-semibold text-gray-900">{item.name}</h3>
-                      <p className="text-sm text-gray-600">Quantity: {item.quantity}</p>
-                      <p className="text-lg font-bold text-blue-900">
+                    <div className="flex-grow min-w-0">
+                      <h3 className="font-semibold text-white truncate">{item.name}</h3>
+                      <p className="text-sm text-zinc-500">Qty: {item.quantity}</p>
+                      <p className="text-lg font-bold text-white mt-1">
                         ${(item.price * item.quantity).toLocaleString()}
                       </p>
                     </div>
@@ -108,64 +129,96 @@ export default function CheckoutPage() {
               </div>
             </div>
 
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mt-6">
-              <h3 className="font-semibold text-blue-900 mb-2">Secure Payment</h3>
-              <p className="text-sm text-blue-800">
-                Your payment will be processed securely through Stripe. You'll be redirected
-                to Stripe's secure checkout page to complete your purchase.
+            {/* Shipping Info */}
+            <div className="bg-white/[0.02] border border-white/5 rounded-2xl p-6">
+              <h2 className="text-xl font-bold text-white mb-4">Shipping Information</h2>
+              <p className="text-zinc-400 mb-4">
+                You'll enter your shipping address on the secure Stripe checkout page.
               </p>
+              <div className="flex items-center gap-3 text-sm text-zinc-400">
+                <Truck size={18} className="text-emerald-400" />
+                <span>We ship worldwide to 150+ countries</span>
+              </div>
+            </div>
+
+            {/* Security Notice */}
+            <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-2xl p-6">
+              <div className="flex items-start gap-4">
+                <Lock size={24} className="text-emerald-400 flex-shrink-0 mt-1" />
+                <div>
+                  <h3 className="font-semibold text-white mb-2">Secure Payment</h3>
+                  <p className="text-sm text-zinc-400">
+                    Your payment will be processed securely through Stripe. We never store your card details.
+                    You'll be redirected to Stripe's secure checkout page to complete your purchase.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
 
           {/* Payment Summary */}
           <div className="lg:col-span-1">
-            <div className="bg-white rounded-lg shadow-md p-6 sticky top-24">
-              <h2 className="text-2xl font-bold mb-6">Payment Summary</h2>
+            <div className="bg-white/[0.02] border border-white/5 rounded-2xl p-6 sticky top-24">
+              <h2 className="text-xl font-bold text-white mb-6">Payment Summary</h2>
 
-              <div className="space-y-3 mb-6">
-                <div className="flex justify-between text-gray-600">
+              <div className="space-y-4 mb-6">
+                <div className="flex justify-between text-zinc-400">
                   <span>Subtotal</span>
-                  <span>${total.toLocaleString()}</span>
+                  <span className="text-white">${total.toLocaleString()}</span>
                 </div>
-                <div className="flex justify-between text-gray-600">
+                <div className="flex justify-between text-zinc-400">
                   <span>Shipping</span>
-                  <span className="text-green-600">FREE</span>
+                  {shipping === 0 ? (
+                    <span className="text-emerald-400">FREE</span>
+                  ) : (
+                    <span className="text-white">${shipping}</span>
+                  )}
                 </div>
-                <div className="flex justify-between text-gray-600">
+                <div className="flex justify-between text-zinc-400">
                   <span>Tax</span>
-                  <span>Calculated at checkout</span>
+                  <span className="text-zinc-500">Calculated at checkout</span>
                 </div>
-                <div className="border-t pt-3 flex justify-between text-xl font-bold">
-                  <span>Total</span>
-                  <span className="text-blue-900">${total.toLocaleString()}</span>
+                <div className="border-t border-white/10 pt-4 flex justify-between">
+                  <span className="text-lg font-semibold text-white">Total</span>
+                  <span className="text-2xl font-bold text-white">${finalTotal.toLocaleString()}</span>
                 </div>
               </div>
 
               {error && (
-                <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-4">
-                  <p className="text-red-800 text-sm">{error}</p>
+                <div className="bg-red-500/10 border border-red-500/20 rounded-xl p-4 mb-4">
+                  <p className="text-red-400 text-sm">{error}</p>
                 </div>
               )}
 
               <button
                 onClick={handleCheckout}
                 disabled={loading}
-                className="w-full bg-blue-900 text-white py-4 rounded-lg font-semibold hover:bg-blue-800 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed mb-4"
+                className="w-full py-4 bg-white text-black rounded-xl font-semibold hover:bg-zinc-200 transition-colors disabled:bg-zinc-700 disabled:text-zinc-400 disabled:cursor-not-allowed flex items-center justify-center gap-2 mb-4"
               >
-                {loading ? "Processing..." : "Proceed to Payment"}
+                {loading ? (
+                  "Processing..."
+                ) : (
+                  <>
+                    <CreditCard size={20} />
+                    Proceed to Payment
+                  </>
+                )}
               </button>
 
-              <Link
-                href="/cart"
-                className="block w-full text-center text-blue-900 hover:underline"
-              >
-                ← Back to Cart
-              </Link>
+              <div className="flex items-center justify-center gap-2 text-sm text-zinc-500">
+                <Lock size={16} />
+                <span>Secured by Stripe</span>
+              </div>
 
-              <div className="mt-6 pt-6 border-t">
-                <div className="flex items-center justify-center gap-2 text-sm text-gray-500">
-                  <span>🔒</span>
-                  <span>Secured by Stripe</span>
+              {/* Trust badges */}
+              <div className="mt-6 pt-6 border-t border-white/10 space-y-3">
+                <div className="flex items-center gap-3 text-sm text-zinc-400">
+                  <Shield size={18} className="text-emerald-400" />
+                  <span>2 Year Manufacturer Warranty</span>
+                </div>
+                <div className="flex items-center gap-3 text-sm text-zinc-400">
+                  <Truck size={18} className="text-emerald-400" />
+                  <span>Ships within 2-3 business days</span>
                 </div>
               </div>
             </div>

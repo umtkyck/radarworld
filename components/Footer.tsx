@@ -45,19 +45,19 @@ export default function Footer() {
             <h4 className="text-white font-semibold mb-4">Company</h4>
             <ul className="space-y-2">
               <li>
-                <Link href="#" className="text-zinc-500 hover:text-white text-sm transition-colors">
-                  About
+                <Link href="/contact" className="text-zinc-500 hover:text-white text-sm transition-colors">
+                  Contact Us
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-zinc-500 hover:text-white text-sm transition-colors">
-                  Contact
-                </Link>
+                <a href="mailto:info@radarworld.com" className="text-zinc-500 hover:text-white text-sm transition-colors">
+                  info@radarworld.com
+                </a>
               </li>
               <li>
-                <Link href="#" className="text-zinc-500 hover:text-white text-sm transition-colors">
-                  Support
-                </Link>
+                <a href="tel:+1234567890" className="text-zinc-500 hover:text-white text-sm transition-colors">
+                  +1 (234) 567-890
+                </a>
               </li>
             </ul>
           </div>
