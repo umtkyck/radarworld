@@ -3,18 +3,36 @@
 import HeroModern from "@/components/HeroModern";
 import FeaturesModern from "@/components/FeaturesModern";
 import Link from "next/link";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
+
+// Define static data with unique IDs for proper React keys
+const APPLICATIONS = [
+  { id: 'app-industrial', icon: '🏭', title: 'Industrial Automation', desc: 'Process monitoring and control' },
+  { id: 'app-maritime', icon: '🚢', title: 'Maritime', desc: 'Navigation and collision avoidance' },
+  { id: 'app-construction', icon: '🏗️', title: 'Construction', desc: 'Site monitoring and safety' },
+  { id: 'app-security', icon: '🔒', title: 'Security', desc: 'Perimeter protection systems' },
+];
+
+const STATS = [
+  { id: 'stat-freq', value: '77-120', unit: 'GHz', label: 'Frequency Range' },
+  { id: 'stat-acc', value: '±2', unit: 'mm', label: 'Accuracy' },
+  { id: 'stat-range', value: '250', unit: 'm', label: 'Max Range' },
+  { id: 'stat-ip', value: 'IP68', unit: '', label: 'Protection' },
+];
+
+// Reduced particles for better performance (8 instead of 20)
+const PARTICLES = Array.from({ length: 8 }, (_, i) => ({
+  id: `particle-${i}`,
+  x: Math.random() * 1200,
+  y: Math.random() * 400,
+  opacity: Math.random(),
+  duration: 4 + Math.random() * 2,
+  delay: Math.random() * 3,
+}));
 
 export default function HomeModern() {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"]
-  });
-
   return (
-    <div ref={ref} className="bg-[#0B1021]">
+    <div className="bg-radar-dark">
       {/* Modern Hero with 3D Radar */}
       <HeroModern />
 
@@ -48,34 +66,29 @@ export default function HomeModern() {
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
-            {[
-              { icon: '🏭', title: 'Industrial Automation', desc: 'Process monitoring and control' },
-              { icon: '🚢', title: 'Maritime', desc: 'Navigation and collision avoidance' },
-              { icon: '🏗️', title: 'Construction', desc: 'Site monitoring and safety' },
-              { icon: '🔒', title: 'Security', desc: 'Perimeter protection systems' },
-            ].map((app, i) => (
+            {APPLICATIONS.map((app, i) => (
               <motion.div
-                key={i}
+                key={app.id}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
                 whileHover={{ scale: 1.05 }}
-                className="group relative glass rounded-xl p-8 border-flow hover:bg-[#0B1021]/80 transition-all duration-300"
+                className="group relative glass rounded-xl p-8 border-flow hover:bg-radar-dark/80 transition-all duration-300"
               >
                 <div className="text-6xl mb-4 transform group-hover:scale-110 transition-transform bracket-icon">
                   {app.icon}
                 </div>
-                <h3 className="text-xl font-bold mb-2 text-white group-hover:text-[#00F0FF] transition-colors font-tech">
+                <h3 className="text-xl font-bold mb-2 text-white group-hover:text-radar-cyan transition-colors font-tech">
                   <span className="bracket-icon">{app.title.toUpperCase()}</span>
                 </h3>
-                <p className="text-[#8B9DC3]">{app.desc}</p>
+                <p className="text-radar-muted">{app.desc}</p>
 
                 {/* Glow effect on hover */}
-                <div className="absolute inset-0 bg-[#00F0FF]/0 group-hover:bg-[#00F0FF]/10 rounded-xl transition-all duration-300 -z-10 blur-lg" />
+                <div className="absolute inset-0 bg-radar-cyan/0 group-hover:bg-radar-cyan/10 rounded-xl transition-all duration-300 -z-10 blur-lg" />
 
                 {/* Corner brackets */}
-                <div className="absolute top-3 right-3 w-8 h-8 border-t border-r border-[#00F0FF]/30 group-hover:border-[#00F0FF] transition-colors" />
+                <div className="absolute top-3 right-3 w-8 h-8 border-t border-r border-radar-cyan/30 group-hover:border-radar-cyan transition-colors" />
               </motion.div>
             ))}
           </div>
@@ -90,33 +103,28 @@ export default function HomeModern() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-6xl mx-auto">
             <div className="grid md:grid-cols-4 gap-12">
-              {[
-                { value: '77-120', unit: 'GHz', label: 'Frequency Range' },
-                { value: '±2', unit: 'mm', label: 'Accuracy' },
-                { value: '250', unit: 'm', label: 'Max Range' },
-                { value: 'IP68', unit: '', label: 'Protection' },
-              ].map((stat, i) => (
+              {STATS.map((stat, i) => (
                 <motion.div
-                  key={i}
+                  key={stat.id}
                   initial={{ opacity: 0, scale: 0.5 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: i * 0.1 }}
-                  className="text-center glass-strong rounded-xl p-6 border-flow"
+                  className="text-center glass-strong rounded-xl p-6 border-flow relative"
                 >
-                  <div className="text-6xl font-bold font-tech bg-gradient-to-r from-[#00F0FF] to-[#00FF41] text-transparent bg-clip-text mb-2">
+                  <div className="text-6xl font-bold font-tech bg-gradient-to-r from-radar-cyan to-radar-green text-transparent bg-clip-text mb-2">
                     <span className="bracket-icon">
                       {stat.value}
                       <span className="text-4xl">{stat.unit}</span>
                     </span>
                   </div>
-                  <div className="text-[#8B9DC3] uppercase tracking-wider text-sm font-tech">
+                  <div className="text-radar-muted uppercase tracking-wider text-sm font-tech">
                     {stat.label}
                   </div>
 
                   {/* Corner brackets */}
-                  <div className="absolute top-2 right-2 w-6 h-6 border-t border-r border-[#00F0FF]/30" />
-                  <div className="absolute bottom-2 left-2 w-6 h-6 border-b border-l border-[#00F0FF]/30" />
+                  <div className="absolute top-2 right-2 w-6 h-6 border-t border-r border-radar-cyan/30" />
+                  <div className="absolute bottom-2 left-2 w-6 h-6 border-b border-l border-radar-cyan/30" />
                 </motion.div>
               ))}
             </div>
@@ -129,25 +137,25 @@ export default function HomeModern() {
         {/* HUD Grid background */}
         <div className="absolute inset-0 hud-grid opacity-30" />
 
-        {/* Animated particles */}
+        {/* Optimized animated particles - reduced count */}
         <div className="absolute inset-0">
-          {[...Array(20)].map((_, i) => (
+          {PARTICLES.map((particle) => (
             <motion.div
-              key={i}
-              className="absolute w-1 h-1 bg-[#00F0FF] rounded-full"
+              key={particle.id}
+              className="absolute w-1 h-1 bg-radar-cyan rounded-full"
               initial={{
-                x: Math.random() * 1200,
-                y: Math.random() * 400,
-                opacity: Math.random()
+                x: particle.x,
+                y: particle.y,
+                opacity: particle.opacity
               }}
               animate={{
                 y: [0, -400],
                 opacity: [0, 1, 0]
               }}
               transition={{
-                duration: 3 + Math.random() * 2,
+                duration: particle.duration,
                 repeat: Infinity,
-                delay: Math.random() * 5
+                delay: particle.delay
               }}
             />
           ))}

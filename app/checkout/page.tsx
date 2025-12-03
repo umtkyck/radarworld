@@ -5,6 +5,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || ""
@@ -84,11 +85,15 @@ export default function CheckoutPage() {
               <div className="space-y-4">
                 {items.map((item) => (
                   <div key={item.id} className="flex gap-4 border-b pb-4">
-                    <div className="w-20 h-20 bg-gray-200 rounded overflow-hidden flex-shrink-0">
-                      <img
+                    <div className="w-20 h-20 bg-gray-200 rounded overflow-hidden flex-shrink-0 relative">
+                      <Image
                         src={item.image}
                         alt={item.name}
-                        className="w-full h-full object-cover"
+                        fill
+                        sizes="80px"
+                        className="object-cover"
+                        loading="lazy"
+                        quality={75}
                       />
                     </div>
                     <div className="flex-grow">

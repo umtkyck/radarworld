@@ -3,12 +3,14 @@
 import { Product } from "@/types/product";
 import { useCart } from "@/context/CartContext";
 import Link from "next/link";
+import Image from "next/image";
+import React from "react";
 
 interface ProductCardProps {
   product: Product;
 }
 
-export default function ProductCard({ product }: ProductCardProps) {
+const ProductCard = React.memo(function ProductCard({ product }: ProductCardProps) {
   const { addToCart } = useCart();
 
   const handleAddToCart = (e: React.MouseEvent) => {
@@ -19,11 +21,15 @@ export default function ProductCard({ product }: ProductCardProps) {
   return (
     <Link href={`/product/${product.id}`}>
       <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow h-full flex flex-col">
-        <div className="h-48 bg-gray-200 overflow-hidden">
-          <img
+        <div className="h-48 bg-gray-200 overflow-hidden relative">
+          <Image
             src={product.image}
             alt={product.name}
-            className="w-full h-full object-cover"
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className="object-cover"
+            loading="lazy"
+            quality={80}
           />
         </div>
 
@@ -69,4 +75,6 @@ export default function ProductCard({ product }: ProductCardProps) {
       </div>
     </Link>
   );
-}
+});
+
+export default ProductCard;

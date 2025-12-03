@@ -4,12 +4,13 @@ import { products } from "@/data/products";
 import { useCart } from "@/context/CartContext";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { useState, use } from "react";
+import Image from "next/image";
+import { useState, use, useCallback } from "react";
 
 export default function ProductDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
   const product = products.find((p) => p.id === id);
-  const { addToCart } = useCart();
+  const { addToCartMultiple } = useCart();
   const [quantity, setQuantity] = useState(1);
   const [added, setAdded] = useState(false);
 
@@ -17,13 +18,11 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
     notFound();
   }
 
-  const handleAddToCart = () => {
-    for (let i = 0; i < quantity; i++) {
-      addToCart(product);
-    }
+  const handleAddToCart = useCallback(() => {
+    addToCartMultiple(product, quantity);
     setAdded(true);
     setTimeout(() => setAdded(false), 2000);
-  };
+  }, [product, quantity, addToCartMultiple]);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -35,11 +34,15 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
         <div className="bg-white rounded-lg shadow-lg overflow-hidden">
           <div className="grid md:grid-cols-2 gap-8">
             {/* Product Image */}
-            <div className="bg-gray-200 h-96 md:h-full">
-              <img
+            <div className="bg-gray-200 h-96 md:h-full relative min-h-[400px]">
+              <Image
                 src={product.image}
                 alt={product.name}
-                className="w-full h-full object-cover"
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover"
+                priority
+                quality={90}
               />
             </div>
 

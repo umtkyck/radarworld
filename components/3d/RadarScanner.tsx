@@ -113,9 +113,9 @@ export default function RadarScanner() {
 
   return (
     <group ref={radarRef}>
-      {/* Radar waves with dither effect */}
+      {/* Radar waves with dither effect - reduced segments for performance */}
       <mesh ref={waveRef} position={[0, 0, 0]}>
-        <planeGeometry args={[8, 8, 64, 64]} />
+        <planeGeometry args={[8, 8, 32, 32]} />
         <shaderMaterial
           vertexShader={ditherShader.vertexShader}
           fragmentShader={ditherShader.fragmentShader}
@@ -143,10 +143,10 @@ export default function RadarScanner() {
         />
       </mesh>
 
-      {/* Radar grid */}
-      {[...Array(8)].map((_, i) => (
+      {/* Radar grid - reduced rings and segments for performance */}
+      {[1, 2, 3, 4, 5, 6].map((i) => (
         <mesh key={`circle-${i}`} rotation={[0, 0, 0]}>
-          <ringGeometry args={[i * 0.8, i * 0.8 + 0.02, 64]} />
+          <ringGeometry args={[i * 0.8, i * 0.8 + 0.02, 32]} />
           <meshBasicMaterial
             color="#1E3A8A"
             transparent
@@ -155,21 +155,21 @@ export default function RadarScanner() {
         </mesh>
       ))}
 
-      {/* Center dot */}
+      {/* Center dot - reduced segments */}
       <mesh>
-        <circleGeometry args={[0.1, 32]} />
+        <circleGeometry args={[0.1, 16]} />
         <meshBasicMaterial color="#60A5FA" />
       </mesh>
 
-      {/* Target blips */}
+      {/* Target blips - reduced segments */}
       {[
-        { x: 2, y: 1.5, z: 0.02 },
-        { x: -1.8, y: 2.2, z: 0.02 },
-        { x: 1.2, y: -2.5, z: 0.02 },
-        { x: -2.5, y: -1.2, z: 0.02 },
-      ].map((pos, i) => (
-        <mesh key={`blip-${i}`} position={[pos.x, pos.y, pos.z]}>
-          <circleGeometry args={[0.08, 32]} />
+        { x: 2, y: 1.5, z: 0.02, id: 'blip-1' },
+        { x: -1.8, y: 2.2, z: 0.02, id: 'blip-2' },
+        { x: 1.2, y: -2.5, z: 0.02, id: 'blip-3' },
+        { x: -2.5, y: -1.2, z: 0.02, id: 'blip-4' },
+      ].map((pos) => (
+        <mesh key={pos.id} position={[pos.x, pos.y, pos.z]}>
+          <circleGeometry args={[0.08, 16]} />
           <meshBasicMaterial color="#10B981" />
         </mesh>
       ))}

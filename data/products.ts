@@ -7,7 +7,7 @@ export const products: Product[] = [
     description: "Advanced maritime radar system for commercial vessels with collision avoidance and weather detection capabilities.",
     price: 45000,
     category: "commercial",
-    image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&h=600&fit=crop",
+    image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1200&h=900&fit=crop&q=85",
     features: [
       "360° panoramic coverage",
       "Weather detection and tracking",
@@ -29,7 +29,7 @@ export const products: Product[] = [
     description: "Non-contact radar level sensor for industrial tanks and silos. Perfect for harsh environments and challenging materials.",
     price: 8500,
     category: "industrial",
-    image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800&h=600&fit=crop",
+    image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1200&h=900&fit=crop&q=85",
     features: [
       "Non-contact measurement",
       "Works with liquids, solids, and slurries",
@@ -51,7 +51,7 @@ export const products: Product[] = [
     description: "High-precision traffic monitoring and speed detection radar for commercial road management applications.",
     price: 15000,
     category: "commercial",
-    image: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&h=600&fit=crop",
+    image: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1200&h=900&fit=crop&q=85",
     features: [
       "Multi-lane traffic monitoring",
       "Speed and classification detection",
@@ -73,7 +73,7 @@ export const products: Product[] = [
     description: "Industrial-grade perimeter protection radar for critical infrastructure and facility security applications.",
     price: 65000,
     category: "industrial",
-    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=600&fit=crop",
+    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&h=900&fit=crop&q=85",
     features: [
       "360° continuous surveillance",
       "Intrusion detection and tracking",
@@ -95,7 +95,7 @@ export const products: Product[] = [
     description: "Specialized radar system for detecting and tracking unauthorized drones in commercial airspace.",
     price: 35000,
     category: "commercial",
-    image: "https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=800&h=600&fit=crop",
+    image: "https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=1200&h=900&fit=crop&q=85",
     features: [
       "Small target detection capability",
       "3D tracking and classification",
@@ -117,7 +117,7 @@ export const products: Product[] = [
     description: "Rugged radar system for heavy mining equipment collision avoidance in underground and surface operations.",
     price: 28000,
     category: "industrial",
-    image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=600&fit=crop",
+    image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1200&h=900&fit=crop&q=85",
     features: [
       "360° obstacle detection",
       "Multiple zone configuration",
@@ -139,7 +139,7 @@ export const products: Product[] = [
     description: "Commercial weather radar for meteorological monitoring, precipitation detection, and storm tracking.",
     price: 125000,
     category: "commercial",
-    image: "https://images.unsplash.com/photo-1601134467661-3d775b999c8b?w=800&h=600&fit=crop",
+    image: "https://images.unsplash.com/photo-1601134467661-3d775b999c8b?w=1200&h=900&fit=crop&q=85",
     features: [
       "Dual-polarization technology",
       "Precipitation type classification",
@@ -161,7 +161,7 @@ export const products: Product[] = [
     description: "High-resolution radar for automated container handling and vehicle tracking in port terminals.",
     price: 55000,
     category: "industrial",
-    image: "https://images.unsplash.com/photo-1605745341075-4815a54cad1a?w=800&h=600&fit=crop",
+    image: "https://images.unsplash.com/photo-1605745341075-4815a54cad1a?w=1200&h=900&fit=crop&q=85",
     features: [
       "Container and vehicle tracking",
       "Positioning accuracy for automation",
@@ -185,7 +185,7 @@ export const products: Product[] = [
     description: "Advanced 77GHz FMCW radar for ADAS applications and long-range multi-target detection in commercial vehicles.",
     price: 3200,
     category: "commercial",
-    image: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800&h=600&fit=crop",
+    image: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=1200&h=900&fit=crop&q=85",
     features: [
       "Detection range up to 250 meters",
       "Multi-target tracking (up to 100 targets)",
@@ -207,7 +207,7 @@ export const products: Product[] = [
     description: "Ultra-precise 120GHz radar sensor for non-contact liquid level measurement with ±2mm accuracy and IP68 waterproof rating.",
     price: 1850,
     category: "industrial",
-    image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&h=600&fit=crop",
+    image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=1200&h=900&fit=crop&q=85",
     features: [
       "20 meter measurement range",
       "±2mm ultra-high accuracy",
@@ -229,7 +229,7 @@ export const products: Product[] = [
     description: "High-precision 80GHz non-contact water level measurement sensor with 40m range, perfect for hydrological monitoring.",
     price: 1450,
     category: "industrial",
-    image: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&h=600&fit=crop",
+    image: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1200&h=900&fit=crop&q=85",
     features: [
       "40 meter measurement range",
       "IP67 waterproof rating",
@@ -251,7 +251,7 @@ export const products: Product[] = [
     description: "Innovative 24GHz radar combining water level, flow velocity, and flow rate measurement in a single sensor.",
     price: 2100,
     category: "industrial",
-    image: "https://images.unsplash.com/photo-1581092162384-8987c1d64718?w=800&h=600&fit=crop",
+    image: "https://images.unsplash.com/photo-1581092162384-8987c1d64718?w=1200&h=900&fit=crop&q=85",
     features: [
       "3-in-1: Level + Velocity + Flow rate",
       "Non-contact measurement",
@@ -273,7 +273,7 @@ export const products: Product[] = [
     description: "Compact 24GHz Doppler radar for accurate speed measurement in traffic monitoring and vehicle detection systems.",
     price: 850,
     category: "commercial",
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop",
+    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&h=900&fit=crop&q=85",
     features: [
       "High-precision speed detection",
       "RS232/RS485 communication",
@@ -295,7 +295,7 @@ export const products: Product[] = [
     description: "Blind Spot Detection radar system specifically designed for commercial trucks and large vehicles.",
     price: 2800,
     category: "commercial",
-    image: "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=800&h=600&fit=crop",
+    image: "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=1200&h=900&fit=crop&q=85",
     features: [
       "Blind spot monitoring for trucks",
       "Lane change assist",
@@ -317,7 +317,7 @@ export const products: Product[] = [
     description: "Specialized 120GHz radar for sewage well monitoring with low power consumption and high corrosion resistance.",
     price: 1650,
     category: "industrial",
-    image: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=800&h=600&fit=crop",
+    image: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=1200&h=900&fit=crop&q=85",
     features: [
       "10 meter measurement range",
       "Ultra-low power consumption",
@@ -339,7 +339,7 @@ export const products: Product[] = [
     description: "Specialized low-speed detection radar for freight train monitoring and railway safety applications.",
     price: 1950,
     category: "commercial",
-    image: "https://images.unsplash.com/photo-1474487548417-781cb71495f3?w=800&h=600&fit=crop",
+    image: "https://images.unsplash.com/photo-1474487548417-781cb71495f3?w=1200&h=900&fit=crop&q=85",
     features: [
       "Low-speed detection (0.1-50 km/h)",
       "Railway-specific algorithms",

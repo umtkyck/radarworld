@@ -1,22 +1,25 @@
 "use client";
 
 import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, memo } from 'react';
 
 const features = [
   {
+    id: 'feature-precision',
     icon: '🎯',
     title: 'PRECISION DETECTION',
     description: 'Advanced signal processing algorithms for accurate object detection and tracking in challenging environments.',
     spec: '±2mm accuracy',
   },
   {
+    id: 'feature-realtime',
     icon: '⚡',
     title: 'REAL-TIME PROCESSING',
     description: 'High-speed data processing with minimal latency for time-critical applications and instant decision-making.',
     spec: '<10ms latency',
   },
   {
+    id: 'feature-industrial',
     icon: '🛡️',
     title: 'INDUSTRIAL GRADE',
     description: 'Ruggedized systems designed for harsh industrial environments with proven reliability and durability.',
@@ -24,7 +27,7 @@ const features = [
   },
 ];
 
-export default function FeaturesModern() {
+const FeaturesModern = memo(function FeaturesModern() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -65,7 +68,7 @@ export default function FeaturesModern() {
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {features.map((feature, index) => (
             <motion.div
-              key={index}
+              key={feature.id}
               initial={{ opacity: 0, y: 50 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: index * 0.2 }}
@@ -73,35 +76,35 @@ export default function FeaturesModern() {
               className="group relative"
             >
               {/* Card background glow */}
-              <div className="absolute inset-0 bg-[#00F0FF]/20 rounded-xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500" />
+              <div className="absolute inset-0 bg-radar-cyan/20 rounded-xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500" />
 
               {/* Card content with glassmorphism */}
-              <div className="relative glass-strong rounded-xl p-8 h-full border-flow group-hover:bg-[#0B1021]/80 transition-all duration-300">
+              <div className="relative glass-strong rounded-xl p-8 h-full border-flow group-hover:bg-radar-dark/80 transition-all duration-300">
                 {/* Icon with bracket */}
                 <div className="text-6xl mb-6 transform group-hover:scale-110 transition-transform duration-300 bracket-icon">
                   {feature.icon}
                 </div>
 
                 {/* Title */}
-                <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-[#00F0FF] transition-colors font-tech">
+                <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-radar-cyan transition-colors font-tech">
                   <span className="bracket-icon">{feature.title}</span>
                 </h3>
 
                 {/* Technical Spec */}
-                <div className="mb-4 px-3 py-1 inline-block rounded-md bg-[#00FF41]/10 border border-[#00FF41]/30">
-                  <span className="text-[#00FF41] text-sm font-tech">
+                <div className="mb-4 px-3 py-1 inline-block rounded-md bg-radar-green/10 border border-radar-green/30">
+                  <span className="text-radar-green text-sm font-tech">
                     {feature.spec}
                   </span>
                 </div>
 
                 {/* Description */}
-                <p className="text-[#8B9DC3] leading-relaxed">
+                <p className="text-radar-muted leading-relaxed">
                   {feature.description}
                 </p>
 
                 {/* Decorative corner brackets */}
-                <div className="absolute top-4 right-4 w-12 h-12 border-t border-r border-[#00F0FF]/30 group-hover:border-[#00F0FF] transition-colors" />
-                <div className="absolute bottom-4 left-4 w-12 h-12 border-b border-l border-[#00F0FF]/30 group-hover:border-[#00F0FF] transition-colors" />
+                <div className="absolute top-4 right-4 w-12 h-12 border-t border-r border-radar-cyan/30 group-hover:border-radar-cyan transition-colors" />
+                <div className="absolute bottom-4 left-4 w-12 h-12 border-b border-l border-radar-cyan/30 group-hover:border-radar-cyan transition-colors" />
               </div>
             </motion.div>
           ))}
@@ -109,8 +112,10 @@ export default function FeaturesModern() {
       </div>
 
       {/* Decorative glowing elements */}
-      <div className="absolute top-20 right-20 w-64 h-64 bg-[#00F0FF]/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 left-20 w-64 h-64 bg-[#00FF41]/10 rounded-full blur-3xl" />
+      <div className="absolute top-20 right-20 w-64 h-64 bg-radar-cyan/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-20 left-20 w-64 h-64 bg-radar-green/10 rounded-full blur-3xl" />
     </section>
   );
-}
+});
+
+export default FeaturesModern;

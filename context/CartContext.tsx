@@ -6,6 +6,7 @@ import { Product, CartItem } from "@/types/product";
 interface CartContextType {
   items: CartItem[];
   addToCart: (product: Product) => void;
+  addToCartMultiple: (product: Product, quantity: number) => void;
   removeFromCart: (productId: string) => void;
   updateQuantity: (productId: string, quantity: number) => void;
   clearCart: () => void;
@@ -31,18 +32,22 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   }, [items]);
 
   const addToCart = (product: Product) => {
+    addToCartMultiple(product, 1);
+  };
+
+  const addToCartMultiple = (product: Product, quantity: number) => {
     setItems((currentItems) => {
       const existingItem = currentItems.find((item) => item.id === product.id);
 
       if (existingItem) {
         return currentItems.map((item) =>
           item.id === product.id
-            ? { ...item, quantity: item.quantity + 1 }
+            ? { ...item, quantity: item.quantity + quantity }
             : item
         );
       }
 
-      return [...currentItems, { ...product, quantity: 1 }];
+      return [...currentItems, { ...product, quantity }];
     });
   };
 
@@ -76,6 +81,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       value={{
         items,
         addToCart,
+        addToCartMultiple,
         removeFromCart,
         updateQuantity,
         clearCart,

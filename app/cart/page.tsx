@@ -2,6 +2,7 @@
 
 import { useCart } from "@/context/CartContext";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function CartPage() {
   const { items, removeFromCart, updateQuantity, total } = useCart();
@@ -34,11 +35,15 @@ export default function CartPage() {
             {items.map((item) => (
               <div key={item.id} className="bg-white rounded-lg shadow-md p-6">
                 <div className="flex gap-6">
-                  <div className="w-32 h-32 bg-gray-200 rounded overflow-hidden flex-shrink-0">
-                    <img
+                  <div className="w-32 h-32 bg-gray-200 rounded overflow-hidden flex-shrink-0 relative">
+                    <Image
                       src={item.image}
                       alt={item.name}
-                      className="w-full h-full object-cover"
+                      fill
+                      sizes="128px"
+                      className="object-cover"
+                      loading="lazy"
+                      quality={75}
                     />
                   </div>
 

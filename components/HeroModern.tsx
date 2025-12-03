@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from 'react';
+import { useRef, memo } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
@@ -13,7 +13,14 @@ const Scene = dynamic(() => import('./3d/Scene'), {
   ),
 });
 
-export default function HeroModern() {
+// Stats data with stable IDs
+const HERO_STATS = [
+  { id: 'stat-products', value: '16+', label: 'Products' },
+  { id: 'stat-customers', value: '200+', label: 'Customers' },
+  { id: 'stat-countries', value: '10+', label: 'Countries' },
+];
+
+const HeroModern = memo(function HeroModern() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -166,16 +173,12 @@ export default function HeroModern() {
             transition={{ duration: 0.8, delay: 0.8 }}
             className="mt-16 grid grid-cols-3 gap-8 max-w-3xl mx-auto"
           >
-            {[
-              { value: '16+', label: 'Products' },
-              { value: '200+', label: 'Customers' },
-              { value: '10+', label: 'Countries' },
-            ].map((stat, index) => (
-              <div key={index} className="text-center glass rounded-lg p-4">
-                <div className="text-4xl font-bold font-tech text-[#00F0FF] mb-2">
+            {HERO_STATS.map((stat) => (
+              <div key={stat.id} className="text-center glass rounded-lg p-4">
+                <div className="text-4xl font-bold font-tech text-radar-cyan mb-2">
                   <span className="bracket-icon">{stat.value}</span>
                 </div>
-                <div className="text-[#8B9DC3] text-sm uppercase tracking-wider font-tech">
+                <div className="text-radar-muted text-sm uppercase tracking-wider font-tech">
                   {stat.label}
                 </div>
               </div>
@@ -214,4 +217,6 @@ export default function HeroModern() {
       </motion.div>
     </div>
   );
-}
+});
+
+export default HeroModern;
