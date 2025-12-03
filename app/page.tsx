@@ -4,13 +4,21 @@ import HeroModern from "@/components/HeroModern";
 import FeaturesModern from "@/components/FeaturesModern";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { Factory, Ship, HardHat, Lock, ArrowRight, type LucideIcon } from "lucide-react";
 
 // Define static data with unique IDs for proper React keys
-const APPLICATIONS = [
-  { id: 'app-industrial', icon: '🏭', title: 'Industrial Automation', desc: 'Process monitoring and control' },
-  { id: 'app-maritime', icon: '🚢', title: 'Maritime', desc: 'Navigation and collision avoidance' },
-  { id: 'app-construction', icon: '🏗️', title: 'Construction', desc: 'Site monitoring and safety' },
-  { id: 'app-security', icon: '🔒', title: 'Security', desc: 'Perimeter protection systems' },
+interface Application {
+  id: string;
+  icon: LucideIcon;
+  title: string;
+  desc: string;
+}
+
+const APPLICATIONS: Application[] = [
+  { id: 'app-industrial', icon: Factory, title: 'Industrial Automation', desc: 'Process monitoring and control' },
+  { id: 'app-maritime', icon: Ship, title: 'Maritime', desc: 'Navigation and collision avoidance' },
+  { id: 'app-construction', icon: HardHat, title: 'Construction', desc: 'Site monitoring and safety' },
+  { id: 'app-security', icon: Lock, title: 'Security', desc: 'Perimeter protection systems' },
 ];
 
 const STATS = [
@@ -19,16 +27,6 @@ const STATS = [
   { id: 'stat-range', value: '250', unit: 'm', label: 'Max Range' },
   { id: 'stat-ip', value: 'IP68', unit: '', label: 'Protection' },
 ];
-
-// Reduced particles for better performance (8 instead of 20)
-const PARTICLES = Array.from({ length: 8 }, (_, i) => ({
-  id: `particle-${i}`,
-  x: Math.random() * 1200,
-  y: Math.random() * 400,
-  opacity: Math.random(),
-  duration: 4 + Math.random() * 2,
-  delay: Math.random() * 3,
-}));
 
 export default function HomeModern() {
   return (
@@ -40,14 +38,9 @@ export default function HomeModern() {
       <FeaturesModern />
 
       {/* Applications Section */}
-      <section className="py-32 bg-[#0B1021] relative overflow-hidden">
+      <section className="py-32 bg-radar-dark relative overflow-hidden">
         {/* HUD Grid background */}
         <div className="absolute inset-0 hud-grid opacity-20" />
-
-        {/* Scanline effect */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <div className="absolute w-full h-1 bg-gradient-to-r from-transparent via-[#00F0FF]/20 to-transparent scanline" />
-        </div>
 
         <div className="container mx-auto px-4 relative z-10">
           <motion.div
@@ -59,50 +52,54 @@ export default function HomeModern() {
           >
             <h2 className="text-5xl md:text-6xl font-bold mb-6">
               <span className="text-white">Industry</span>{' '}
-              <span className="bg-gradient-to-r from-[#00F0FF] to-[#00FF41] text-transparent bg-clip-text">
+              <span className="bg-gradient-to-r from-radar-cyan to-radar-green text-transparent bg-clip-text">
                 Applications
               </span>
             </h2>
+            <p className="text-xl text-radar-muted max-w-2xl mx-auto">
+              Radar solutions tailored for every sector
+            </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
-            {APPLICATIONS.map((app, i) => (
-              <motion.div
-                key={app.id}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: i * 0.1 }}
-                whileHover={{ scale: 1.05 }}
-                className="group relative glass rounded-xl p-8 border-flow hover:bg-radar-dark/80 transition-all duration-300"
-              >
-                <div className="text-6xl mb-4 transform group-hover:scale-110 transition-transform bracket-icon">
-                  {app.icon}
-                </div>
-                <h3 className="text-xl font-bold mb-2 text-white group-hover:text-radar-cyan transition-colors font-tech">
-                  <span className="bracket-icon">{app.title.toUpperCase()}</span>
-                </h3>
-                <p className="text-radar-muted">{app.desc}</p>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+            {APPLICATIONS.map((app, i) => {
+              const Icon = app.icon;
+              return (
+                <motion.div
+                  key={app.id}
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: i * 0.1 }}
+                  whileHover={{ y: -8 }}
+                  className="group relative"
+                >
+                  <div className="glass-strong rounded-xl p-6 h-full transition-all duration-300 group-hover:bg-radar-dark/80">
+                    {/* Icon */}
+                    <div className="w-14 h-14 rounded-xl bg-radar-cyan/10 border border-radar-cyan/20 flex items-center justify-center mb-5 group-hover:scale-110 group-hover:border-radar-cyan/50 transition-all duration-300">
+                      <Icon size={28} className="text-radar-cyan" strokeWidth={1.5} />
+                    </div>
 
-                {/* Glow effect on hover */}
-                <div className="absolute inset-0 bg-radar-cyan/0 group-hover:bg-radar-cyan/10 rounded-xl transition-all duration-300 -z-10 blur-lg" />
+                    <h3 className="text-lg font-bold mb-2 text-white group-hover:text-radar-cyan transition-colors font-mono">
+                      {app.title.toUpperCase()}
+                    </h3>
+                    <p className="text-radar-muted text-sm">{app.desc}</p>
 
-                {/* Corner brackets */}
-                <div className="absolute top-3 right-3 w-8 h-8 border-t border-r border-radar-cyan/30 group-hover:border-radar-cyan transition-colors" />
-              </motion.div>
-            ))}
+                    {/* Corner bracket */}
+                    <div className="absolute top-3 right-3 w-6 h-6 border-t border-r border-radar-cyan/20 group-hover:border-radar-cyan/50 transition-colors" />
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* Stats Section */}
-      <section className="py-32 bg-[#0B1021] relative">
-        {/* HUD Grid background */}
-        <div className="absolute inset-0 hud-grid opacity-20" />
-
+      <section className="py-24 bg-radar-darker relative border-y border-radar-cyan/10">
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-6xl mx-auto">
-            <div className="grid md:grid-cols-4 gap-12">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               {STATS.map((stat, i) => (
                 <motion.div
                   key={stat.id}
@@ -110,21 +107,15 @@ export default function HomeModern() {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: i * 0.1 }}
-                  className="text-center glass-strong rounded-xl p-6 border-flow relative"
+                  className="text-center"
                 >
-                  <div className="text-6xl font-bold font-tech bg-gradient-to-r from-radar-cyan to-radar-green text-transparent bg-clip-text mb-2">
-                    <span className="bracket-icon">
-                      {stat.value}
-                      <span className="text-4xl">{stat.unit}</span>
-                    </span>
+                  <div className="text-4xl md:text-5xl font-bold font-mono bg-gradient-to-r from-radar-cyan to-radar-green text-transparent bg-clip-text mb-2">
+                    {stat.value}
+                    <span className="text-2xl md:text-3xl">{stat.unit}</span>
                   </div>
-                  <div className="text-radar-muted uppercase tracking-wider text-sm font-tech">
+                  <div className="text-radar-muted uppercase tracking-wider text-xs font-mono">
                     {stat.label}
                   </div>
-
-                  {/* Corner brackets */}
-                  <div className="absolute top-2 right-2 w-6 h-6 border-t border-r border-radar-cyan/30" />
-                  <div className="absolute bottom-2 left-2 w-6 h-6 border-b border-l border-radar-cyan/30" />
                 </motion.div>
               ))}
             </div>
@@ -133,38 +124,9 @@ export default function HomeModern() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-32 bg-[#0B1021] relative overflow-hidden">
+      <section className="py-32 bg-radar-dark relative overflow-hidden">
         {/* HUD Grid background */}
-        <div className="absolute inset-0 hud-grid opacity-30" />
-
-        {/* Optimized animated particles - reduced count */}
-        <div className="absolute inset-0">
-          {PARTICLES.map((particle) => (
-            <motion.div
-              key={particle.id}
-              className="absolute w-1 h-1 bg-radar-cyan rounded-full"
-              initial={{
-                x: particle.x,
-                y: particle.y,
-                opacity: particle.opacity
-              }}
-              animate={{
-                y: [0, -400],
-                opacity: [0, 1, 0]
-              }}
-              transition={{
-                duration: particle.duration,
-                repeat: Infinity,
-                delay: particle.delay
-              }}
-            />
-          ))}
-        </div>
-
-        {/* Scanline effect */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <div className="absolute w-full h-1 bg-gradient-to-r from-transparent via-[#00F0FF]/30 to-transparent scanline" />
-        </div>
+        <div className="absolute inset-0 hud-grid opacity-20" />
 
         <div className="container mx-auto px-4 text-center relative z-10">
           <motion.div
@@ -172,32 +134,27 @@ export default function HomeModern() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="glass-strong rounded-2xl p-12 max-w-4xl mx-auto border-flow"
+            className="max-w-3xl mx-auto"
           >
-            <h2 className="text-5xl md:text-6xl font-bold mb-6 text-white">
-              <span className="bracket-icon">Ready to Transform</span> <br />
-              <span className="bg-gradient-to-r from-[#00F0FF] to-[#00FF41] text-transparent bg-clip-text text-glitch">
+            <h2 className="text-4xl md:text-6xl font-bold mb-6 text-white">
+              Ready to Transform{' '}
+              <span className="bg-gradient-to-r from-radar-cyan to-radar-green text-transparent bg-clip-text">
                 Your Operations?
               </span>
             </h2>
-            <p className="text-xl text-[#8B9DC3] mb-10 max-w-2xl mx-auto font-tech">
-              Explore our range of <span className="text-[#00F0FF] font-bold">16+</span> commercial and industrial radar systems
+            <p className="text-xl text-radar-muted mb-10 max-w-2xl mx-auto">
+              Explore our range of <span className="text-radar-cyan font-semibold">16+</span> commercial and industrial radar systems
             </p>
             <Link href="/shop">
               <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-12 py-5 bg-[#00F0FF] rounded-xl font-bold font-tech text-[#0B1021] text-xl glow-cyan hover:bg-[#00FF41] transition-all"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="inline-flex items-center gap-3 px-8 py-4 bg-radar-cyan text-radar-dark rounded-xl font-mono font-bold text-lg hover:bg-radar-green transition-colors"
               >
-                <span className="bracket-icon">VIEW ALL PRODUCTS</span>
+                View All Products
+                <ArrowRight size={20} />
               </motion.button>
             </Link>
-
-            {/* Decorative corner brackets */}
-            <div className="absolute top-4 left-4 w-16 h-16 border-t-2 border-l-2 border-[#00F0FF]/50" />
-            <div className="absolute top-4 right-4 w-16 h-16 border-t-2 border-r-2 border-[#00F0FF]/50" />
-            <div className="absolute bottom-4 left-4 w-16 h-16 border-b-2 border-l-2 border-[#00F0FF]/50" />
-            <div className="absolute bottom-4 right-4 w-16 h-16 border-b-2 border-r-2 border-[#00F0FF]/50" />
           </motion.div>
         </div>
       </section>
