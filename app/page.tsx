@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Truck, Shield, Globe, Headphones, Star, ChevronRight } from "lucide-react";
 import { products } from "@/data/products";
+import AnimatedBackground from "@/components/AnimatedBackground";
 
 // Featured products (first 4)
 const featuredProducts = products.slice(0, 4);
@@ -20,9 +21,7 @@ export default function Home() {
 
       {/* Hero Section */}
       <section className="relative py-20 md:py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0a0a0a] via-[#111] to-[#0a0a0a]" />
-        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[120px]" />
-        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-cyan-500/10 rounded-full blur-[100px]" />
+        <AnimatedBackground />
 
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl">
