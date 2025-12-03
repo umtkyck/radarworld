@@ -4,16 +4,16 @@ import { Product } from "@/types/product";
 import { useCart } from "@/context/CartContext";
 import Link from "next/link";
 import Image from "next/image";
-import React from "react";
-import { ShoppingCart, Check, Package, Factory } from "lucide-react";
+import { useState } from "react";
+import { ShoppingCart, Check } from "lucide-react";
 
 interface ProductCardProps {
   product: Product;
 }
 
-const ProductCard = React.memo(function ProductCard({ product }: ProductCardProps) {
+export default function ProductCard({ product }: ProductCardProps) {
   const { addToCart } = useCart();
-  const [added, setAdded] = React.useState(false);
+  const [added, setAdded] = useState(false);
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -23,77 +23,63 @@ const ProductCard = React.memo(function ProductCard({ product }: ProductCardProp
     setTimeout(() => setAdded(false), 1500);
   };
 
-  const CategoryIcon = product.category === "commercial" ? Package : Factory;
-
   return (
     <Link href={`/product/${product.id}`}>
-      <div className="group bg-radar-darker border border-radar-cyan/10 rounded-xl overflow-hidden hover:border-radar-cyan/30 transition-all duration-300 h-full flex flex-col">
+      <div className="group bg-white/[0.02] border border-white/5 rounded-2xl overflow-hidden hover:border-emerald-500/30 transition-all h-full flex flex-col">
         {/* Image */}
-        <div className="h-48 bg-radar-dark overflow-hidden relative">
+        <div className="h-48 bg-zinc-900 overflow-hidden relative">
           <Image
             src={product.image}
             alt={product.name}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-            className="object-cover group-hover:scale-105 transition-transform duration-500"
+            className="object-cover group-hover:scale-105 transition-transform duration-300"
             loading="lazy"
             quality={80}
           />
-          {/* Gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-radar-darker/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-
-          {/* Stock badge */}
           {product.inStock && (
-            <div className="absolute top-3 right-3 flex items-center gap-1 bg-radar-green/20 text-radar-green text-xs font-mono px-2 py-1 rounded-md border border-radar-green/30">
-              <span className="w-1.5 h-1.5 rounded-full bg-radar-green animate-pulse" />
-              <span>In Stock</span>
+            <div className="absolute top-3 right-3 flex items-center gap-1 bg-emerald-500/20 text-emerald-400 text-xs px-2 py-1 rounded-full">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+              In Stock
             </div>
           )}
         </div>
 
         <div className="p-5 flex flex-col flex-grow">
           {/* Category */}
-          <div className="mb-3">
-            <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-mono ${
-              product.category === "commercial"
-                ? "bg-radar-cyan/10 text-radar-cyan border border-radar-cyan/20"
-                : "bg-radar-green/10 text-radar-green border border-radar-green/20"
-            }`}>
-              <CategoryIcon size={12} />
-              {product.category.toUpperCase()}
-            </span>
-          </div>
+          <span className={`inline-block w-fit px-2 py-1 rounded text-xs font-medium mb-3 ${
+            product.category === "commercial"
+              ? "bg-cyan-500/10 text-cyan-400"
+              : "bg-emerald-500/10 text-emerald-400"
+          }`}>
+            {product.category}
+          </span>
 
           {/* Title */}
-          <h3 className="text-lg font-semibold mb-2 text-white group-hover:text-radar-cyan transition-colors line-clamp-2">
+          <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-emerald-400 transition-colors line-clamp-2">
             {product.name}
           </h3>
 
           {/* Description */}
-          <p className="text-radar-muted text-sm mb-4 flex-grow line-clamp-2">
+          <p className="text-zinc-500 text-sm mb-4 flex-grow line-clamp-2">
             {product.description}
           </p>
 
-          {/* Price and Add to Cart */}
+          {/* Price and Button */}
           <div className="mt-auto space-y-3">
-            <div className="flex items-end justify-between">
-              <div>
-                <span className="text-xs text-radar-muted block">Price</span>
-                <span className="text-2xl font-bold font-mono text-white">
-                  ${product.price.toLocaleString()}
-                </span>
-              </div>
+            <div className="text-2xl font-bold text-white">
+              ${product.price.toLocaleString()}
             </div>
 
             <button
               onClick={handleAddToCart}
               disabled={!product.inStock}
-              className={`w-full py-2.5 rounded-lg font-mono text-sm font-medium transition-all duration-200 flex items-center justify-center gap-2 ${
+              className={`w-full py-2.5 rounded-xl text-sm font-medium transition-all flex items-center justify-center gap-2 ${
                 !product.inStock
-                  ? "bg-radar-dark text-radar-muted cursor-not-allowed border border-radar-cyan/10"
+                  ? "bg-white/5 text-zinc-600 cursor-not-allowed"
                   : added
-                  ? "bg-radar-green/20 text-radar-green border border-radar-green/30"
-                  : "bg-radar-cyan/10 text-radar-cyan border border-radar-cyan/30 hover:bg-radar-cyan/20"
+                  ? "bg-emerald-500/20 text-emerald-400"
+                  : "bg-white/5 text-white hover:bg-white/10"
               }`}
             >
               {!product.inStock ? (
@@ -115,6 +101,4 @@ const ProductCard = React.memo(function ProductCard({ product }: ProductCardProp
       </div>
     </Link>
   );
-});
-
-export default ProductCard;
+}
