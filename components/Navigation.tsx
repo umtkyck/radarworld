@@ -35,12 +35,12 @@ export default function Navigation() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-10">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-sm font-medium transition-colors ${
+                className={`text-base font-semibold tracking-wide transition-colors ${
                   isActive(link.href)
                     ? "text-white"
                     : "text-zinc-400 hover:text-white"
@@ -138,7 +138,7 @@ export default function Navigation() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
+                  className={`px-4 py-3 rounded-lg text-base font-semibold transition-colors ${
                     isActive(link.href)
                       ? "bg-white/5 text-white"
                       : "text-zinc-400 hover:text-white hover:bg-white/5"
@@ -151,7 +151,7 @@ export default function Navigation() {
                 <Link
                   href="/login"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="px-4 py-3 rounded-lg text-sm font-medium text-emerald-400 hover:bg-white/5 transition-colors flex items-center gap-2"
+                  className="px-4 py-3 rounded-lg text-base font-semibold text-emerald-400 hover:bg-white/5 transition-colors flex items-center gap-2"
                 >
                   <User size={18} />
                   Sign In
