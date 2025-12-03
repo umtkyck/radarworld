@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Mail, Phone, MapPin, Send, Clock, Globe } from "lucide-react";
+import { Mail, Phone, MapPin, Send, Clock, Globe, Loader2 } from "lucide-react";
+import { saveContactMessage } from "@/lib/firestore";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -12,12 +13,26 @@ export default function ContactPage() {
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real app, you would send this to your API
-    console.log("Form submitted:", formData);
-    setSubmitted(true);
+    setLoading(true);
+    setError("");
+
+    try {
+      const result = await saveContactMessage(formData);
+      if (result.success) {
+        setSubmitted(true);
+      } else {
+        setError("Failed to send message. Please try again.");
+      }
+    } catch {
+      setError("An error occurred. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -234,12 +249,28 @@ export default function ContactPage() {
                   />
                 </div>
 
+                {error && (
+                  <div className="bg-red-500/10 border border-red-500/20 rounded-xl p-4">
+                    <p className="text-red-400 text-sm">{error}</p>
+                  </div>
+                )}
+
                 <button
                   type="submit"
-                  className="w-full md:w-auto px-8 py-4 bg-white text-black rounded-xl font-semibold hover:bg-zinc-200 transition-colors flex items-center justify-center gap-2"
+                  disabled={loading}
+                  className="w-full md:w-auto px-8 py-4 bg-white text-black rounded-xl font-semibold hover:bg-zinc-200 transition-colors flex items-center justify-center gap-2 disabled:bg-zinc-700 disabled:text-zinc-400 disabled:cursor-not-allowed"
                 >
-                  <Send size={20} />
-                  Send Message
+                  {loading ? (
+                    <>
+                      <Loader2 size={20} className="animate-spin" />
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      <Send size={20} />
+                      Send Message
+                    </>
+                  )}
                 </button>
               </form>
             </div>
