@@ -23,8 +23,8 @@ export default function CheckoutCancelPage() {
               <h3 className="font-semibold text-white mb-2">Need Help?</h3>
               <p className="text-zinc-400 text-sm">
                 If you experienced any issues during checkout, please contact our support team at{" "}
-                <a href="mailto:support@radarworld.com" className="text-amber-400 hover:text-amber-300">
-                  support@radarworld.com
+                <a href="mailto:support@radarcart.com" className="text-amber-400 hover:text-amber-300">
+                  support@radarcart.com
                 </a>
               </p>
             </div>

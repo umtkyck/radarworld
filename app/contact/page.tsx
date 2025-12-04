@@ -86,8 +86,8 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="text-white font-semibold mb-1">Email</h3>
-                    <a href="mailto:info@radarworld.com" className="text-zinc-400 hover:text-emerald-400 transition-colors">
-                      info@radarworld.com
+                    <a href="mailto:info@radarcart.com" className="text-zinc-400 hover:text-emerald-400 transition-colors">
+                      info@radarcart.com
                     </a>
                     <p className="text-zinc-500 text-sm mt-1">For general inquiries</p>
                   </div>
@@ -151,8 +151,8 @@ export default function ContactPage() {
               <p className="text-zinc-400 text-sm">
                 We ship to over 150 countries. Contact our international sales team for quotes and shipping information.
               </p>
-              <a href="mailto:sales@radarworld.com" className="text-emerald-400 text-sm hover:text-emerald-300 transition-colors mt-2 inline-block">
-                sales@radarworld.com
+              <a href="mailto:sales@radarcart.com" className="text-emerald-400 text-sm hover:text-emerald-300 transition-colors mt-2 inline-block">
+                sales@radarcart.com
               </a>
             </div>
           </div>

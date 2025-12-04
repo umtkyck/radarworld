@@ -38,7 +38,7 @@ export default function Logo({ className = "", size = "md", showText = true }: L
       {showText && (
         <span className={`${text} font-bold tracking-tight`}>
           <span className="text-white">Radar</span>
-          <span className="text-emerald-400">World</span>
+          <span className="text-emerald-400">Cart</span>
         </span>
       )}
     </div>

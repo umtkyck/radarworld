@@ -384,7 +384,7 @@ export default function Home() {
                   Browse Products
                 </button>
               </Link>
-              <a href="mailto:info@radarworld.com">
+              <a href="mailto:info@radarcart.com">
                 <button className="px-8 py-4 bg-white/5 text-white rounded-full font-semibold border border-white/10 hover:bg-white/10 transition-colors">
                   Contact Sales
                 </button>

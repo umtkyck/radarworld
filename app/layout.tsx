@@ -61,8 +61,8 @@ const jetbrainsMono = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_DOMAIN || 'http://localhost:3000'),
   title: {
-    default: "RadarWorld - Commercial & Industrial Radar Systems",
-    template: "%s | RadarWorld",
+    default: "Radar Cart - Commercial & Industrial Radar Systems",
+    template: "%s | Radar Cart",
   },
   description: "Premium radar solutions for commercial and industrial applications. Advanced detection, tracking, and monitoring systems. Buy 77GHz, 80GHz, 120GHz radar sensors online.",
   keywords: [
@@ -77,24 +77,24 @@ export const metadata: Metadata = {
     "traffic radar",
     "radar sensor"
   ],
-  authors: [{ name: "RadarWorld" }],
-  creator: "RadarWorld",
-  publisher: "RadarWorld",
-  applicationName: "RadarWorld",
+  authors: [{ name: "Radar Cart" }],
+  creator: "Radar Cart",
+  publisher: "Radar Cart",
+  applicationName: "Radar Cart",
   manifest: "/manifest.json",
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "/",
-    siteName: "RadarWorld",
-    title: "RadarWorld - Commercial & Industrial Radar Systems",
+    siteName: "Radar Cart",
+    title: "Radar Cart - Commercial & Industrial Radar Systems",
     description: "Premium radar solutions for commercial and industrial applications. Advanced detection, tracking, and monitoring systems.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "RadarWorld - Commercial & Industrial Radar Systems",
+    title: "Radar Cart - Commercial & Industrial Radar Systems",
     description: "Premium radar solutions for commercial and industrial applications. Advanced detection, tracking, and monitoring systems.",
-    creator: "@radarworld",
+    creator: "@radarcart",
   },
   robots: {
     index: true,

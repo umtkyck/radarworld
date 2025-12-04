@@ -50,8 +50,8 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <a href="mailto:info@radarworld.com" className="text-zinc-500 hover:text-white text-sm transition-colors">
-                  info@radarworld.com
+                <a href="mailto:info@radarcart.com" className="text-zinc-500 hover:text-white text-sm transition-colors">
+                  info@radarcart.com
                 </a>
               </li>
               <li>
@@ -66,7 +66,7 @@ export default function Footer() {
         {/* Bottom */}
         <div className="mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-zinc-600 text-sm">
-            © {currentYear} RadarWorld. All rights reserved.
+            © {currentYear} Radar Cart. All rights reserved.
           </p>
           <div className="flex items-center gap-2 text-zinc-600 text-sm">
             <span className="w-2 h-2 rounded-full bg-emerald-500" />
