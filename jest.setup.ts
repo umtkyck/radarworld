@@ -29,6 +29,9 @@ jest.mock('@/lib/firebase', () => ({
   auth: null,
 }));
 
+// Mock scrollIntoView (not available in JSDOM)
+Element.prototype.scrollIntoView = jest.fn();
+
 // Mock window.matchMedia
 Object.defineProperty(window, 'matchMedia', {
   writable: true,

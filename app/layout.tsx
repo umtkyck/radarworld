@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import Chatbot from "@/components/Chatbot";
 import { CartProvider } from "@/context/CartContext";
 import Providers from "@/components/Providers";
 
@@ -132,6 +133,7 @@ export default function RootLayout({
               {children}
             </main>
             <Footer />
+            <Chatbot />
           </CartProvider>
         </Providers>
       </body>
