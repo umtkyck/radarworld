@@ -1,358 +1,856 @@
 import { Product } from "@/types/product";
 
 export const products: Product[] = [
+  // ============================================
+  // TRAFFIC RADAR SENSORS
+  // ============================================
   {
-    id: "radar-commercial-001",
-    name: "Maritime Navigation Radar MNR-3000",
-    description: "Advanced maritime radar system for commercial vessels with collision avoidance and weather detection capabilities.",
-    price: 45000,
-    category: "commercial",
-    image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1200&h=900&fit=crop&q=85",
+    id: "zlytr20",
+    slug: "24ghz-traffic-speed-radar-zlytr20",
+    model: "ZLYTR20",
+    name: "24GHz Traffic Speed Radar Sensor",
+    shortDescription: "High-precision traffic monitoring radar with 180m detection range",
+    description: "The ZLYTR20 is a professional-grade 24GHz millimeter wave radar module integrating microstrip antenna, RF circuit and signal processing. Designed for long-distance vehicle speed measurement up to 180 meters with ±1km/h accuracy. Ideal for highways, urban roads, school zones, and intersection warning systems.",
+    price: 289,
+    originalPrice: 349,
+    category: "traffic",
+    subcategory: "Speed Measurement",
+    image: "/images/products/traffic-radar-zlytr20.jpg",
     features: [
-      "360° panoramic coverage",
-      "Weather detection and tracking",
-      "Automatic target tracking (ATT)",
-      "Integration with AIS systems",
-      "Long-range detection up to 96 nautical miles"
+      "180m+ vehicle detection range",
+      "Speed accuracy ≤±1 km/h",
+      "Dual protocol: UART TTL & RS-485",
+      "Low power consumption <1.2W",
+      "High/low level signal output",
+      "IP65 weather resistant",
+      "Easy non-contact installation"
     ],
     specifications: {
-      range: "96 nautical miles",
-      frequency: "X-band (9.3-9.5 GHz)",
-      power: "25 kW peak",
-      resolution: "7.5m range, 1° azimuth"
+      frequency: "24.00-24.25 GHz (K-band)",
+      range: "5-180 meters",
+      accuracy: "±1 km/h",
+      power: "9-24V DC, <75mA@12V",
+      interface: "TTL, RS-485, UART",
+      protection: "IP65",
+      temperature: "-40°C to +85°C"
     },
-    inStock: true
+    problemTags: ["speed-measurement", "traffic-management", "vehicle-detection"],
+    applications: [
+      "Highway speed warning",
+      "School zone monitoring",
+      "Intersection safety alerts",
+      "Urban traffic management",
+      "Speed display signs"
+    ],
+    inStock: true,
+    badge: "bestseller"
   },
   {
-    id: "radar-industrial-001",
-    name: "Industrial Level Sensor ILS-2000",
-    description: "Non-contact radar level sensor for industrial tanks and silos. Perfect for harsh environments and challenging materials.",
-    price: 8500,
-    category: "industrial",
-    image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1200&h=900&fit=crop&q=85",
+    id: "zlytr22",
+    slug: "24ghz-narrow-beam-long-range-radar-zlytr22",
+    model: "ZLYTR22",
+    name: "24GHz Narrow-Beam Long Range Radar",
+    shortDescription: "Extended 320m detection for highway applications",
+    description: "The ZLYTR22 features a narrow beam antenna design for exceptional long-range vehicle detection up to 320 meters. Perfect for highway monitoring, toll gates, and large-scale traffic management where extended detection range is critical.",
+    price: 389,
+    originalPrice: 459,
+    category: "traffic",
+    subcategory: "Speed Measurement",
+    image: "/images/products/traffic-radar-zlytr22.jpg",
     features: [
-      "Non-contact measurement",
-      "Works with liquids, solids, and slurries",
-      "Temperature resistant (-60°C to +200°C)",
-      "Dust and vapor immune",
-      "4-20mA and HART output"
+      "320m ultra-long detection range",
+      "Narrow beam high precision",
+      "Speed measurement ≤350 km/h",
+      "Multi-vehicle detection",
+      "Modbus RTU protocol",
+      "Aluminum alloy housing"
     ],
     specifications: {
-      range: "0-70 meters",
-      frequency: "26 GHz (K-band)",
-      power: "1W average",
-      resolution: "±2mm accuracy"
+      frequency: "24.00-24.25 GHz (K-band)",
+      range: "10-320 meters",
+      accuracy: "±1 km/h",
+      power: "12-24V DC, <2W",
+      interface: "RS-485 Modbus RTU",
+      protection: "IP67",
+      temperature: "-40°C to +70°C"
     },
-    inStock: true
+    problemTags: ["speed-measurement", "traffic-management", "vehicle-detection"],
+    applications: [
+      "Highway speed enforcement",
+      "Toll gate monitoring",
+      "Tunnel traffic control",
+      "Large intersection management"
+    ],
+    inStock: true,
+    badge: "new"
+  },
+
+  // ============================================
+  // AGRICULTURE - GROUND SPEED SENSORS
+  // ============================================
+  {
+    id: "zlytgss01",
+    slug: "24ghz-true-ground-speed-sensor-tgss",
+    model: "ZLYTGSS01",
+    name: "24GHz True Ground Speed Sensor",
+    shortDescription: "Precision ground speed for tractors and agricultural equipment",
+    description: "The ZLYTGSS01 is a K-band radar sensor designed specifically for agricultural low-speed measurement. Using continuous-wave Doppler technology, it measures true ground velocity from 0.1 m/s to 70 km/h. Drop-in replacement for wheel sensors with pulse, CAN, and RS-485 interfaces.",
+    price: 245,
+    originalPrice: 295,
+    category: "agriculture",
+    subcategory: "Ground Speed",
+    image: "/images/products/ground-speed-tgss.jpg",
+    features: [
+      "Ultra-low speed detection: 0.1 m/s",
+      "Speed range: 0-70 km/h",
+      "Pulse output mimics wheel sensors",
+      "CAN & RS-485 modern interfaces",
+      "Works over soil, stubble, gravel",
+      "Mounting: 0.3-1m above ground"
+    ],
+    specifications: {
+      frequency: "24.00-24.20 GHz (K-band)",
+      range: "0.1-70 km/h",
+      accuracy: "±1 km/h",
+      power: "9-36V DC, <1W",
+      interface: "Pulse, CAN, RS-485",
+      protection: "IP67",
+      temperature: "-40°C to +85°C"
+    },
+    problemTags: ["ground-speed", "speed-measurement"],
+    applications: [
+      "Tractor speed monitoring",
+      "Seeding rate control",
+      "Precision agriculture",
+      "Combine harvesters",
+      "Spray application control"
+    ],
+    inStock: true,
+    badge: "bestseller"
   },
   {
-    id: "radar-commercial-002",
-    name: "Traffic Monitoring Radar TMR-500",
-    description: "High-precision traffic monitoring and speed detection radar for commercial road management applications.",
-    price: 15000,
-    category: "commercial",
-    image: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1200&h=900&fit=crop&q=85",
+    id: "zlytgss02",
+    slug: "24ghz-agriculture-speed-radar-pro",
+    model: "ZLYTGSS02-PRO",
+    name: "24GHz Agriculture Speed Radar Pro",
+    shortDescription: "Advanced ground speed with dual-output for precision farming",
+    description: "Enhanced version of our ground speed sensor with dual independent outputs, improved accuracy at crawling speeds, and enhanced EMC performance for modern precision farming equipment.",
+    price: 329,
+    category: "agriculture",
+    subcategory: "Ground Speed",
+    image: "/images/products/ground-speed-pro.jpg",
     features: [
-      "Multi-lane traffic monitoring",
-      "Speed and classification detection",
-      "Vehicle counting and tracking",
-      "Weather-resistant enclosure",
-      "Real-time data streaming"
+      "Dual independent outputs",
+      "Enhanced 0.05 m/s minimum speed",
+      "Improved EMC shielding",
+      "Auto-calibration mode",
+      "LED status indicators",
+      "Quick-connect harness"
     ],
     specifications: {
-      range: "250 meters",
-      frequency: "24 GHz (K-band)",
-      power: "100 mW",
-      resolution: "±1 km/h speed accuracy"
+      frequency: "24.00-24.20 GHz (K-band)",
+      range: "0.05-80 km/h",
+      accuracy: "±0.5 km/h",
+      power: "10-32V DC, <1.5W",
+      interface: "Dual Pulse, CAN 2.0B, RS-485",
+      protection: "IP68",
+      temperature: "-40°C to +85°C"
     },
-    inStock: true
-  },
-  {
-    id: "radar-industrial-002",
-    name: "Perimeter Security Radar PSR-8000",
-    description: "Industrial-grade perimeter protection radar for critical infrastructure and facility security applications.",
-    price: 65000,
-    category: "industrial",
-    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&h=900&fit=crop&q=85",
-    features: [
-      "360° continuous surveillance",
-      "Intrusion detection and tracking",
-      "Multi-target tracking (up to 512 targets)",
-      "Integration with CCTV and alarms",
-      "All-weather operation"
+    problemTags: ["ground-speed", "speed-measurement"],
+    applications: [
+      "Precision seeding systems",
+      "Variable rate application",
+      "GPS guidance backup",
+      "Yield monitoring"
     ],
-    specifications: {
-      range: "5 kilometers",
-      frequency: "X-band (10 GHz)",
-      power: "50W peak",
-      resolution: "1m range, 0.5° azimuth"
-    },
-    inStock: true
-  },
-  {
-    id: "radar-commercial-003",
-    name: "Drone Detection Radar DDR-1000",
-    description: "Specialized radar system for detecting and tracking unauthorized drones in commercial airspace.",
-    price: 35000,
-    category: "commercial",
-    image: "https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=1200&h=900&fit=crop&q=85",
-    features: [
-      "Small target detection capability",
-      "3D tracking and classification",
-      "Low altitude coverage",
-      "Fast scan rate (1 second)",
-      "Integration with counter-drone systems"
-    ],
-    specifications: {
-      range: "3 kilometers",
-      frequency: "Ku-band (13.5-14 GHz)",
-      power: "10W average",
-      resolution: "RCS 0.01 m² detection"
-    },
-    inStock: true
-  },
-  {
-    id: "radar-industrial-003",
-    name: "Mining Collision Avoidance MCA-4000",
-    description: "Rugged radar system for heavy mining equipment collision avoidance in underground and surface operations.",
-    price: 28000,
-    category: "industrial",
-    image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1200&h=900&fit=crop&q=85",
-    features: [
-      "360° obstacle detection",
-      "Multiple zone configuration",
-      "Dust and vibration resistant",
-      "Audio and visual warnings",
-      "CAN bus integration"
-    ],
-    specifications: {
-      range: "100 meters",
-      frequency: "24 GHz",
-      power: "500 mW",
-      resolution: "±0.5m range accuracy"
-    },
-    inStock: true
-  },
-  {
-    id: "radar-commercial-004",
-    name: "Weather Surveillance Radar WSR-7000",
-    description: "Commercial weather radar for meteorological monitoring, precipitation detection, and storm tracking.",
-    price: 125000,
-    category: "commercial",
-    image: "https://images.unsplash.com/photo-1601134467661-3d775b999c8b?w=1200&h=900&fit=crop&q=85",
-    features: [
-      "Dual-polarization technology",
-      "Precipitation type classification",
-      "Wind field analysis",
-      "Doppler velocity measurement",
-      "Remote monitoring and control"
-    ],
-    specifications: {
-      range: "250 kilometers",
-      frequency: "C-band (5.6 GHz)",
-      power: "250 kW peak",
-      resolution: "250m range, 1° azimuth"
-    },
-    inStock: true
-  },
-  {
-    id: "radar-industrial-004",
-    name: "Port Automation Radar PAR-6000",
-    description: "High-resolution radar for automated container handling and vehicle tracking in port terminals.",
-    price: 55000,
-    category: "industrial",
-    image: "https://images.unsplash.com/photo-1605745341075-4815a54cad1a?w=1200&h=900&fit=crop&q=85",
-    features: [
-      "Container and vehicle tracking",
-      "Positioning accuracy for automation",
-      "Multi-sensor fusion ready",
-      "Real-time 3D mapping",
-      "Ethernet and fiber optic interfaces"
-    ],
-    specifications: {
-      range: "500 meters",
-      frequency: "77 GHz (W-band)",
-      power: "5W average",
-      resolution: "±5cm position accuracy"
-    },
     inStock: true
   },
 
-  // ZLY RADAR PRODUCTS
+  // ============================================
+  // SECURITY RADAR SENSORS
+  // ============================================
   {
-    id: "zly-commercial-001",
-    name: "ZLY 77GHz Long Range Multi-Target Radar LRR230PRO",
-    description: "Advanced 77GHz FMCW radar for ADAS applications and long-range multi-target detection in commercial vehicles.",
-    price: 3200,
-    category: "commercial",
-    image: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=1200&h=900&fit=crop&q=85",
+    id: "sr200",
+    slug: "24ghz-200m-perimeter-security-radar",
+    model: "SR200",
+    name: "24GHz 200m Perimeter Security Radar",
+    shortDescription: "Multi-target intrusion detection for critical facilities",
+    description: "The SR200 leverages modern microwave and high-speed digital signal processing for 24/7 perimeter security. With multi-antenna structures, it detects up to 32 targets simultaneously within 1-200 meter range, operating seamlessly in rain, snow, and harsh conditions.",
+    price: 1890,
+    originalPrice: 2290,
+    category: "security",
+    subcategory: "Perimeter Protection",
+    image: "/images/products/security-radar-sr200.jpg",
     features: [
-      "Detection range up to 250 meters",
-      "Multi-target tracking (up to 100 targets)",
-      "High angular resolution (±0.5°)",
-      "ADAS integration ready",
-      "IP67 waterproof rating"
-    ],
-    specifications: {
-      range: "0.2-250 meters",
-      frequency: "77 GHz (W-band)",
-      power: "10 dBm EIRP",
-      resolution: "±0.5° angular, ±0.1m range"
-    },
-    inStock: true
-  },
-  {
-    id: "zly-industrial-001",
-    name: "ZLY ZLYRR03B 120GHz Liquid Level Radar",
-    description: "Ultra-precise 120GHz radar sensor for non-contact liquid level measurement with ±2mm accuracy and IP68 waterproof rating.",
-    price: 1850,
-    category: "industrial",
-    image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=1200&h=900&fit=crop&q=85",
-    features: [
-      "20 meter measurement range",
-      "±2mm ultra-high accuracy",
-      "IP68 waterproof for harsh environments",
-      "Works with any liquid type",
-      "RS485/4-20mA output options"
-    ],
-    specifications: {
-      range: "0.2-20 meters",
-      frequency: "120 GHz",
-      power: "Low power consumption <1W",
-      resolution: "±2mm accuracy"
-    },
-    inStock: true
-  },
-  {
-    id: "zly-industrial-002",
-    name: "ZLY 80GHz Water Level Sensor RS485",
-    description: "High-precision 80GHz non-contact water level measurement sensor with 40m range, perfect for hydrological monitoring.",
-    price: 1450,
-    category: "industrial",
-    image: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1200&h=900&fit=crop&q=85",
-    features: [
-      "40 meter measurement range",
-      "IP67 waterproof rating",
-      "RS485 Modbus RTU protocol",
-      "No maintenance required",
-      "Immune to vapor and foam"
-    ],
-    specifications: {
-      range: "0.5-40 meters",
-      frequency: "80 GHz",
-      power: "12-36V DC, <2W",
-      resolution: "±3mm accuracy"
-    },
-    inStock: true
-  },
-  {
-    id: "zly-industrial-003",
-    name: "ZLY 24GHz Flow Rate Radar - 3-in-1 Sensor",
-    description: "Innovative 24GHz radar combining water level, flow velocity, and flow rate measurement in a single sensor.",
-    price: 2100,
-    category: "industrial",
-    image: "https://images.unsplash.com/photo-1581092162384-8987c1d64718?w=1200&h=900&fit=crop&q=85",
-    features: [
-      "3-in-1: Level + Velocity + Flow rate",
-      "Non-contact measurement",
-      "Perfect for narrow canals and pipes",
-      "Real-time data output",
-      "Easy installation and calibration"
-    ],
-    specifications: {
-      range: "0.05-30 meters (level), 0.15-15 m/s (velocity)",
-      frequency: "24 GHz (K-band)",
-      power: "12-24V DC, <3W",
-      resolution: "±2mm (level), ±0.03m/s (velocity)"
-    },
-    inStock: true
-  },
-  {
-    id: "zly-commercial-002",
-    name: "ZLY 24GHz Doppler Speed Radar Sensor",
-    description: "Compact 24GHz Doppler radar for accurate speed measurement in traffic monitoring and vehicle detection systems.",
-    price: 850,
-    category: "commercial",
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&h=900&fit=crop&q=85",
-    features: [
-      "High-precision speed detection",
-      "RS232/RS485 communication",
-      "Compact size and easy installation",
+      "200m detection range",
+      "32 simultaneous targets",
       "All-weather operation",
-      "Configurable detection angles"
+      "Position & speed tracking",
+      "TCP data transmission",
+      "Ultra-high anti-interference",
+      "Low false alarm rate"
     ],
     specifications: {
-      range: "5-250 meters detection",
-      frequency: "24 GHz (K-band)",
-      power: "5V DC, <1W",
-      resolution: "±0.5 km/h speed accuracy"
+      frequency: "24.00-24.25 GHz (K-band)",
+      range: "1-200 meters",
+      accuracy: "±0.5m position, ±0.5 km/h speed",
+      power: "12-24V DC, <8W",
+      interface: "TCP/IP Ethernet",
+      protection: "IP66",
+      temperature: "-40°C to +70°C"
     },
-    inStock: true
+    problemTags: ["perimeter-protection", "intrusion-detection", "vehicle-detection"],
+    applications: [
+      "Border security",
+      "Airport perimeter",
+      "Oil & gas facilities",
+      "Power plants",
+      "Prison perimeters",
+      "Military bases"
+    ],
+    inStock: true,
+    badge: "bestseller"
   },
   {
-    id: "zly-commercial-003",
-    name: "ZLY 77GHz BSD Radar for Commercial Vehicles",
-    description: "Blind Spot Detection radar system specifically designed for commercial trucks and large vehicles.",
-    price: 2800,
-    category: "commercial",
-    image: "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=1200&h=900&fit=crop&q=85",
+    id: "sr500",
+    slug: "24ghz-500m-security-radar-extended",
+    model: "SR500",
+    name: "24GHz 500m Extended Range Security Radar",
+    shortDescription: "Long-range surveillance for large area protection",
+    description: "Extended range security radar for protecting large perimeters. Capable of detecting and tracking 64 targets up to 500 meters, ideal for airports, seaports, and extensive industrial complexes.",
+    price: 3490,
+    category: "security",
+    subcategory: "Perimeter Protection",
+    image: "/images/products/security-radar-sr500.jpg",
     features: [
-      "Blind spot monitoring for trucks",
-      "Lane change assist",
-      "Rear cross-traffic alert",
-      "Multi-target tracking",
-      "CAN bus integration"
+      "500m detection range",
+      "64 simultaneous targets",
+      "PTZ camera integration",
+      "CCTV/VMS compatible",
+      "Automatic threat classification",
+      "Zone-based alarms"
     ],
     specifications: {
-      range: "0.5-80 meters",
-      frequency: "77 GHz (W-band)",
+      frequency: "24.00-24.25 GHz (K-band)",
+      range: "5-500 meters",
+      accuracy: "±1m position",
+      power: "24V DC, <15W",
+      interface: "Ethernet, RS-485",
+      protection: "IP67",
+      temperature: "-40°C to +60°C"
+    },
+    problemTags: ["perimeter-protection", "intrusion-detection"],
+    applications: [
+      "Large industrial sites",
+      "Seaports",
+      "International airports",
+      "Government facilities"
+    ],
+    inStock: true,
+    badge: "new"
+  },
+
+  // ============================================
+  // AUTOMOTIVE RADAR (ADAS)
+  // ============================================
+  {
+    id: "lrr230pro",
+    slug: "77ghz-long-range-radar-lrr230pro",
+    model: "LRR230PRO",
+    name: "77GHz Long Range Multi-Target Radar",
+    shortDescription: "Advanced ADAS radar with 260m range and 128-target tracking",
+    description: "The LRR230PRO is a cutting-edge 77GHz mmWave radar using RFCMOS SOC technology. With 260m detection range, ±0.1m accuracy, and tracking up to 128 targets simultaneously, it's ideal for ADAS applications including FCW, AEB, ACC, and autonomous driving systems.",
+    price: 589,
+    originalPrice: 749,
+    category: "automotive",
+    subcategory: "Long Range Radar",
+    image: "/images/products/adas-radar-lrr230pro.jpg",
+    features: [
+      "260m detection range",
+      "128 target tracking",
+      "±0.1m range accuracy",
+      "±0.03 m/s velocity accuracy",
+      "Dual CAN-FD interface",
+      "Hidden bumper installation",
+      "Vision fusion ready"
+    ],
+    specifications: {
+      frequency: "76-77 GHz (W-band)",
+      range: "0.2-260 meters",
+      accuracy: "±0.1m range, ±0.03 m/s velocity",
       power: "9-16V DC, <5W",
-      resolution: "±0.3m range, ±2° angle"
+      interface: "Dual CAN-FD",
+      protection: "IP67",
+      temperature: "-40°C to +85°C"
     },
-    inStock: true
+    problemTags: ["collision-avoidance", "adas", "vehicle-detection"],
+    applications: [
+      "Forward Collision Warning (FCW)",
+      "Autonomous Emergency Braking (AEB)",
+      "Adaptive Cruise Control (ACC)",
+      "Traffic Jam Assist",
+      "Highway Pilot"
+    ],
+    inStock: true,
+    badge: "bestseller"
   },
   {
-    id: "zly-industrial-004",
-    name: "ZLY 120GHz Low Power Sewage Level Gauge",
-    description: "Specialized 120GHz radar for sewage well monitoring with low power consumption and high corrosion resistance.",
-    price: 1650,
-    category: "industrial",
-    image: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=1200&h=900&fit=crop&q=85",
+    id: "zlymrr400",
+    slug: "77ghz-blind-spot-detection-radar-mrr400",
+    model: "ZLYMRR400",
+    name: "77GHz Blind Spot Detection Radar",
+    shortDescription: "5-in-1 BSD system for commercial and passenger vehicles",
+    description: "The ZLYMRR400 is a compact, high-performance 77GHz vehicle-mounted blind spot radar integrating BSD, Lane Change Assistance (LCA), Door Opening Warning (DOW), Reverse Cross Traffic Alert (RCTA), and Rear Collision Warning (RCW) in one module.",
+    price: 449,
+    originalPrice: 549,
+    category: "automotive",
+    subcategory: "BSD Radar",
+    image: "/images/products/bsd-radar-mrr400.jpg",
     features: [
-      "10 meter measurement range",
-      "Ultra-low power consumption",
-      "Corrosion resistant design",
-      "Narrow beam angle (8°)",
-      "4-20mA output"
+      "5-in-1 safety functions",
+      "BSD + LCA + DOW + RCTA + RCW",
+      "Wide 150° FOV",
+      "Fast 50ms response time",
+      "CAN bus integration",
+      "OEM-grade quality"
     ],
     specifications: {
-      range: "0.3-10 meters",
-      frequency: "120 GHz",
-      power: "<0.5W battery powered",
-      resolution: "±2mm accuracy"
+      frequency: "76-77 GHz (W-band)",
+      range: "0.5-80 meters",
+      accuracy: "±0.3m range, ±2° angle",
+      power: "9-16V DC, <4W",
+      interface: "CAN 2.0B",
+      protection: "IP67",
+      temperature: "-40°C to +85°C"
     },
-    inStock: true
+    problemTags: ["blind-spot-detection", "collision-avoidance", "adas"],
+    applications: [
+      "Blind Spot Detection",
+      "Lane Change Assistance",
+      "Door Opening Warning",
+      "Reverse Cross Traffic Alert",
+      "Truck/Bus safety systems"
+    ],
+    inStock: true,
+    badge: "sale"
   },
   {
-    id: "zly-commercial-004",
-    name: "ZLY 24GHz Low Speed Radar for Freight Trains",
-    description: "Specialized low-speed detection radar for freight train monitoring and railway safety applications.",
-    price: 1950,
-    category: "commercial",
-    image: "https://images.unsplash.com/photo-1474487548417-781cb71495f3?w=1200&h=900&fit=crop&q=85",
+    id: "zlyapa100",
+    slug: "24ghz-parking-assist-radar",
+    model: "ZLYAPA100",
+    name: "24GHz Automatic Parking Assist Radar",
+    shortDescription: "High-resolution parking sensor with slot detection",
+    description: "Precision 24GHz radar for automatic parking assist systems. Detects parking slots, measures distances with centimeter accuracy, and integrates with vehicle parking ECU for seamless automated parking.",
+    price: 189,
+    category: "automotive",
+    subcategory: "Parking Radar",
+    image: "/images/products/parking-radar-apa100.jpg",
     features: [
-      "Low-speed detection (0.1-50 km/h)",
-      "Railway-specific algorithms",
-      "Weather and vibration resistant",
-      "RS485 Modbus protocol",
-      "Easy trackside installation"
+      "Parking slot detection",
+      "5cm distance accuracy",
+      "4m side detection range",
+      "Fast slot scanning",
+      "Compact hidden mount"
     ],
     specifications: {
-      range: "1-100 meters",
-      frequency: "24 GHz (K-band)",
+      frequency: "24.00-24.25 GHz (K-band)",
+      range: "0.1-4 meters",
+      accuracy: "±5cm",
+      power: "9-16V DC, <2W",
+      interface: "CAN",
+      protection: "IP67",
+      temperature: "-40°C to +85°C"
+    },
+    problemTags: ["parking-assist", "collision-avoidance"],
+    applications: [
+      "Automated parking systems",
+      "Parking distance monitoring",
+      "Side collision warning"
+    ],
+    inStock: true
+  },
+
+  // ============================================
+  // WATER LEVEL SENSORS
+  // ============================================
+  {
+    id: "zlyrr04b",
+    slug: "80ghz-40m-water-level-radar-sensor",
+    model: "ZLYRR04B",
+    name: "80GHz 40m Water Level Radar Sensor",
+    shortDescription: "High-precision hydrological monitoring with 40m range",
+    description: "The ZLYRR04B is an 80GHz FMCW radar designed for hydrological detection. Non-contact design, compact structure, high precision, low power consumption, and strong anti-interference make it ideal for rivers, lakes, flood warning systems, and sewage monitoring.",
+    price: 345,
+    originalPrice: 420,
+    category: "water-level",
+    subcategory: "Hydrological",
+    image: "/images/products/water-level-80ghz-40m.jpg",
+    features: [
+      "40m measurement range",
+      "±3mm high accuracy",
+      "80GHz FMCW technology",
+      "Non-contact installation",
+      "All-weather operation",
+      "RS485 Modbus RTU"
+    ],
+    specifications: {
+      frequency: "80 GHz (W-band FMCW)",
+      range: "0.5-40 meters",
+      accuracy: "±3mm",
       power: "12-24V DC, <2W",
-      resolution: "±0.1 km/h at low speeds"
+      interface: "RS-485 Modbus RTU",
+      protection: "IP67",
+      temperature: "-40°C to +80°C"
     },
+    problemTags: ["level-monitoring", "flood-warning"],
+    applications: [
+      "River water level monitoring",
+      "Lake level measurement",
+      "Flash flood warning systems",
+      "Reservoir monitoring",
+      "Sewage pipe networks"
+    ],
+    inStock: true,
+    badge: "bestseller"
+  },
+  {
+    id: "zlyrr10",
+    slug: "80ghz-20m-compact-water-level-sensor",
+    model: "ZLYRR10",
+    name: "80GHz 20m Compact Water Level Sensor",
+    shortDescription: "IP67 waterproof radar for medium-range level monitoring",
+    description: "Compact 80GHz radar level sensor with 20m range. Designed for urban water management, storage tanks, and medium-range hydrological applications. IP67 waterproof rating ensures reliable outdoor operation.",
+    price: 275,
+    category: "water-level",
+    subcategory: "Hydrological",
+    image: "/images/products/water-level-80ghz-20m.jpg",
+    features: [
+      "20m measurement range",
+      "Ultra-compact design",
+      "IP67 waterproof",
+      "UART output",
+      "Low power <1.5W"
+    ],
+    specifications: {
+      frequency: "80 GHz (W-band FMCW)",
+      range: "0.3-20 meters",
+      accuracy: "±3mm",
+      power: "12-24V DC, <1.5W",
+      interface: "UART",
+      protection: "IP67",
+      temperature: "-30°C to +70°C"
+    },
+    problemTags: ["level-monitoring", "flood-warning", "tank-monitoring"],
+    applications: [
+      "Urban drainage monitoring",
+      "Water storage tanks",
+      "Sewage wells",
+      "Storm water management"
+    ],
     inStock: true
+  },
+  {
+    id: "zlyrr03b",
+    slug: "120ghz-ultra-precision-liquid-level-radar",
+    model: "ZLYRR03B",
+    name: "120GHz Ultra-Precision Liquid Level Radar",
+    shortDescription: "±1mm accuracy for industrial tank monitoring",
+    description: "The ZLYRR03B is a 120GHz ultra-precision radar for demanding industrial liquid level measurement. With ±1mm accuracy, narrow 4° beam angle, and IP68 rating, it excels in challenging environments with vapor, foam, or agitation.",
+    price: 489,
+    originalPrice: 599,
+    category: "water-level",
+    subcategory: "Industrial",
+    image: "/images/products/water-level-120ghz.jpg",
+    features: [
+      "±1mm ultra-high accuracy",
+      "20m measurement range",
+      "120GHz narrow beam (4°)",
+      "IP68 waterproof",
+      "Immune to vapor and foam",
+      "4-20mA + RS485 output"
+    ],
+    specifications: {
+      frequency: "120 GHz",
+      range: "0.2-20 meters",
+      accuracy: "±1mm",
+      power: "12-36V DC, <1W",
+      interface: "4-20mA, RS-485",
+      protection: "IP68",
+      temperature: "-40°C to +80°C"
+    },
+    problemTags: ["level-monitoring", "tank-monitoring"],
+    applications: [
+      "Chemical storage tanks",
+      "Pharmaceutical vessels",
+      "Food & beverage tanks",
+      "Precision process control"
+    ],
+    inStock: true,
+    badge: "new"
+  },
+  {
+    id: "zlysw01",
+    slug: "80ghz-sewage-well-level-sensor",
+    model: "ZLYSW01",
+    name: "80GHz Sewage Well Level Sensor",
+    shortDescription: "Corrosion-resistant design for wastewater applications",
+    description: "Specialized radar level sensor for sewage and wastewater monitoring. Features corrosion-resistant PTFE antenna, anti-condensation design, and enhanced signal processing to handle challenging sewage environments.",
+    price: 395,
+    category: "water-level",
+    subcategory: "Wastewater",
+    image: "/images/products/sewage-level-sensor.jpg",
+    features: [
+      "Corrosion-resistant PTFE antenna",
+      "Anti-condensation heating",
+      "Handles foam and turbulence",
+      "Self-cleaning design",
+      "10m range for manholes"
+    ],
+    specifications: {
+      frequency: "80 GHz (W-band FMCW)",
+      range: "0.3-10 meters",
+      accuracy: "±5mm",
+      power: "12-24V DC, <3W",
+      interface: "RS-485, 4-20mA",
+      protection: "IP68",
+      temperature: "-30°C to +60°C"
+    },
+    problemTags: ["level-monitoring", "tank-monitoring"],
+    applications: [
+      "Sewage pump stations",
+      "Manhole monitoring",
+      "Wastewater treatment",
+      "Combined sewer systems"
+    ],
+    inStock: true
+  },
+
+  // ============================================
+  // UAV/DRONE RADAR
+  // ============================================
+  {
+    id: "zlyldra100",
+    slug: "24ghz-uav-radar-altimeter",
+    model: "ZLY-LDRA100",
+    name: "24GHz UAV Radar Altimeter",
+    shortDescription: "All-weather altitude measurement for drones",
+    description: "The ZLY-LDRA100 is designed for UAV altitude measurement. Using Infineon automotive-grade chips, it operates reliably in rain, snow, fog, and dust. Compact design reduces payload impact while providing accurate altitude data for safe flight operations.",
+    price: 289,
+    originalPrice: 349,
+    category: "uav",
+    subcategory: "Altimeter",
+    image: "/images/products/uav-altimeter-ldra100.jpg",
+    features: [
+      "100m altitude range",
+      "All-weather operation",
+      "Infineon chipset reliability",
+      "Compact lightweight design",
+      "CAN + Serial interfaces",
+      "Plug-and-play integration"
+    ],
+    specifications: {
+      frequency: "24.00-24.20 GHz (K-band)",
+      range: "0.5-100 meters altitude",
+      accuracy: "±10cm",
+      power: "5V DC, <1W",
+      interface: "CAN, UART",
+      protection: "IP65",
+      temperature: "-20°C to +70°C",
+      weight: "<50g"
+    },
+    problemTags: ["altitude-measurement", "drone-navigation"],
+    applications: [
+      "Agricultural drones",
+      "Delivery UAVs",
+      "Aerial photography",
+      "Survey & mapping drones",
+      "VTOL aircraft"
+    ],
+    inStock: true,
+    badge: "bestseller"
+  },
+  {
+    id: "zlydca200",
+    slug: "24ghz-drone-collision-avoidance-radar",
+    model: "ZLY-DCA200",
+    name: "24GHz Drone Collision Avoidance Radar",
+    shortDescription: "Forward-looking obstacle detection for UAVs",
+    description: "Forward-looking collision avoidance radar for drones. Detects obstacles up to 50m ahead with wide 80° FOV, enabling autonomous obstacle avoidance and safe flight in complex environments.",
+    price: 359,
+    category: "uav",
+    subcategory: "Collision Avoidance",
+    image: "/images/products/uav-collision-avoidance.jpg",
+    features: [
+      "50m forward detection",
+      "80° horizontal FOV",
+      "Multi-target detection",
+      "Lightweight <35g",
+      "Low latency response"
+    ],
+    specifications: {
+      frequency: "24.00-24.25 GHz (K-band)",
+      range: "1-50 meters",
+      accuracy: "±20cm",
+      power: "5V DC, <1.5W",
+      interface: "UART, PWM",
+      protection: "IP54",
+      temperature: "-10°C to +60°C",
+      weight: "<35g"
+    },
+    problemTags: ["collision-avoidance", "drone-navigation"],
+    applications: [
+      "Autonomous flight",
+      "Indoor drone navigation",
+      "Warehouse inspection drones",
+      "Urban air mobility"
+    ],
+    inStock: true
+  },
+
+  // ============================================
+  // INDUSTRIAL SENSORS
+  // ============================================
+  {
+    id: "zlyflow01",
+    slug: "24ghz-3in1-flow-rate-radar",
+    model: "ZLYFLOW01",
+    name: "24GHz 3-in-1 Flow Rate Radar",
+    shortDescription: "Level + velocity + flow rate in one sensor",
+    description: "Revolutionary 3-in-1 radar combining water level, flow velocity, and flow rate measurement in a single sensor. Perfect for open channel flow monitoring in rivers, canals, and irrigation systems.",
+    price: 545,
+    originalPrice: 650,
+    category: "industrial",
+    subcategory: "Flow Measurement",
+    image: "/images/products/flow-rate-radar.jpg",
+    features: [
+      "3-in-1: Level + Velocity + Flow",
+      "Non-contact measurement",
+      "30m level range",
+      "15 m/s velocity range",
+      "Real-time flow calculation",
+      "Easy channel calibration"
+    ],
+    specifications: {
+      frequency: "24 GHz (K-band)",
+      range: "0.05-30m (level), 0.15-15 m/s (velocity)",
+      accuracy: "±2mm (level), ±0.03 m/s (velocity)",
+      power: "12-24V DC, <3W",
+      interface: "RS-485 Modbus, 4-20mA",
+      protection: "IP67",
+      temperature: "-30°C to +70°C"
+    },
+    problemTags: ["level-monitoring", "flood-warning"],
+    applications: [
+      "River flow monitoring",
+      "Irrigation canal measurement",
+      "Stormwater management",
+      "Industrial discharge monitoring"
+    ],
+    inStock: true,
+    badge: "new"
+  },
+  {
+    id: "zlyds01",
+    slug: "80ghz-dust-silo-level-radar",
+    model: "ZLYDS01",
+    name: "80GHz Dust & Silo Level Radar",
+    shortDescription: "Solid level measurement for silos and hoppers",
+    description: "Designed for challenging solid material level measurement in silos, hoppers, and bins. Features dust-penetrating 80GHz technology with algorithms to handle irregular surfaces and dust clouds.",
+    price: 425,
+    category: "industrial",
+    subcategory: "Silo Level",
+    image: "/images/products/silo-level-radar.jpg",
+    features: [
+      "30m range for solids",
+      "Dust cloud penetration",
+      "Irregular surface handling",
+      "Powder & granule compatible",
+      "Easy silo top mounting"
+    ],
+    specifications: {
+      frequency: "80 GHz (W-band FMCW)",
+      range: "0.5-30 meters",
+      accuracy: "±10mm",
+      power: "18-36V DC, <2W",
+      interface: "RS-485, 4-20mA",
+      protection: "IP67",
+      temperature: "-40°C to +80°C"
+    },
+    problemTags: ["level-monitoring", "tank-monitoring"],
+    applications: [
+      "Grain silos",
+      "Cement silos",
+      "Coal hoppers",
+      "Chemical powder storage"
+    ],
+    inStock: true
+  },
+  {
+    id: "zlytank01",
+    slug: "120ghz-precision-tank-gauging-radar",
+    model: "ZLYTANK01",
+    name: "120GHz Precision Tank Gauging Radar",
+    shortDescription: "Custody transfer grade liquid level measurement",
+    description: "High-precision 120GHz radar for custody transfer and inventory management applications. Meets accuracy requirements for commercial fuel storage and chemical tank farms.",
+    price: 789,
+    category: "industrial",
+    subcategory: "Tank Gauging",
+    image: "/images/products/tank-gauging-radar.jpg",
+    features: [
+      "±0.5mm custody transfer accuracy",
+      "Explosion-proof options",
+      "Hart 7 + Modbus protocol",
+      "Auto-calibration",
+      "Tank temperature compensation"
+    ],
+    specifications: {
+      frequency: "120 GHz",
+      range: "0.1-30 meters",
+      accuracy: "±0.5mm",
+      power: "18-36V DC, <2W",
+      interface: "4-20mA HART, RS-485 Modbus",
+      protection: "IP68, ATEX Zone 0",
+      temperature: "-40°C to +150°C (with cooling)"
+    },
+    problemTags: ["level-monitoring", "tank-monitoring"],
+    applications: [
+      "Fuel storage tanks",
+      "Chemical tank farms",
+      "LNG/LPG storage",
+      "Pharmaceutical vessels"
+    ],
+    inStock: true,
+    badge: "new"
   }
 ];
+
+// Category metadata for display
+export const categoryInfo: Record<string, { name: string; description: string; icon: string }> = {
+  traffic: {
+    name: "Traffic Radar",
+    description: "Speed measurement and vehicle detection for roads and highways",
+    icon: "Car"
+  },
+  agriculture: {
+    name: "Agriculture",
+    description: "Ground speed sensors for tractors and farming equipment",
+    icon: "Tractor"
+  },
+  security: {
+    name: "Security",
+    description: "Perimeter protection and intrusion detection systems",
+    icon: "Shield"
+  },
+  automotive: {
+    name: "Automotive ADAS",
+    description: "Advanced driver assistance radar systems",
+    icon: "Gauge"
+  },
+  "water-level": {
+    name: "Water Level",
+    description: "Non-contact level measurement for water and liquids",
+    icon: "Waves"
+  },
+  uav: {
+    name: "UAV/Drone",
+    description: "Altitude and collision avoidance radar for drones",
+    icon: "Plane"
+  },
+  industrial: {
+    name: "Industrial",
+    description: "Flow rate, silo level, and tank gauging sensors",
+    icon: "Factory"
+  }
+};
+
+// Problem tags metadata
+export const problemTagInfo: Record<string, { name: string; description: string }> = {
+  "speed-measurement": {
+    name: "Speed Measurement",
+    description: "Measure vehicle or ground speed accurately"
+  },
+  "collision-avoidance": {
+    name: "Collision Avoidance",
+    description: "Prevent collisions with obstacle detection"
+  },
+  "blind-spot-detection": {
+    name: "Blind Spot Detection",
+    description: "Monitor vehicle blind spots for safety"
+  },
+  "level-monitoring": {
+    name: "Level Monitoring",
+    description: "Measure liquid or solid levels in tanks"
+  },
+  "perimeter-protection": {
+    name: "Perimeter Protection",
+    description: "Secure facility perimeters from intrusion"
+  },
+  "ground-speed": {
+    name: "Ground Speed",
+    description: "True ground speed for agriculture"
+  },
+  "altitude-measurement": {
+    name: "Altitude Measurement",
+    description: "UAV height above ground measurement"
+  },
+  "traffic-management": {
+    name: "Traffic Management",
+    description: "Monitor and control road traffic"
+  },
+  "vehicle-detection": {
+    name: "Vehicle Detection",
+    description: "Detect and track vehicles"
+  },
+  "flood-warning": {
+    name: "Flood Warning",
+    description: "Water level monitoring for flood prevention"
+  },
+  "tank-monitoring": {
+    name: "Tank Monitoring",
+    description: "Industrial tank level measurement"
+  },
+  "drone-navigation": {
+    name: "Drone Navigation",
+    description: "Safe drone flight operations"
+  },
+  "adas": {
+    name: "ADAS",
+    description: "Advanced driver assistance systems"
+  },
+  "parking-assist": {
+    name: "Parking Assist",
+    description: "Automated parking systems"
+  },
+  "intrusion-detection": {
+    name: "Intrusion Detection",
+    description: "Detect unauthorized entry"
+  }
+};
+
+// Helper function to get products by category
+export function getProductsByCategory(category: string): Product[] {
+  return products.filter(p => p.category === category);
+}
+
+// Helper function to get products by problem tag
+export function getProductsByProblemTag(tag: string): Product[] {
+  return products.filter(p => p.problemTags.includes(tag as any));
+}
+
+// Helper function to search products
+export function searchProducts(query: string): Product[] {
+  const lowerQuery = query.toLowerCase();
+  return products.filter(p =>
+    p.name.toLowerCase().includes(lowerQuery) ||
+    p.description.toLowerCase().includes(lowerQuery) ||
+    p.shortDescription.toLowerCase().includes(lowerQuery) ||
+    p.model?.toLowerCase().includes(lowerQuery) ||
+    p.applications.some(app => app.toLowerCase().includes(lowerQuery)) ||
+    p.problemTags.some(tag => tag.includes(lowerQuery))
+  );
+}
+
+// Get featured products
+export function getFeaturedProducts(): Product[] {
+  return products.filter(p => p.badge);
+}
