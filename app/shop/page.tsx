@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import { products, categoryInfo, problemTagInfo, searchProducts } from "@/data/products";
 import { ProductCategory, ProblemTag } from "@/types/product";
 import ProductCard from "@/components/ProductCard";
@@ -28,12 +29,46 @@ const categoryIcons: Record<string, React.ReactNode> = {
   industrial: <Factory size={18} />,
 };
 
+// Pre-compute category and tag counts (static data)
+const categoryCounts = Object.fromEntries(
+  Object.keys(categoryInfo).map(cat => [cat, products.filter(p => p.category === cat).length])
+);
+const problemTagCounts = Object.fromEntries(
+  Object.keys(problemTagInfo).map(tag => [tag, products.filter(p => p.problemTags.includes(tag as ProblemTag)).length])
+);
+
 export default function ShopPage() {
+  return (
+    <Suspense fallback={<ShopPageLoading />}>
+      <ShopPageContent />
+    </Suspense>
+  );
+}
+
+function ShopPageLoading() {
+  return (
+    <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center">
+      <div className="text-zinc-400">Loading...</div>
+    </div>
+  );
+}
+
+function ShopPageContent() {
+  const searchParams = useSearchParams();
+  const categoryParam = searchParams.get("category");
+
   const [selectedCategory, setSelectedCategory] = useState<ProductCategory | "all">("all");
   const [selectedProblem, setSelectedProblem] = useState<ProblemTag | "all">("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [showFilters, setShowFilters] = useState(false);
   const [sortBy, setSortBy] = useState<"featured" | "price-asc" | "price-desc" | "name">("featured");
+
+  // Sync URL param with state on mount and when param changes
+  useEffect(() => {
+    if (categoryParam && Object.keys(categoryInfo).includes(categoryParam)) {
+      setSelectedCategory(categoryParam as ProductCategory);
+    }
+  }, [categoryParam]);
 
   const filteredProducts = useMemo(() => {
     let result = [...products];
@@ -137,9 +172,7 @@ export default function ShopPage() {
             All Products
             <span className="text-xs opacity-70">{products.length}</span>
           </button>
-          {categories.map((cat) => {
-            const count = products.filter((p) => p.category === cat).length;
-            return (
+          {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
@@ -151,10 +184,9 @@ export default function ShopPage() {
               >
                 {categoryIcons[cat]}
                 <span className="hidden sm:inline">{categoryInfo[cat].name}</span>
-                <span className="text-xs opacity-70">{count}</span>
+                <span className="text-xs opacity-70">{categoryCounts[cat]}</span>
               </button>
-            );
-          })}
+            ))}
         </div>
 
         {/* Filter Controls */}
@@ -217,9 +249,7 @@ export default function ShopPage() {
               >
                 All Problems
               </button>
-              {problemTags.map((tag) => {
-                const count = products.filter((p) => p.problemTags.includes(tag)).length;
-                return (
+              {problemTags.map((tag) => (
                   <button
                     key={tag}
                     onClick={() => setSelectedProblem(tag)}
@@ -230,10 +260,9 @@ export default function ShopPage() {
                     }`}
                   >
                     {problemTagInfo[tag].name}
-                    <span className="ml-1 opacity-70">({count})</span>
+                    <span className="ml-1 opacity-70">({problemTagCounts[tag]})</span>
                   </button>
-                );
-              })}
+                ))}
             </div>
           </div>
         )}

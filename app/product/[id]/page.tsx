@@ -5,7 +5,7 @@ import { useCart } from "@/context/CartContext";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { useState, use, useCallback } from "react";
+import { useState, use, useCallback, useMemo } from "react";
 import {
   ShoppingCart,
   Check,
@@ -25,26 +25,7 @@ import {
   Scale,
   Plug,
 } from "lucide-react";
-
-const categoryColors: Record<string, string> = {
-  traffic: "bg-blue-500/10 text-blue-400",
-  agriculture: "bg-green-500/10 text-green-400",
-  security: "bg-red-500/10 text-red-400",
-  automotive: "bg-purple-500/10 text-purple-400",
-  "water-level": "bg-cyan-500/10 text-cyan-400",
-  uav: "bg-orange-500/10 text-orange-400",
-  industrial: "bg-emerald-500/10 text-emerald-400",
-};
-
-const fallbackImages: Record<string, string> = {
-  traffic: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&h=600&fit=crop&q=80",
-  agriculture: "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&h=600&fit=crop&q=80",
-  security: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=600&fit=crop&q=80",
-  automotive: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=800&h=600&fit=crop&q=80",
-  "water-level": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&h=600&fit=crop&q=80",
-  uav: "https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=800&h=600&fit=crop&q=80",
-  industrial: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&h=600&fit=crop&q=80",
-};
+import { categoryColors, fallbackImages, badgeStyles, getProductImageSrc, calculateDiscount } from "@/lib/constants";
 
 export default function ProductDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
@@ -64,20 +45,16 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
     setTimeout(() => setAdded(false), 2000);
   }, [product, quantity, addToCartMultiple]);
 
-  // Related products (same category, different product)
-  const relatedProducts = products
-    .filter((p) => p.category === product.category && p.id !== product.id)
-    .slice(0, 4);
+  // Related products (same category, different product) - memoized
+  const relatedProducts = useMemo(() =>
+    products
+      .filter((p) => p.category === product.category && p.id !== product.id)
+      .slice(0, 4),
+    [product.category, product.id]
+  );
 
-  const imageSrc = imageError
-    ? fallbackImages[product.category] || fallbackImages.industrial
-    : product.image.startsWith("/")
-    ? fallbackImages[product.category] || fallbackImages.industrial
-    : product.image;
-
-  const discount = product.originalPrice
-    ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
-    : 0;
+  const imageSrc = getProductImageSrc(product.image, product.category, imageError);
+  const discount = calculateDiscount(product.price, product.originalPrice);
 
   return (
     <div className="min-h-screen bg-[#0a0a0a]">

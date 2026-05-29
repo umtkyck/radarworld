@@ -4,16 +4,7 @@ import { useCart } from "@/context/CartContext";
 import Link from "next/link";
 import Image from "next/image";
 import { ShoppingBag, Trash2, Minus, Plus, ArrowRight, Truck, Shield, ChevronLeft } from "lucide-react";
-
-const categoryColors: Record<string, string> = {
-  traffic: "bg-blue-500/10 text-blue-400",
-  agriculture: "bg-green-500/10 text-green-400",
-  security: "bg-red-500/10 text-red-400",
-  automotive: "bg-purple-500/10 text-purple-400",
-  "water-level": "bg-cyan-500/10 text-cyan-400",
-  uav: "bg-orange-500/10 text-orange-400",
-  industrial: "bg-emerald-500/10 text-emerald-400",
-};
+import { categoryColors } from "@/lib/constants";
 
 export default function CartPage() {
   const { items, removeFromCart, updateQuantity, total } = useCart();
@@ -93,7 +84,7 @@ export default function CartPage() {
                         <span className={`inline-block px-2 py-0.5 rounded text-xs font-medium mt-1 capitalize ${
                           categoryColors[item.category] || categoryColors.industrial
                         }`}>
-                          {item.category.replace("-", " ")}
+                          {item.category.replaceAll("-", " ")}
                         </span>
                       </div>
                       <button

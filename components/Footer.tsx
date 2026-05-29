@@ -23,13 +23,18 @@ export default function Footer() {
             <h4 className="text-white font-semibold mb-4">Products</h4>
             <ul className="space-y-2">
               <li>
-                <Link href="/shop?category=commercial" className="text-zinc-500 hover:text-white text-sm transition-colors">
-                  Commercial Radars
+                <Link href="/shop?category=traffic" className="text-zinc-500 hover:text-white text-sm transition-colors">
+                  Traffic Radar
                 </Link>
               </li>
               <li>
-                <Link href="/shop?category=industrial" className="text-zinc-500 hover:text-white text-sm transition-colors">
-                  Industrial Sensors
+                <Link href="/shop?category=automotive" className="text-zinc-500 hover:text-white text-sm transition-colors">
+                  Automotive ADAS
+                </Link>
+              </li>
+              <li>
+                <Link href="/shop?category=water-level" className="text-zinc-500 hover:text-white text-sm transition-colors">
+                  Water Level Sensors
                 </Link>
               </li>
               <li>
