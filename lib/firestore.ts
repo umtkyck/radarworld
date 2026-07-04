@@ -53,6 +53,20 @@ export interface Order {
   updatedAt?: Timestamp;
 }
 
+// The Firestore SDK retries silently (e.g. when the Firestore API is disabled
+// or rules block the write), which would leave the UI hanging forever.
+// Cap writes at a fixed timeout so callers always get an answer.
+const WRITE_TIMEOUT_MS = 8000;
+
+function withTimeout<T>(promise: Promise<T>): Promise<T> {
+  return Promise.race([
+    promise,
+    new Promise<never>((_, reject) =>
+      setTimeout(() => reject(new Error("Firestore write timed out")), WRITE_TIMEOUT_MS)
+    ),
+  ]);
+}
+
 // Contact Messages
 export async function saveContactMessage(message: Omit<ContactMessage, "id" | "createdAt" | "status">) {
   if (!db) {
@@ -61,11 +75,13 @@ export async function saveContactMessage(message: Omit<ContactMessage, "id" | "c
   }
 
   try {
-    const docRef = await addDoc(collection(db, "contacts"), {
-      ...message,
-      status: "new",
-      createdAt: serverTimestamp(),
-    });
+    const docRef = await withTimeout(
+      addDoc(collection(db, "contacts"), {
+        ...message,
+        status: "new",
+        createdAt: serverTimestamp(),
+      })
+    );
     return { success: true, id: docRef.id };
   } catch (error) {
     console.error("Error saving contact message:", error);
@@ -100,11 +116,13 @@ export async function createOrder(order: Omit<Order, "id" | "createdAt" | "updat
   }
 
   try {
-    const docRef = await addDoc(collection(db, "orders"), {
-      ...order,
-      createdAt: serverTimestamp(),
-      updatedAt: serverTimestamp(),
-    });
+    const docRef = await withTimeout(
+      addDoc(collection(db, "orders"), {
+        ...order,
+        createdAt: serverTimestamp(),
+        updatedAt: serverTimestamp(),
+      })
+    );
     return { success: true, id: docRef.id };
   } catch (error) {
     console.error("Error creating order:", error);

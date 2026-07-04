@@ -6,6 +6,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Lock, CreditCard, ShoppingBag, ArrowRight, ChevronLeft, Truck, Shield } from "lucide-react";
+import { getProductImageSrc } from "@/lib/constants";
 
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || ""
@@ -108,7 +109,7 @@ export default function CheckoutPage() {
                   <div key={item.id} className="flex gap-4 pb-4 border-b border-white/10 last:border-0 last:pb-0">
                     <div className="w-20 h-20 bg-zinc-900 overflow-hidden flex-shrink-0 relative">
                       <Image
-                        src={item.image}
+                        src={getProductImageSrc(item.image, item.category, false)}
                         alt={item.name}
                         fill
                         sizes="80px"

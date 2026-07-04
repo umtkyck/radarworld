@@ -4,6 +4,7 @@ import { useCart } from "@/context/CartContext";
 import Link from "next/link";
 import Image from "next/image";
 import { ShoppingBag, Trash2, Minus, Plus, ArrowRight, Truck, Shield, ChevronLeft } from "lucide-react";
+import { getProductImageSrc } from "@/lib/constants";
 
 export default function CartPage() {
   const { items, removeFromCart, updateQuantity, total } = useCart();
@@ -62,7 +63,7 @@ export default function CartPage() {
                 <div className="flex gap-6">
                   <Link href={`/product/${item.id}`} className="w-32 h-32 bg-zinc-900 overflow-hidden flex-shrink-0 relative">
                     <Image
-                      src={item.image}
+                      src={getProductImageSrc(item.image, item.category, false)}
                       alt={item.name}
                       fill
                       sizes="128px"

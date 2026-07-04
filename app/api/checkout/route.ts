@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getStripe } from "@/lib/stripe";
+import { getProductImageSrc } from "@/lib/constants";
 import { CartItem } from "@/types/product";
 
 export async function POST(request: NextRequest) {
@@ -16,14 +17,16 @@ export async function POST(request: NextRequest) {
     // Get Stripe instance (lazy loaded)
     const stripe = getStripe();
 
-    // Create Stripe line items from cart items
+    // Create Stripe line items from cart items.
+    // Stripe requires absolute image URLs; local paths are mapped to their
+    // public fallback images just like on the storefront.
     const lineItems = items.map((item) => ({
       price_data: {
         currency: "usd",
         product_data: {
           name: item.name,
           description: item.description,
-          images: [item.image],
+          images: [getProductImageSrc(item.image, item.category, false)],
           metadata: {
             category: item.category,
             productId: item.id,
