@@ -14,8 +14,8 @@ export default function Footer() {
           <div className="md:col-span-2">
             <Logo size="sm" />
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-zinc-500">
-              Professional millimeter wave radar sensors for precision detection
-              and monitoring.
+              Doppler radar sensors for rail, agriculture, and sports electronics
+              &mdash; with custom engineering from prototype to production.
             </p>
           </div>
 
@@ -26,18 +26,13 @@ export default function Footer() {
             </h4>
             <ul className="space-y-3">
               <li>
-                <Link href="/shop?category=traffic" className="text-sm text-zinc-500 transition-colors hover:text-white">
-                  Traffic Radar
+                <Link href="/shop?category=ground-speed" className="text-sm text-zinc-500 transition-colors hover:text-white">
+                  Ground Speed Sensor
                 </Link>
               </li>
               <li>
-                <Link href="/shop?category=automotive" className="text-sm text-zinc-500 transition-colors hover:text-white">
-                  Automotive ADAS
-                </Link>
-              </li>
-              <li>
-                <Link href="/shop?category=water-level" className="text-sm text-zinc-500 transition-colors hover:text-white">
-                  Water Level Sensors
+                <Link href="/shop?category=sports" className="text-sm text-zinc-500 transition-colors hover:text-white">
+                  Sports Tracking Radar
                 </Link>
               </li>
               <li>

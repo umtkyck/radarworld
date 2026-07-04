@@ -1,28 +1,12 @@
-export type ProductCategory =
-  | "traffic"
-  | "agriculture"
-  | "security"
-  | "automotive"
-  | "water-level"
-  | "uav"
-  | "industrial";
+export type ProductCategory = "ground-speed" | "sports";
 
 export type ProblemTag =
-  | "speed-measurement"
-  | "collision-avoidance"
-  | "blind-spot-detection"
-  | "level-monitoring"
-  | "perimeter-protection"
   | "ground-speed"
-  | "altitude-measurement"
-  | "traffic-management"
-  | "vehicle-detection"
-  | "flood-warning"
-  | "tank-monitoring"
-  | "drone-navigation"
-  | "adas"
-  | "parking-assist"
-  | "intrusion-detection";
+  | "speed-measurement"
+  | "slip-detection"
+  | "ball-tracking"
+  | "swing-analysis"
+  | "launch-monitoring";
 
 export interface Product {
   id: string;

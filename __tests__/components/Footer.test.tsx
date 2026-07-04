@@ -12,9 +12,8 @@ describe('Footer Component', () => {
   it('renders product links', () => {
     render(<Footer />);
 
-    expect(screen.getByText('Traffic Radar')).toBeInTheDocument();
-    expect(screen.getByText('Automotive ADAS')).toBeInTheDocument();
-    expect(screen.getByText('Water Level Sensors')).toBeInTheDocument();
+    expect(screen.getByText('Ground Speed Sensor')).toBeInTheDocument();
+    expect(screen.getByText('Sports Tracking Radar')).toBeInTheDocument();
     expect(screen.getByText('All Products')).toBeInTheDocument();
   });
 
@@ -48,12 +47,10 @@ describe('Footer Component', () => {
   it('has correct product category links', () => {
     render(<Footer />);
 
-    const trafficLink = screen.getByRole('link', { name: /traffic radar/i });
-    const automotiveLink = screen.getByRole('link', { name: /automotive adas/i });
-    const waterLevelLink = screen.getByRole('link', { name: /water level sensors/i });
+    const groundSpeedLink = screen.getByRole('link', { name: /ground speed sensor/i });
+    const sportsLink = screen.getByRole('link', { name: /sports tracking radar/i });
 
-    expect(trafficLink).toHaveAttribute('href', '/shop?category=traffic');
-    expect(automotiveLink).toHaveAttribute('href', '/shop?category=automotive');
-    expect(waterLevelLink).toHaveAttribute('href', '/shop?category=water-level');
+    expect(groundSpeedLink).toHaveAttribute('href', '/shop?category=ground-speed');
+    expect(sportsLink).toHaveAttribute('href', '/shop?category=sports');
   });
 });

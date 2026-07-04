@@ -1,20 +1,61 @@
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
-import { products, categoryInfo } from "@/data/products";
-import { ProductCategory } from "@/types/product";
+import { products } from "@/data/products";
 import RadarField from "@/components/RadarField";
 import ProductCard from "@/components/ProductCard";
 
-const bestSellers = products.filter((p) => p.badge === "bestseller").slice(0, 4);
-const newArrivals = products.filter((p) => p.badge === "new").slice(0, 4);
-
-const categories = Object.keys(categoryInfo) as ProductCategory[];
+const groundSpeed = products.find((p) => p.id === "zlytgss01")!;
+const sportsRadar = products.find((p) => p.id === "zlyspt01")!;
 
 const heroStats = [
-  { value: "24\u2013120 GHz", label: "Frequency range" },
-  { value: "\u00b11 mm", label: "Accuracy" },
-  { value: "IP68", label: "Protection" },
-  { value: `${products.length}`, label: "Sensor models" },
+  { value: "24 GHz", label: "K-band Doppler" },
+  { value: "0.1 m/s", label: "Minimum speed" },
+  { value: "320 km/h", label: "Maximum speed" },
+  { value: "OEM", label: "Custom engineering" },
+];
+
+const productSections = [
+  {
+    product: groundSpeed,
+    industry: "Rail & Agriculture",
+    headline: "True ground speed, no contact, no slip.",
+    copy: "Wheel sensors lie when wheels slip. Our Doppler radar reads velocity directly off the ground, so locomotives get reliable wheel-slip protection and odometry, and agricultural machinery doses seed and spray at the true working speed.",
+    points: [
+      "Locomotive wheel-slip / slide protection",
+      "Rail odometry and track maintenance vehicles",
+      "Seeding, spraying, and harvesting rate control",
+    ],
+  },
+  {
+    product: sportsRadar,
+    industry: "Sports Electronics",
+    headline: "Ball, club, and bat \u2014 tracked by one module.",
+    copy: "A single compact radar that captures golf ball speed, launch, and club head speed through impact \u2014 or pitch velocity, exit velocity, and bat speed on the diamond. Built to integrate into launch monitors, pitching machines, and swing analyzers.",
+    points: [
+      "Golf launch monitors and simulators",
+      "Baseball pitch and exit velocity tracking",
+      "SDK and reference designs included",
+    ],
+  },
+];
+
+const engineeringCapabilities = [
+  {
+    title: "Custom firmware",
+    description: "Application-specific detection profiles, filtering, and output logic tuned to your platform.",
+  },
+  {
+    title: "Interfaces & protocols",
+    description: "Pulse, CAN, RS-485, UART, SPI \u2014 or your proprietary protocol, implemented on request.",
+  },
+  {
+    title: "Mechanical adaptation",
+    description: "Housings, mounting angles, and connectors adapted to rail bogies, tractor chassis, or consumer devices.",
+  },
+  {
+    title: "Antenna design",
+    description: "Beam width and pattern tailored to your detection geometry, from narrow rail beams to wide sports fields.",
+  },
 ];
 
 function SectionHeader({ index, title, sub }: { index: string; title: string; sub: string }) {
@@ -49,8 +90,8 @@ export default function Home() {
             <span className="text-zinc-500">engineered for precision.</span>
           </h1>
           <p className="mt-8 max-w-md text-base leading-relaxed text-zinc-400">
-            Professional 24&ndash;120 GHz sensors for traffic, agriculture, security,
-            automotive and industrial applications.
+            True ground speed sensing for rail and agriculture, and ball &amp; swing
+            tracking for sports electronics &mdash; with full custom engineering support.
           </p>
 
           <div className="mt-10 flex flex-wrap items-center gap-4">
@@ -58,7 +99,7 @@ export default function Home() {
               href="/shop"
               className="group inline-flex items-center gap-3 bg-white px-7 py-3.5 text-sm font-medium text-black transition-colors hover:bg-zinc-200"
             >
-              Browse catalog
+              View products
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
             </Link>
             <Link
@@ -83,62 +124,72 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Best Sellers */}
+      {/* Products */}
       <section className="mx-auto max-w-6xl px-6 py-24">
-        <SectionHeader index="01" title="Best sellers" sub="Our most deployed sensors" />
-        <div className="grid gap-px border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-4">
-          {bestSellers.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
-        <div className="mt-8">
-          <Link
-            href="/shop"
-            className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-zinc-400 transition-colors hover:text-white"
-          >
-            View all products <ArrowRight size={14} />
-          </Link>
-        </div>
-      </section>
-
-      {/* Applications */}
-      <section className="mx-auto max-w-6xl px-6 py-24 pt-0">
-        <SectionHeader index="02" title="Applications" sub="Find the right sensor for your field" />
-        <div className="border-t border-white/10">
-          {categories.map((category, index) => (
-            <Link
-              key={category}
-              href={`/shop?category=${category}`}
-              className="group flex items-center justify-between border-b border-white/10 py-6 transition-colors hover:bg-white/[0.03]"
+        <SectionHeader index="01" title="Products" sub="Two platforms, built to be adapted" />
+        <div className="space-y-20">
+          {productSections.map((section, i) => (
+            <div
+              key={section.product.id}
+              className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16"
             >
-              <div className="flex items-baseline gap-6">
-                <span className="w-8 font-mono text-xs text-zinc-600">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <div>
-                  <h3 className="text-lg font-medium tracking-tight text-white md:text-xl">
-                    {categoryInfo[category].name}
-                  </h3>
-                  <p className="mt-1 hidden text-sm text-zinc-500 sm:block">
-                    {categoryInfo[category].description}
-                  </p>
-                </div>
+              <div className={i % 2 === 1 ? "lg:order-2" : ""}>
+                <p className="font-mono text-xs uppercase tracking-[0.3em] text-emerald-500">
+                  {section.industry}
+                </p>
+                <h3 className="mt-4 text-2xl font-medium tracking-tight text-white md:text-3xl">
+                  {section.headline}
+                </h3>
+                <p className="mt-5 text-sm leading-relaxed text-zinc-400">{section.copy}</p>
+                <ul className="mt-6 space-y-3">
+                  {section.points.map((point) => (
+                    <li key={point} className="flex items-start gap-3 text-sm text-zinc-300">
+                      <span className="mt-1.5 h-1 w-1 shrink-0 bg-emerald-500" />
+                      {point}
+                    </li>
+                  ))}
+                </ul>
+                <Link
+                  href={`/product/${section.product.id}`}
+                  className="mt-8 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-zinc-400 transition-colors hover:text-white"
+                >
+                  View {section.product.model} <ArrowUpRight size={14} />
+                </Link>
               </div>
-              <ArrowUpRight
-                size={20}
-                className="mr-2 shrink-0 text-zinc-600 transition-all group-hover:mr-0 group-hover:text-emerald-500"
-              />
-            </Link>
+              <div className={`border border-white/10 ${i % 2 === 1 ? "lg:order-1" : ""}`}>
+                <ProductCard product={section.product} />
+              </div>
+            </div>
           ))}
         </div>
       </section>
 
-      {/* New Arrivals */}
+      {/* Custom Engineering */}
       <section className="mx-auto max-w-6xl px-6 py-24 pt-0">
-        <SectionHeader index="03" title="New arrivals" sub="Latest additions to the catalog" />
+        <SectionHeader
+          index="02"
+          title="Custom engineering"
+          sub="Both platforms are starting points, not end points"
+        />
+        <p className="mb-12 max-w-2xl text-sm leading-relaxed text-zinc-400">
+          Every deployment is different. We adapt frequency profiles, firmware,
+          interfaces, and mechanics to your application &mdash; from locomotive
+          bogies to handheld launch monitors &mdash; and support you from
+          prototype to serial production.
+        </p>
         <div className="grid gap-px border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-4">
-          {newArrivals.map((product) => (
-            <ProductCard key={product.id} product={product} />
+          {engineeringCapabilities.map((capability, index) => (
+            <div key={capability.title} className="bg-[#050505] p-6">
+              <span className="font-mono text-xs text-zinc-600">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <h3 className="mt-4 text-base font-medium tracking-tight text-white">
+                {capability.title}
+              </h3>
+              <p className="mt-3 text-sm leading-relaxed text-zinc-500">
+                {capability.description}
+              </p>
+            </div>
           ))}
         </div>
       </section>
@@ -147,28 +198,28 @@ export default function Home() {
       <section className="border-t border-white/10">
         <div className="mx-auto max-w-6xl px-6 py-28">
           <p className="mb-6 font-mono text-xs uppercase tracking-[0.3em] text-emerald-500">
-            Technical support
+            Engineering support
           </p>
           <h2 className="max-w-2xl text-3xl font-medium tracking-tight text-white md:text-5xl">
-            Not sure which sensor fits your application?
+            Need the sensor adapted to your platform?
           </h2>
           <p className="mt-6 max-w-md text-zinc-400">
-            Our engineers help you choose the right frequency, range and interface
-            &mdash; free of charge.
+            Tell us about your application &mdash; our engineers design custom
+            variants, firmware, and integrations free of obligation.
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
             <Link
               href="/contact"
               className="group inline-flex items-center gap-3 bg-white px-7 py-3.5 text-sm font-medium text-black transition-colors hover:bg-zinc-200"
             >
-              Contact sales
+              Contact engineering
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
             </Link>
             <Link
               href="/shop"
               className="inline-flex items-center gap-3 border border-white/15 px-7 py-3.5 text-sm font-medium text-white transition-colors hover:border-white/40"
             >
-              Browse catalog
+              View products
             </Link>
           </div>
         </div>

@@ -1,12 +1,12 @@
 # Radar Cart
 
-E-commerce platform for professional millimeter wave radar sensors, covering traffic, agriculture, security, automotive, water level, UAV, and industrial applications.
+E-commerce platform for Doppler radar sensors: true ground speed sensing for railroad and agriculture, and ball & swing tracking for sports electronics — with custom OEM engineering.
 
 Built with Next.js 15 (App Router), React 19, TypeScript, and Tailwind CSS.
 
 ## Features
 
-- **Product catalog** — 18 radar sensor models (24GHz to 120GHz) with search, category filters, problem-based filtering, and sorting
+- **Product catalog** — 24GHz Doppler radar platforms with search, category filters, problem-based filtering, and sorting
 - **Shopping cart** — localStorage persistence with real-time updates
 - **Stripe checkout** — secure payment via Stripe Checkout Sessions
 - **Google sign-in** — authentication with NextAuth v5

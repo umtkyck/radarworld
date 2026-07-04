@@ -51,9 +51,9 @@ describe('Chatbot Component', () => {
     fireEvent.click(chatButton);
 
     expect(screen.getByText('What products do you offer?')).toBeInTheDocument();
+    expect(screen.getByText('Can you build custom sensors?')).toBeInTheDocument();
     expect(screen.getByText('How does shipping work?')).toBeInTheDocument();
     expect(screen.getByText('Do you offer warranties?')).toBeInTheDocument();
-    expect(screen.getByText('How can I contact support?')).toBeInTheDocument();
   });
 
   it('sends message when form is submitted', async () => {

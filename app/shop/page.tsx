@@ -114,8 +114,9 @@ function ShopPageContent() {
             Radar Sensors
           </h1>
           <p className="mt-4 max-w-2xl text-zinc-500">
-            Professional millimeter wave radar sensors for traffic, agriculture,
-            security, automotive, and industrial applications.
+            True ground speed sensing for rail and agriculture, and ball &amp; swing
+            tracking for sports electronics. Both platforms are available with
+            custom engineering for OEM applications.
           </p>
         </div>
       </div>

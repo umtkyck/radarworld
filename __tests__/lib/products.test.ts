@@ -48,7 +48,7 @@ describe('Products Data', () => {
   });
 
   it('each product should have valid category', () => {
-    const validCategories = ['traffic', 'agriculture', 'security', 'automotive', 'water-level', 'uav', 'industrial'];
+    const validCategories = ['ground-speed', 'sports'];
     products.forEach((product) => {
       expect(validCategories).toContain(product.category);
     });
@@ -98,10 +98,10 @@ describe('Products Data', () => {
 
 describe('getProductsByCategory', () => {
   it('returns products filtered by category', () => {
-    const trafficProducts = getProductsByCategory('traffic');
-    expect(trafficProducts.length).toBeGreaterThan(0);
-    trafficProducts.forEach((product) => {
-      expect(product.category).toBe('traffic');
+    const groundSpeedProducts = getProductsByCategory('ground-speed');
+    expect(groundSpeedProducts.length).toBeGreaterThan(0);
+    groundSpeedProducts.forEach((product) => {
+      expect(product.category).toBe('ground-speed');
     });
   });
 
@@ -128,18 +128,18 @@ describe('getProductsByProblemTag', () => {
 
 describe('searchProducts', () => {
   it('finds products by name', () => {
-    const results = searchProducts('traffic');
+    const results = searchProducts('ground speed');
     expect(results.length).toBeGreaterThan(0);
   });
 
   it('finds products by model number', () => {
-    const results = searchProducts('ZLYTR20');
+    const results = searchProducts('ZLYTGSS01');
     expect(results.length).toBeGreaterThan(0);
-    expect(results[0].model).toBe('ZLYTR20');
+    expect(results[0].model).toBe('ZLYTGSS01');
   });
 
   it('finds products by application', () => {
-    const results = searchProducts('highway');
+    const results = searchProducts('golf');
     expect(results.length).toBeGreaterThan(0);
   });
 
@@ -190,9 +190,9 @@ describe('Problem Tags Info', () => {
 
 describe('Product Filtering', () => {
   it('can filter products by category', () => {
-    const trafficProducts = products.filter((p) => p.category === 'traffic');
-    trafficProducts.forEach((product) => {
-      expect(product.category).toBe('traffic');
+    const sportsProducts = products.filter((p) => p.category === 'sports');
+    sportsProducts.forEach((product) => {
+      expect(product.category).toBe('sports');
     });
   });
 
