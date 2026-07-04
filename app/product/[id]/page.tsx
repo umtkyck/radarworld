@@ -6,26 +6,15 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { useState, use, useCallback, useMemo } from "react";
-import {
-  ShoppingCart,
-  Check,
-  ChevronLeft,
-  Truck,
-  Shield,
-  Globe,
-  Package,
-  Minus,
-  Plus,
-  Tag,
-  Cpu,
-  Zap,
-  Radio,
-  Thermometer,
-  Ruler,
-  Scale,
-  Plug,
-} from "lucide-react";
-import { categoryColors, fallbackImages, badgeStyles, getProductImageSrc, calculateDiscount } from "@/lib/constants";
+import { Check, ChevronLeft, Minus, Plus } from "lucide-react";
+import { getProductImageSrc, calculateDiscount } from "@/lib/constants";
+import ProductCard from "@/components/ProductCard";
+
+const badgeLabels: Record<string, string> = {
+  bestseller: "Best seller",
+  new: "New",
+  sale: "Sale",
+};
 
 export default function ProductDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
@@ -56,38 +45,52 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
   const imageSrc = getProductImageSrc(product.image, product.category, imageError);
   const discount = calculateDiscount(product.price, product.originalPrice);
 
+  const specs: { label: string; value: string | undefined }[] = [
+    { label: "Frequency", value: product.specifications.frequency },
+    { label: "Range", value: product.specifications.range },
+    { label: "Accuracy", value: product.specifications.accuracy },
+    { label: "Power", value: product.specifications.power },
+    { label: "Interface", value: product.specifications.interface },
+    { label: "Protection", value: product.specifications.protection },
+    { label: "Temperature", value: product.specifications.temperature },
+    { label: "Weight", value: product.specifications.weight },
+  ];
+
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-[#050505]">
       {/* Breadcrumb */}
-      <div className="border-b border-white/5">
-        <div className="container mx-auto px-6 py-4">
-          <div className="flex items-center gap-2 text-sm">
-            <Link href="/" className="text-zinc-500 hover:text-white transition-colors">Home</Link>
-            <span className="text-zinc-600">/</span>
-            <Link href="/shop" className="text-zinc-500 hover:text-white transition-colors">Shop</Link>
-            <span className="text-zinc-600">/</span>
+      <div className="border-b border-white/10">
+        <div className="mx-auto max-w-6xl px-6 py-4">
+          <div className="flex items-center gap-2 font-mono text-xs text-zinc-600">
+            <Link href="/" className="transition-colors hover:text-white">Home</Link>
+            <span>/</span>
+            <Link href="/shop" className="transition-colors hover:text-white">Shop</Link>
+            <span>/</span>
             <Link
               href={`/shop?category=${product.category}`}
-              className="text-zinc-500 hover:text-white transition-colors capitalize"
+              className="capitalize transition-colors hover:text-white"
             >
               {categoryInfo[product.category]?.name || product.category}
             </Link>
-            <span className="text-zinc-600">/</span>
-            <span className="text-zinc-400 truncate max-w-[200px]">{product.name}</span>
+            <span>/</span>
+            <span className="max-w-[200px] truncate text-zinc-400">{product.name}</span>
           </div>
         </div>
       </div>
 
-      <div className="container mx-auto px-6 py-8">
-        <Link href="/shop" className="inline-flex items-center gap-2 text-zinc-400 hover:text-white transition-colors mb-8">
-          <ChevronLeft size={20} />
-          Back to Shop
+      <div className="mx-auto max-w-6xl px-6 py-10">
+        <Link
+          href="/shop"
+          className="mb-10 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-zinc-500 transition-colors hover:text-white"
+        >
+          <ChevronLeft size={14} />
+          Back to shop
         </Link>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
           {/* Product Image */}
-          <div className="space-y-4">
-            <div className="aspect-square bg-zinc-900 rounded-2xl overflow-hidden relative">
+          <div>
+            <div className="relative aspect-square overflow-hidden border border-white/10 bg-zinc-950">
               <Image
                 src={imageSrc}
                 alt={product.name}
@@ -98,28 +101,18 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                 quality={90}
                 onError={() => setImageError(true)}
               />
-              {/* Badges */}
-              <div className="absolute top-4 left-4 flex flex-col gap-2">
-                {product.badge && (
-                  <span className={`text-sm font-bold px-3 py-1 rounded-full ${
-                    product.badge === "bestseller"
-                      ? "bg-emerald-500 text-black"
-                      : product.badge === "new"
-                      ? "bg-blue-500 text-white"
-                      : "bg-red-500 text-white"
-                  }`}>
-                    {product.badge === "bestseller" ? "BEST SELLER" : product.badge.toUpperCase()}
-                  </span>
-                )}
-                {discount > 0 && (
-                  <span className="bg-red-500 text-white text-sm font-bold px-3 py-1 rounded-full">
-                    -{discount}% OFF
-                  </span>
-                )}
-              </div>
-              {product.inStock && (
-                <div className="absolute top-4 right-4 bg-emerald-500 text-black text-sm font-bold px-3 py-1 rounded-full">
-                  IN STOCK
+              {(product.badge || discount > 0) && (
+                <div className="absolute left-4 top-4 flex gap-3 font-mono text-[11px] uppercase tracking-widest">
+                  {product.badge && (
+                    <span className="bg-[#050505]/80 px-2 py-1 text-emerald-400 backdrop-blur-sm">
+                      {badgeLabels[product.badge] ?? product.badge}
+                    </span>
+                  )}
+                  {discount > 0 && (
+                    <span className="bg-[#050505]/80 px-2 py-1 text-zinc-300 backdrop-blur-sm">
+                      &minus;{discount}%
+                    </span>
+                  )}
                 </div>
               )}
             </div>
@@ -127,109 +120,101 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
 
           {/* Product Details */}
           <div>
-            {/* Category & Model */}
-            <div className="flex items-center gap-3 mb-4">
-              <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold capitalize ${
-                categoryColors[product.category] || categoryColors.industrial
-              }`}>
+            <div className="flex items-center justify-between font-mono text-[11px] uppercase tracking-widest text-zinc-500">
+              <span>
                 {categoryInfo[product.category]?.name || product.category}
+                {product.model && <span className="ml-3 text-zinc-600">{product.model}</span>}
               </span>
-              {product.model && (
-                <span className="text-zinc-500 text-sm font-mono">
-                  Model: {product.model}
+              {product.inStock ? (
+                <span className="flex items-center gap-1.5 text-emerald-500">
+                  <span className="h-1 w-1 rounded-full bg-emerald-500" />
+                  In stock
                 </span>
+              ) : (
+                <span className="text-zinc-600">Out of stock</span>
               )}
             </div>
 
-            <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">{product.name}</h1>
-            <p className="text-zinc-400 mb-6 text-lg leading-relaxed">{product.description}</p>
+            <h1 className="mt-4 text-3xl font-medium tracking-tight text-white md:text-4xl">
+              {product.name}
+            </h1>
+            <p className="mt-4 leading-relaxed text-zinc-400">{product.description}</p>
 
             {/* Price */}
-            <div className="mb-8">
-              <span className="text-4xl font-bold text-white">
+            <div className="mt-8 flex items-baseline gap-3">
+              <span className="font-mono text-3xl text-white">
                 ${product.price.toLocaleString()}
               </span>
               {product.originalPrice && (
-                <span className="text-xl text-zinc-500 line-through ml-3">
+                <span className="font-mono text-lg text-zinc-600 line-through">
                   ${product.originalPrice.toLocaleString()}
                 </span>
               )}
-              <span className="text-zinc-500 ml-2">USD</span>
-            </div>
-
-            {/* Trust badges */}
-            <div className="flex flex-wrap gap-4 mb-8 text-sm">
-              <div className="flex items-center gap-2 text-zinc-400">
-                <Truck size={18} className="text-emerald-400" />
-                <span>Free Shipping</span>
-              </div>
-              <div className="flex items-center gap-2 text-zinc-400">
-                <Shield size={18} className="text-emerald-400" />
-                <span>2 Year Warranty</span>
-              </div>
-              <div className="flex items-center gap-2 text-zinc-400">
-                <Globe size={18} className="text-emerald-400" />
-                <span>Ships Worldwide</span>
-              </div>
+              <span className="font-mono text-sm text-zinc-600">USD</span>
             </div>
 
             {/* Add to Cart */}
-            <div className="flex gap-4 items-center mb-8">
-              <div className="flex items-center bg-white/5 rounded-xl border border-white/10">
+            <div className="mt-8 flex items-stretch gap-3">
+              <div className="flex items-center border border-white/15">
                 <button
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  className="p-3 hover:bg-white/5 transition-colors text-zinc-400 hover:text-white"
+                  aria-label="Decrease quantity"
+                  className="p-3 text-zinc-400 transition-colors hover:text-white"
                 >
-                  <Minus size={20} />
+                  <Minus size={16} />
                 </button>
-                <span className="px-6 py-3 text-white font-semibold min-w-[60px] text-center">{quantity}</span>
+                <span className="min-w-[48px] text-center font-mono text-white">{quantity}</span>
                 <button
                   onClick={() => setQuantity(quantity + 1)}
-                  className="p-3 hover:bg-white/5 transition-colors text-zinc-400 hover:text-white"
+                  aria-label="Increase quantity"
+                  className="p-3 text-zinc-400 transition-colors hover:text-white"
                 >
-                  <Plus size={20} />
+                  <Plus size={16} />
                 </button>
               </div>
 
               <button
                 onClick={handleAddToCart}
                 disabled={!product.inStock}
-                className={`flex-1 py-4 rounded-xl font-semibold transition-all flex items-center justify-center gap-2 ${
+                className={`flex flex-1 items-center justify-center gap-2 px-6 text-sm font-medium transition-colors ${
                   !product.inStock
-                    ? "bg-zinc-800 text-zinc-500 cursor-not-allowed"
+                    ? "cursor-not-allowed border border-white/5 text-zinc-600"
                     : added
                     ? "bg-emerald-500 text-black"
                     : "bg-white text-black hover:bg-zinc-200"
                 }`}
               >
                 {!product.inStock ? (
-                  "Out of Stock"
+                  "Out of stock"
                 ) : added ? (
                   <>
-                    <Check size={20} />
-                    Added to Cart!
+                    <Check size={16} />
+                    Added to cart
                   </>
                 ) : (
-                  <>
-                    <ShoppingCart size={20} />
-                    Add to Cart
-                  </>
+                  "Add to cart"
                 )}
               </button>
             </div>
 
+            {/* Shipping notes */}
+            <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 font-mono text-[11px] uppercase tracking-widest text-zinc-600">
+              <span>Free shipping $1,000+</span>
+              <span>2 year warranty</span>
+              <span>Ships worldwide</span>
+            </div>
+
             {/* Applications */}
             {product.applications && product.applications.length > 0 && (
-              <div className="mb-8 p-6 bg-white/[0.02] rounded-2xl border border-white/5">
-                <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-                  <Tag size={20} className="text-emerald-400" />
+              <div className="mt-10">
+                <h3 className="mb-4 font-mono text-[11px] uppercase tracking-widest text-zinc-500">
                   Applications
                 </h3>
                 <div className="flex flex-wrap gap-2">
                   {product.applications.map((app, index) => (
                     <span
                       key={index}
-                      className="bg-white/5 text-zinc-300 text-sm px-3 py-1.5 rounded-full"
+                      className="border border-white/10 px-3 py-1.5 text-xs text-zinc-400"
                     >
                       {app}
                     </span>
@@ -239,15 +224,14 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
             )}
 
             {/* Features */}
-            <div className="mb-8 p-6 bg-white/[0.02] rounded-2xl border border-white/5">
-              <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-                <Package size={20} className="text-emerald-400" />
-                Key Features
+            <div className="mt-10">
+              <h3 className="mb-4 font-mono text-[11px] uppercase tracking-widest text-zinc-500">
+                Key features
               </h3>
               <ul className="space-y-3">
                 {product.features.map((feature, index) => (
-                  <li key={index} className="flex items-start gap-3">
-                    <Check size={18} className="text-emerald-400 mt-0.5 flex-shrink-0" />
+                  <li key={index} className="flex items-start gap-3 text-sm">
+                    <Check size={15} className="mt-0.5 flex-shrink-0 text-emerald-500" />
                     <span className="text-zinc-300">{feature}</span>
                   </li>
                 ))}
@@ -255,119 +239,40 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
             </div>
 
             {/* Specifications */}
-            <div className="p-6 bg-white/[0.02] rounded-2xl border border-white/5">
-              <h3 className="text-lg font-semibold text-white mb-4">Technical Specifications</h3>
-              <div className="grid grid-cols-2 gap-3">
-                <div className="p-4 bg-white/[0.02] rounded-xl flex items-start gap-3">
-                  <Radio size={18} className="text-emerald-400 mt-0.5" />
-                  <div>
-                    <p className="text-xs text-zinc-500 uppercase tracking-wider mb-1">Frequency</p>
-                    <p className="text-white font-medium text-sm">{product.specifications.frequency}</p>
-                  </div>
-                </div>
-                <div className="p-4 bg-white/[0.02] rounded-xl flex items-start gap-3">
-                  <Ruler size={18} className="text-emerald-400 mt-0.5" />
-                  <div>
-                    <p className="text-xs text-zinc-500 uppercase tracking-wider mb-1">Range</p>
-                    <p className="text-white font-medium text-sm">{product.specifications.range}</p>
-                  </div>
-                </div>
-                {product.specifications.accuracy && (
-                  <div className="p-4 bg-white/[0.02] rounded-xl flex items-start gap-3">
-                    <Cpu size={18} className="text-emerald-400 mt-0.5" />
-                    <div>
-                      <p className="text-xs text-zinc-500 uppercase tracking-wider mb-1">Accuracy</p>
-                      <p className="text-white font-medium text-sm">{product.specifications.accuracy}</p>
+            <div className="mt-10">
+              <h3 className="mb-4 font-mono text-[11px] uppercase tracking-widest text-zinc-500">
+                Technical specifications
+              </h3>
+              <dl className="border-t border-white/10">
+                {specs
+                  .filter((spec) => spec.value)
+                  .map((spec) => (
+                    <div
+                      key={spec.label}
+                      className="flex items-baseline justify-between gap-6 border-b border-white/10 py-3"
+                    >
+                      <dt className="text-sm text-zinc-500">{spec.label}</dt>
+                      <dd className="text-right font-mono text-sm text-white">{spec.value}</dd>
                     </div>
-                  </div>
-                )}
-                <div className="p-4 bg-white/[0.02] rounded-xl flex items-start gap-3">
-                  <Zap size={18} className="text-emerald-400 mt-0.5" />
-                  <div>
-                    <p className="text-xs text-zinc-500 uppercase tracking-wider mb-1">Power</p>
-                    <p className="text-white font-medium text-sm">{product.specifications.power}</p>
-                  </div>
-                </div>
-                {product.specifications.interface && (
-                  <div className="p-4 bg-white/[0.02] rounded-xl flex items-start gap-3">
-                    <Plug size={18} className="text-emerald-400 mt-0.5" />
-                    <div>
-                      <p className="text-xs text-zinc-500 uppercase tracking-wider mb-1">Interface</p>
-                      <p className="text-white font-medium text-sm">{product.specifications.interface}</p>
-                    </div>
-                  </div>
-                )}
-                {product.specifications.protection && (
-                  <div className="p-4 bg-white/[0.02] rounded-xl flex items-start gap-3">
-                    <Shield size={18} className="text-emerald-400 mt-0.5" />
-                    <div>
-                      <p className="text-xs text-zinc-500 uppercase tracking-wider mb-1">Protection</p>
-                      <p className="text-white font-medium text-sm">{product.specifications.protection}</p>
-                    </div>
-                  </div>
-                )}
-                {product.specifications.temperature && (
-                  <div className="p-4 bg-white/[0.02] rounded-xl flex items-start gap-3">
-                    <Thermometer size={18} className="text-emerald-400 mt-0.5" />
-                    <div>
-                      <p className="text-xs text-zinc-500 uppercase tracking-wider mb-1">Temperature</p>
-                      <p className="text-white font-medium text-sm">{product.specifications.temperature}</p>
-                    </div>
-                  </div>
-                )}
-                {product.specifications.weight && (
-                  <div className="p-4 bg-white/[0.02] rounded-xl flex items-start gap-3">
-                    <Scale size={18} className="text-emerald-400 mt-0.5" />
-                    <div>
-                      <p className="text-xs text-zinc-500 uppercase tracking-wider mb-1">Weight</p>
-                      <p className="text-white font-medium text-sm">{product.specifications.weight}</p>
-                    </div>
-                  </div>
-                )}
-              </div>
+                  ))}
+              </dl>
             </div>
           </div>
         </div>
 
         {/* Related Products */}
         {relatedProducts.length > 0 && (
-          <div className="mt-20">
-            <h2 className="text-2xl font-bold text-white mb-8">Related Products</h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {relatedProducts.map((relatedProduct) => {
-                const relatedImageSrc = relatedProduct.image.startsWith("/")
-                  ? fallbackImages[relatedProduct.category] || fallbackImages.industrial
-                  : relatedProduct.image;
-
-                return (
-                  <Link key={relatedProduct.id} href={`/product/${relatedProduct.id}`}>
-                    <div className="group bg-white/[0.02] border border-white/5 rounded-2xl overflow-hidden hover:border-emerald-500/30 transition-all">
-                      <div className="h-48 bg-zinc-900 overflow-hidden relative">
-                        <Image
-                          src={relatedImageSrc}
-                          alt={relatedProduct.name}
-                          fill
-                          sizes="(max-width: 768px) 100vw, 25vw"
-                          className="object-cover group-hover:scale-105 transition-transform duration-300"
-                        />
-                      </div>
-                      <div className="p-4">
-                        <h3 className="text-white font-semibold mb-2 line-clamp-2 group-hover:text-emerald-400 transition-colors">
-                          {relatedProduct.name}
-                        </h3>
-                        <div className="flex items-baseline gap-2">
-                          <span className="text-xl font-bold text-white">${relatedProduct.price.toLocaleString()}</span>
-                          {relatedProduct.originalPrice && (
-                            <span className="text-sm text-zinc-500 line-through">
-                              ${relatedProduct.originalPrice.toLocaleString()}
-                            </span>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  </Link>
-                );
-              })}
+          <div className="mt-24">
+            <div className="mb-10 border-t border-white/10 pt-6">
+              <span className="font-mono text-xs tracking-widest text-emerald-500">Related</span>
+              <h2 className="mt-2 text-2xl font-medium tracking-tight text-white">
+                More {categoryInfo[product.category]?.name || "products"}
+              </h2>
+            </div>
+            <div className="grid gap-px border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-4">
+              {relatedProducts.map((relatedProduct) => (
+                <ProductCard key={relatedProduct.id} product={relatedProduct} />
+              ))}
             </div>
           </div>
         )}

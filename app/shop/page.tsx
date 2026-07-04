@@ -5,29 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { products, categoryInfo, problemTagInfo, searchProducts } from "@/data/products";
 import { ProductCategory, ProblemTag } from "@/types/product";
 import ProductCard from "@/components/ProductCard";
-import {
-  Search,
-  X,
-  Car,
-  Tractor,
-  Shield,
-  Gauge,
-  Waves,
-  Plane,
-  Factory,
-  SlidersHorizontal,
-  ChevronDown,
-} from "lucide-react";
-
-const categoryIcons: Record<string, React.ReactNode> = {
-  traffic: <Car size={18} />,
-  agriculture: <Tractor size={18} />,
-  security: <Shield size={18} />,
-  automotive: <Gauge size={18} />,
-  "water-level": <Waves size={18} />,
-  uav: <Plane size={18} />,
-  industrial: <Factory size={18} />,
-};
+import { Search, X, SlidersHorizontal, ChevronDown } from "lucide-react";
 
 // Pre-compute category and tag counts (static data)
 const categoryCounts = Object.fromEntries(
@@ -47,8 +25,8 @@ export default function ShopPage() {
 
 function ShopPageLoading() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center">
-      <div className="text-zinc-400">Loading...</div>
+    <div className="min-h-screen bg-[#050505] flex items-center justify-center">
+      <div className="font-mono text-sm text-zinc-500">Loading&hellip;</div>
     </div>
   );
 }
@@ -125,106 +103,109 @@ function ShopPageContent() {
   const hasActiveFilters = selectedCategory !== "all" || selectedProblem !== "all" || searchQuery.trim();
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-[#050505]">
       {/* Header */}
-      <div className="border-b border-white/5 py-12 md:py-16">
-        <div className="container mx-auto px-6">
-          <h1 className="text-3xl md:text-5xl font-bold text-white mb-4">
+      <div className="border-b border-white/10 py-16 md:py-20">
+        <div className="mx-auto max-w-6xl px-6">
+          <p className="mb-4 font-mono text-xs uppercase tracking-[0.3em] text-emerald-500">
+            Catalog
+          </p>
+          <h1 className="text-3xl font-medium tracking-tight text-white md:text-5xl">
             Radar Sensors
           </h1>
-          <p className="text-zinc-400 text-lg max-w-2xl">
-            Professional millimeter wave radar sensors for traffic, agriculture, security, automotive, and industrial applications.
+          <p className="mt-4 max-w-2xl text-zinc-500">
+            Professional millimeter wave radar sensors for traffic, agriculture,
+            security, automotive, and industrial applications.
           </p>
         </div>
       </div>
 
-      <div className="container mx-auto px-6 py-8">
+      <div className="mx-auto max-w-6xl px-6 py-10">
         {/* Search Bar */}
         <div className="relative mb-6">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-500" size={20} />
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-600" size={18} />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search by name, model, application, or problem..."
-            className="w-full bg-white/5 border border-white/10 rounded-xl py-3 pl-12 pr-12 text-white placeholder:text-zinc-500 focus:outline-none focus:border-emerald-500/50 transition-colors"
+            className="w-full border border-white/10 bg-transparent py-3 pl-12 pr-12 text-sm text-white placeholder:text-zinc-600 transition-colors focus:border-emerald-500/50 focus:outline-none"
           />
           {searchQuery && (
             <button
               onClick={() => setSearchQuery("")}
-              className="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-white transition-colors"
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-500 transition-colors hover:text-white"
             >
-              <X size={20} />
+              <X size={18} />
             </button>
           )}
         </div>
 
-        {/* Category Pills */}
-        <div className="flex flex-wrap gap-2 mb-6">
+        {/* Category Filters */}
+        <div className="mb-6 flex flex-wrap gap-2">
           <button
             onClick={() => setSelectedCategory("all")}
-            className={`px-4 py-2 rounded-full text-sm font-medium transition-colors flex items-center gap-2 ${
+            className={`border px-4 py-2 text-sm font-medium transition-colors ${
               selectedCategory === "all"
-                ? "bg-emerald-500 text-white"
-                : "bg-white/5 text-zinc-400 hover:text-white hover:bg-white/10"
+                ? "border-emerald-500/50 bg-emerald-500/10 text-emerald-400"
+                : "border-white/10 text-zinc-500 hover:border-white/30 hover:text-white"
             }`}
           >
-            All Products
-            <span className="text-xs opacity-70">{products.length}</span>
+            All
+            <span className="ml-2 font-mono text-xs opacity-60">{products.length}</span>
           </button>
           {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setSelectedCategory(cat)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors flex items-center gap-2 ${
-                  selectedCategory === cat
-                    ? "bg-emerald-500 text-white"
-                    : "bg-white/5 text-zinc-400 hover:text-white hover:bg-white/10"
-                }`}
-              >
-                {categoryIcons[cat]}
-                <span className="hidden sm:inline">{categoryInfo[cat].name}</span>
-                <span className="text-xs opacity-70">{categoryCounts[cat]}</span>
-              </button>
-            ))}
+            <button
+              key={cat}
+              onClick={() => setSelectedCategory(cat)}
+              className={`border px-4 py-2 text-sm font-medium transition-colors ${
+                selectedCategory === cat
+                  ? "border-emerald-500/50 bg-emerald-500/10 text-emerald-400"
+                  : "border-white/10 text-zinc-500 hover:border-white/30 hover:text-white"
+              }`}
+            >
+              {categoryInfo[cat].name}
+              <span className="ml-2 font-mono text-xs opacity-60">{categoryCounts[cat]}</span>
+            </button>
+          ))}
         </div>
 
         {/* Filter Controls */}
-        <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
+        <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             {/* Problem Filter Dropdown */}
             <button
               onClick={() => setShowFilters(!showFilters)}
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+              className={`flex items-center gap-2 border px-4 py-2 text-sm font-medium transition-colors ${
                 selectedProblem !== "all"
-                  ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30"
-                  : "bg-white/5 text-zinc-400 hover:text-white border border-white/10"
+                  ? "border-emerald-500/50 bg-emerald-500/10 text-emerald-400"
+                  : "border-white/10 text-zinc-500 hover:border-white/30 hover:text-white"
               }`}
             >
-              <SlidersHorizontal size={16} />
-              Filter by Problem
-              <ChevronDown size={16} className={`transition-transform ${showFilters ? "rotate-180" : ""}`} />
+              <SlidersHorizontal size={14} />
+              Filter by problem
+              <ChevronDown size={14} className={`transition-transform ${showFilters ? "rotate-180" : ""}`} />
             </button>
 
             {/* Clear Filters */}
             {hasActiveFilters && (
               <button
                 onClick={clearFilters}
-                className="flex items-center gap-1 px-3 py-2 text-sm text-zinc-400 hover:text-white transition-colors"
+                className="flex items-center gap-1 px-3 py-2 text-sm text-zinc-500 transition-colors hover:text-white"
               >
                 <X size={14} />
-                Clear filters
+                Clear
               </button>
             )}
           </div>
 
           {/* Sort Dropdown */}
           <div className="flex items-center gap-2">
-            <span className="text-sm text-zinc-500">Sort by:</span>
+            <span className="font-mono text-xs uppercase tracking-wider text-zinc-600">Sort</span>
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as typeof sortBy)}
-              className="bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-emerald-500/50"
+              className="border border-white/10 bg-[#050505] px-3 py-2 text-sm text-white focus:border-emerald-500/50 focus:outline-none"
             >
               <option value="featured">Featured</option>
               <option value="price-asc">Price: Low to High</option>
@@ -236,51 +217,53 @@ function ShopPageContent() {
 
         {/* Problem Tags Filter Panel */}
         {showFilters && (
-          <div className="bg-white/[0.02] border border-white/5 rounded-xl p-4 mb-6">
-            <h3 className="text-sm font-medium text-white mb-3">What problem are you solving?</h3>
+          <div className="mb-6 border border-white/10 p-5">
+            <h3 className="mb-4 font-mono text-xs uppercase tracking-wider text-zinc-500">
+              What problem are you solving?
+            </h3>
             <div className="flex flex-wrap gap-2">
               <button
                 onClick={() => setSelectedProblem("all")}
-                className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
+                className={`border px-3 py-1.5 text-xs font-medium transition-colors ${
                   selectedProblem === "all"
-                    ? "bg-emerald-500 text-white"
-                    : "bg-white/5 text-zinc-400 hover:text-white hover:bg-white/10"
+                    ? "border-emerald-500/50 bg-emerald-500/10 text-emerald-400"
+                    : "border-white/10 text-zinc-500 hover:border-white/30 hover:text-white"
                 }`}
               >
-                All Problems
+                All problems
               </button>
               {problemTags.map((tag) => (
-                  <button
-                    key={tag}
-                    onClick={() => setSelectedProblem(tag)}
-                    className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
-                      selectedProblem === tag
-                        ? "bg-emerald-500 text-white"
-                        : "bg-white/5 text-zinc-400 hover:text-white hover:bg-white/10"
-                    }`}
-                  >
-                    {problemTagInfo[tag].name}
-                    <span className="ml-1 opacity-70">({problemTagCounts[tag]})</span>
-                  </button>
-                ))}
+                <button
+                  key={tag}
+                  onClick={() => setSelectedProblem(tag)}
+                  className={`border px-3 py-1.5 text-xs font-medium transition-colors ${
+                    selectedProblem === tag
+                      ? "border-emerald-500/50 bg-emerald-500/10 text-emerald-400"
+                      : "border-white/10 text-zinc-500 hover:border-white/30 hover:text-white"
+                  }`}
+                >
+                  {problemTagInfo[tag].name}
+                  <span className="ml-1 font-mono opacity-60">({problemTagCounts[tag]})</span>
+                </button>
+              ))}
             </div>
           </div>
         )}
 
         {/* Active Filter Tags */}
         {hasActiveFilters && (
-          <div className="flex flex-wrap items-center gap-2 mb-6">
-            <span className="text-sm text-zinc-500">Active filters:</span>
+          <div className="mb-6 flex flex-wrap items-center gap-2">
+            <span className="font-mono text-xs uppercase tracking-wider text-zinc-600">Active</span>
             {searchQuery && (
-              <span className="inline-flex items-center gap-1 bg-white/10 text-white text-xs px-2 py-1 rounded-full">
-                Search: {searchQuery}
+              <span className="inline-flex items-center gap-2 border border-white/15 px-2.5 py-1 text-xs text-white">
+                &ldquo;{searchQuery}&rdquo;
                 <button onClick={() => setSearchQuery("")} className="hover:text-emerald-400">
                   <X size={12} />
                 </button>
               </span>
             )}
             {selectedCategory !== "all" && (
-              <span className="inline-flex items-center gap-1 bg-white/10 text-white text-xs px-2 py-1 rounded-full">
+              <span className="inline-flex items-center gap-2 border border-white/15 px-2.5 py-1 text-xs text-white">
                 {categoryInfo[selectedCategory].name}
                 <button onClick={() => setSelectedCategory("all")} className="hover:text-emerald-400">
                   <X size={12} />
@@ -288,7 +271,7 @@ function ShopPageContent() {
               </span>
             )}
             {selectedProblem !== "all" && (
-              <span className="inline-flex items-center gap-1 bg-white/10 text-white text-xs px-2 py-1 rounded-full">
+              <span className="inline-flex items-center gap-2 border border-white/15 px-2.5 py-1 text-xs text-white">
                 {problemTagInfo[selectedProblem].name}
                 <button onClick={() => setSelectedProblem("all")} className="hover:text-emerald-400">
                   <X size={12} />
@@ -299,22 +282,23 @@ function ShopPageContent() {
         )}
 
         {/* Product Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {filteredProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
+        {filteredProducts.length > 0 && (
+          <div className="grid gap-px border border-white/10 bg-white/10 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {filteredProducts.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+        )}
 
         {filteredProducts.length === 0 && (
-          <div className="text-center py-20">
-            <div className="text-6xl mb-4">🔍</div>
-            <h3 className="text-xl font-semibold text-white mb-2">No products found</h3>
-            <p className="text-zinc-500 mb-4">
+          <div className="border border-white/10 py-24 text-center">
+            <h3 className="text-lg font-medium text-white">No products found</h3>
+            <p className="mx-auto mt-2 max-w-sm text-sm text-zinc-500">
               Try adjusting your search or filters to find what you&apos;re looking for.
             </p>
             <button
               onClick={clearFilters}
-              className="px-4 py-2 bg-emerald-500 text-white rounded-lg hover:bg-emerald-600 transition-colors"
+              className="mt-6 border border-white/15 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:border-white/40"
             >
               Clear all filters
             </button>
@@ -323,11 +307,9 @@ function ShopPageContent() {
 
         {/* Results count */}
         {filteredProducts.length > 0 && (
-          <div className="mt-8 pt-6 border-t border-white/5">
-            <p className="text-zinc-600 text-sm">
-              Showing {filteredProducts.length} of {products.length} products
-            </p>
-          </div>
+          <p className="mt-8 font-mono text-xs text-zinc-600">
+            Showing {filteredProducts.length} of {products.length} products
+          </p>
         )}
       </div>
     </div>

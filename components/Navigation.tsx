@@ -26,24 +26,24 @@ export default function Navigation() {
   ];
 
   return (
-    <nav className="sticky top-0 z-50 bg-[#0a0a0a]/80 backdrop-blur-xl border-b border-white/5">
-      <div className="container mx-auto px-6">
+    <nav className="sticky top-0 z-50 bg-[#050505]/85 backdrop-blur-xl border-b border-white/10">
+      <div className="mx-auto max-w-6xl px-6">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link href="/">
-            <Logo size="md" />
+            <Logo size="sm" />
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-10">
+          <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-base font-semibold tracking-wide transition-colors ${
+                className={`text-sm font-medium transition-colors ${
                   isActive(link.href)
                     ? "text-white"
-                    : "text-zinc-400 hover:text-white"
+                    : "text-zinc-500 hover:text-white"
                 }`}
               >
                 {link.label}
@@ -55,9 +55,9 @@ export default function Navigation() {
           <div className="flex items-center gap-4">
             {/* Cart */}
             <Link href="/cart" className="relative p-2 text-zinc-400 hover:text-white transition-colors">
-              <ShoppingCart size={20} strokeWidth={1.5} />
+              <ShoppingCart size={18} strokeWidth={1.5} />
               {itemCount > 0 && (
-                <span className="absolute -top-0.5 -right-0.5 w-5 h-5 bg-emerald-500 text-black text-xs font-bold rounded-full flex items-center justify-center">
+                <span className="absolute -top-0.5 -right-0.5 flex h-4 min-w-4 items-center justify-center bg-emerald-500 px-1 font-mono text-[10px] font-medium text-black">
                   {itemCount}
                 </span>
               )}
@@ -91,7 +91,7 @@ export default function Navigation() {
                       className="fixed inset-0 z-40"
                       onClick={() => setUserMenuOpen(false)}
                     />
-                    <div className="absolute right-0 mt-2 w-56 bg-zinc-900 border border-white/10 rounded-xl shadow-lg z-50 overflow-hidden">
+                    <div className="absolute right-0 mt-2 w-56 bg-[#050505] border border-white/10 shadow-lg z-50 overflow-hidden">
                       <div className="p-4 border-b border-white/10">
                         <p className="text-white font-semibold truncate">{session.user?.name}</p>
                         <p className="text-zinc-500 text-sm truncate">{session.user?.email}</p>
@@ -112,9 +112,8 @@ export default function Navigation() {
             ) : (
               <Link
                 href="/login"
-                className="hidden md:flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-white/5 hover:bg-white/10 rounded-full transition-colors"
+                className="hidden md:flex items-center gap-2 border border-white/15 px-4 py-1.5 text-sm font-medium text-white transition-colors hover:border-white/40"
               >
-                <User size={18} />
                 Sign In
               </Link>
             )}
@@ -131,17 +130,17 @@ export default function Navigation() {
 
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
-          <div className="md:hidden py-4 border-t border-white/5">
-            <div className="flex flex-col gap-2">
+          <div className="md:hidden py-4 border-t border-white/10">
+            <div className="flex flex-col">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`px-4 py-3 rounded-lg text-base font-semibold transition-colors ${
+                  className={`px-2 py-3 text-base font-medium transition-colors ${
                     isActive(link.href)
-                      ? "bg-white/5 text-white"
-                      : "text-zinc-400 hover:text-white hover:bg-white/5"
+                      ? "text-white"
+                      : "text-zinc-500 hover:text-white"
                   }`}
                 >
                   {link.label}
@@ -151,7 +150,7 @@ export default function Navigation() {
                 <Link
                   href="/login"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="px-4 py-3 rounded-lg text-base font-semibold text-emerald-400 hover:bg-white/5 transition-colors flex items-center gap-2"
+                  className="px-2 py-3 text-base font-medium text-emerald-400 transition-colors flex items-center gap-2"
                 >
                   <User size={18} />
                   Sign In

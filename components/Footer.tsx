@@ -7,38 +7,41 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#0a0a0a] border-t border-white/5">
-      <div className="container mx-auto px-6 py-12">
-        <div className="grid md:grid-cols-4 gap-8">
+    <footer className="border-t border-white/10 bg-[#050505]">
+      <div className="mx-auto max-w-6xl px-6 py-16">
+        <div className="grid gap-12 md:grid-cols-4">
           {/* Brand */}
           <div className="md:col-span-2">
-            <Logo size="md" />
-            <p className="mt-4 text-zinc-500 text-sm max-w-sm">
-              Professional millimeter wave radar sensors for precision detection and monitoring.
+            <Logo size="sm" />
+            <p className="mt-5 max-w-sm text-sm leading-relaxed text-zinc-500">
+              Professional millimeter wave radar sensors for precision detection
+              and monitoring.
             </p>
           </div>
 
           {/* Products */}
           <div>
-            <h4 className="text-white font-semibold mb-4">Products</h4>
-            <ul className="space-y-2">
+            <h4 className="mb-5 font-mono text-[11px] uppercase tracking-widest text-zinc-600">
+              Products
+            </h4>
+            <ul className="space-y-3">
               <li>
-                <Link href="/shop?category=traffic" className="text-zinc-500 hover:text-white text-sm transition-colors">
+                <Link href="/shop?category=traffic" className="text-sm text-zinc-500 transition-colors hover:text-white">
                   Traffic Radar
                 </Link>
               </li>
               <li>
-                <Link href="/shop?category=automotive" className="text-zinc-500 hover:text-white text-sm transition-colors">
+                <Link href="/shop?category=automotive" className="text-sm text-zinc-500 transition-colors hover:text-white">
                   Automotive ADAS
                 </Link>
               </li>
               <li>
-                <Link href="/shop?category=water-level" className="text-zinc-500 hover:text-white text-sm transition-colors">
+                <Link href="/shop?category=water-level" className="text-sm text-zinc-500 transition-colors hover:text-white">
                   Water Level Sensors
                 </Link>
               </li>
               <li>
-                <Link href="/shop" className="text-zinc-500 hover:text-white text-sm transition-colors">
+                <Link href="/shop" className="text-sm text-zinc-500 transition-colors hover:text-white">
                   All Products
                 </Link>
               </li>
@@ -47,15 +50,17 @@ export default function Footer() {
 
           {/* Company */}
           <div>
-            <h4 className="text-white font-semibold mb-4">Company</h4>
-            <ul className="space-y-2">
+            <h4 className="mb-5 font-mono text-[11px] uppercase tracking-widest text-zinc-600">
+              Company
+            </h4>
+            <ul className="space-y-3">
               <li>
-                <Link href="/contact" className="text-zinc-500 hover:text-white text-sm transition-colors">
+                <Link href="/contact" className="text-sm text-zinc-500 transition-colors hover:text-white">
                   Contact Us
                 </Link>
               </li>
               <li>
-                <a href="mailto:info@radarcart.com" className="text-zinc-500 hover:text-white text-sm transition-colors">
+                <a href="mailto:info@radarcart.com" className="text-sm text-zinc-500 transition-colors hover:text-white">
                   info@radarcart.com
                 </a>
               </li>
@@ -64,12 +69,12 @@ export default function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-zinc-600 text-sm">
+        <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 md:flex-row">
+          <p className="font-mono text-xs text-zinc-600">
             © {currentYear} Radar Cart. All rights reserved.
           </p>
-          <div className="flex items-center gap-2 text-zinc-600 text-sm">
-            <span className="w-2 h-2 rounded-full bg-emerald-500" />
+          <div className="flex items-center gap-2 font-mono text-xs text-zinc-600">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
             <span>System Online</span>
           </div>
         </div>

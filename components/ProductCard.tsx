@@ -5,12 +5,18 @@ import { useCart } from "@/context/CartContext";
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import { ShoppingCart, Check } from "lucide-react";
-import { categoryColors, badgeStyles, getProductImageSrc, calculateDiscount } from "@/lib/constants";
+import { Plus, Check } from "lucide-react";
+import { getProductImageSrc, calculateDiscount } from "@/lib/constants";
 
 interface ProductCardProps {
   product: Product;
 }
+
+const badgeLabels: Record<string, string> = {
+  bestseller: "Best seller",
+  new: "New",
+  sale: "Sale",
+};
 
 export default function ProductCard({ product }: ProductCardProps) {
   const { addToCart } = useCart();
@@ -29,117 +35,82 @@ export default function ProductCard({ product }: ProductCardProps) {
   const imageSrc = getProductImageSrc(product.image, product.category, imageError);
 
   return (
-    <Link href={`/product/${product.id}`}>
-      <div className="group bg-white/[0.02] border border-white/5 rounded-2xl overflow-hidden hover:border-emerald-500/30 transition-all h-full flex flex-col">
-        {/* Image */}
-        <div className="h-48 bg-zinc-900 overflow-hidden relative">
-          <Image
-            src={imageSrc}
-            alt={product.name}
-            fill
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-            className="object-cover group-hover:scale-105 transition-transform duration-300"
-            loading="lazy"
-            quality={80}
-            onError={() => setImageError(true)}
-          />
-
-          {/* Badges */}
-          <div className="absolute top-3 left-3 flex gap-2">
+    <Link href={`/product/${product.id}`} className="group flex h-full flex-col bg-[#050505]">
+      {/* Image */}
+      <div className="relative aspect-[4/3] overflow-hidden bg-zinc-950">
+        <Image
+          src={imageSrc}
+          alt={product.name}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+          className="object-cover opacity-90 transition-all duration-500 group-hover:scale-[1.03] group-hover:opacity-100"
+          loading="lazy"
+          quality={80}
+          onError={() => setImageError(true)}
+        />
+        {(product.badge || discount > 0) && (
+          <div className="absolute left-4 top-4 flex gap-3 font-mono text-[11px] uppercase tracking-widest">
             {product.badge && (
-              <span className={`text-xs font-semibold px-2 py-1 rounded-full ${badgeStyles[product.badge]}`}>
-                {product.badge === "bestseller" ? "Best Seller" : product.badge.toUpperCase()}
+              <span className="bg-[#050505]/80 px-2 py-1 text-emerald-400 backdrop-blur-sm">
+                {badgeLabels[product.badge] ?? product.badge}
               </span>
             )}
             {discount > 0 && (
-              <span className="text-xs font-semibold px-2 py-1 rounded-full bg-red-500 text-white">
-                -{discount}%
+              <span className="bg-[#050505]/80 px-2 py-1 text-zinc-300 backdrop-blur-sm">
+                &minus;{discount}%
               </span>
             )}
           </div>
+        )}
+      </div>
 
-          {product.inStock && (
-            <div className="absolute top-3 right-3 flex items-center gap-1 bg-emerald-500/20 text-emerald-400 text-xs px-2 py-1 rounded-full">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-              In Stock
-            </div>
+      {/* Body */}
+      <div className="flex flex-grow flex-col p-5">
+        <div className="flex items-center justify-between font-mono text-[11px] uppercase tracking-widest text-zinc-500">
+          <span>{product.model || product.category.replaceAll("-", " ")}</span>
+          {product.inStock ? (
+            <span className="flex items-center gap-1.5 text-emerald-500">
+              <span className="h-1 w-1 rounded-full bg-emerald-500" />
+              In stock
+            </span>
+          ) : (
+            <span className="text-zinc-600">Out of stock</span>
           )}
         </div>
 
-        <div className="p-5 flex flex-col flex-grow">
-          {/* Category & Model */}
-          <div className="flex items-center gap-2 mb-3">
-            <span className={`inline-block px-2 py-1 rounded text-xs font-medium capitalize ${
-              categoryColors[product.category] || categoryColors.industrial
-            }`}>
-              {product.category.replaceAll("-", " ")}
+        <h3 className="mt-3 text-base font-medium leading-snug tracking-tight text-white transition-colors group-hover:text-emerald-400">
+          {product.name}
+        </h3>
+        <p className="mt-2 line-clamp-2 flex-grow text-sm leading-relaxed text-zinc-500">
+          {product.shortDescription}
+        </p>
+
+        <div className="mt-5 flex items-center justify-between border-t border-white/10 pt-4">
+          <div className="flex items-baseline gap-2">
+            <span className="font-mono text-lg text-white">
+              ${product.price.toLocaleString()}
             </span>
-            {product.model && (
-              <span className="text-xs text-zinc-500 font-mono">
-                {product.model}
+            {product.originalPrice && (
+              <span className="font-mono text-xs text-zinc-600 line-through">
+                ${product.originalPrice.toLocaleString()}
               </span>
             )}
           </div>
 
-          {/* Title */}
-          <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-emerald-400 transition-colors line-clamp-2">
-            {product.name}
-          </h3>
-
-          {/* Description */}
-          <p className="text-zinc-500 text-sm mb-4 flex-grow line-clamp-2">
-            {product.shortDescription}
-          </p>
-
-          {/* Key Specs */}
-          <div className="flex flex-wrap gap-2 mb-4">
-            <span className="text-xs bg-white/5 text-zinc-400 px-2 py-1 rounded">
-              {product.specifications.frequency.split(" ")[0]}
-            </span>
-            <span className="text-xs bg-white/5 text-zinc-400 px-2 py-1 rounded">
-              {product.specifications.range.split(" ")[0]}
-            </span>
-          </div>
-
-          {/* Price and Button */}
-          <div className="mt-auto space-y-3">
-            <div className="flex items-baseline gap-2">
-              <span className="text-2xl font-bold text-white">
-                ${product.price.toLocaleString()}
-              </span>
-              {product.originalPrice && (
-                <span className="text-sm text-zinc-500 line-through">
-                  ${product.originalPrice.toLocaleString()}
-                </span>
-              )}
-            </div>
-
-            <button
-              onClick={handleAddToCart}
-              disabled={!product.inStock}
-              className={`w-full py-2.5 rounded-xl text-sm font-medium transition-all flex items-center justify-center gap-2 ${
-                !product.inStock
-                  ? "bg-white/5 text-zinc-600 cursor-not-allowed"
-                  : added
-                  ? "bg-emerald-500/20 text-emerald-400"
-                  : "bg-white/5 text-white hover:bg-white/10"
-              }`}
-            >
-              {!product.inStock ? (
-                "Out of Stock"
-              ) : added ? (
-                <>
-                  <Check size={16} />
-                  Added!
-                </>
-              ) : (
-                <>
-                  <ShoppingCart size={16} />
-                  Add to Cart
-                </>
-              )}
-            </button>
-          </div>
+          <button
+            onClick={handleAddToCart}
+            disabled={!product.inStock}
+            aria-label={added ? "Added to cart" : "Add to cart"}
+            className={`flex h-9 w-9 items-center justify-center border transition-colors ${
+              !product.inStock
+                ? "cursor-not-allowed border-white/5 text-zinc-700"
+                : added
+                ? "border-emerald-500/50 text-emerald-400"
+                : "border-white/15 text-white hover:border-emerald-500/50 hover:text-emerald-400"
+            }`}
+          >
+            {added ? <Check size={16} /> : <Plus size={16} />}
+          </button>
         </div>
       </div>
     </Link>

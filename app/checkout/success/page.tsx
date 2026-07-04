@@ -57,7 +57,7 @@ function SuccessContent() {
 
   if (saving) {
     return (
-      <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center">
+      <div className="min-h-screen bg-[#050505] flex items-center justify-center">
         <div className="text-center">
           <Loader2 size={48} className="text-emerald-400 animate-spin mx-auto mb-4" />
           <p className="text-zinc-400">Processing your order...</p>
@@ -67,24 +67,24 @@ function SuccessContent() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center px-6">
+    <div className="min-h-screen bg-[#050505] flex items-center justify-center px-6">
       <div className="max-w-lg w-full text-center">
         {/* Success Icon */}
         <div className="w-24 h-24 bg-emerald-500/10 rounded-full flex items-center justify-center mx-auto mb-8">
           <CheckCircle size={48} className="text-emerald-400" />
         </div>
 
-        <h1 className="text-4xl font-bold text-white mb-4">Payment Successful!</h1>
+        <h1 className="text-4xl font-medium tracking-tight text-white mb-4">Payment Successful!</h1>
         <p className="text-zinc-400 text-lg mb-8">
           Thank you for your purchase. Your order has been confirmed.
         </p>
 
         {/* What's Next */}
-        <div className="bg-white/[0.02] border border-white/5 rounded-2xl p-6 mb-8 text-left">
+        <div className="bg-white/[0.02] border border-white/10 p-6 mb-8 text-left">
           <h2 className="font-semibold text-white mb-4">What happens next?</h2>
           <div className="space-y-4">
             <div className="flex items-start gap-3">
-              <div className="w-8 h-8 bg-emerald-500/10 rounded-lg flex items-center justify-center flex-shrink-0">
+              <div className="w-8 h-8 bg-emerald-500/10 flex items-center justify-center flex-shrink-0">
                 <Mail size={16} className="text-emerald-400" />
               </div>
               <div>
@@ -93,7 +93,7 @@ function SuccessContent() {
               </div>
             </div>
             <div className="flex items-start gap-3">
-              <div className="w-8 h-8 bg-emerald-500/10 rounded-lg flex items-center justify-center flex-shrink-0">
+              <div className="w-8 h-8 bg-emerald-500/10 flex items-center justify-center flex-shrink-0">
                 <Package size={16} className="text-emerald-400" />
               </div>
               <div>
@@ -106,7 +106,7 @@ function SuccessContent() {
 
         {/* Order Reference */}
         {sessionId && (
-          <div className="bg-white/[0.02] border border-white/5 rounded-xl p-4 mb-8">
+          <div className="bg-white/[0.02] border border-white/10 p-4 mb-8">
             <p className="text-zinc-500 text-sm">Order Reference</p>
             <p className="text-white font-mono text-sm truncate">{sessionId}</p>
           </div>
@@ -116,14 +116,14 @@ function SuccessContent() {
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link
             href="/shop"
-            className="px-8 py-4 bg-white text-black rounded-full font-semibold hover:bg-zinc-200 transition-colors inline-flex items-center justify-center gap-2"
+            className="px-8 py-4 bg-white text-black font-medium hover:bg-zinc-200 transition-colors inline-flex items-center justify-center gap-2"
           >
             Continue Shopping
             <ArrowRight size={20} />
           </Link>
           <Link
             href="/"
-            className="px-8 py-4 bg-white/5 text-white rounded-full font-semibold hover:bg-white/10 transition-colors"
+            className="px-8 py-4 bg-white/5 text-white font-medium hover:bg-white/10 transition-colors"
           >
             Return Home
           </Link>
@@ -135,7 +135,7 @@ function SuccessContent() {
 
 function LoadingFallback() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center">
+    <div className="min-h-screen bg-[#050505] flex items-center justify-center">
       <div className="text-center">
         <Loader2 size={48} className="text-emerald-400 animate-spin mx-auto mb-4" />
         <p className="text-zinc-400">Loading...</p>

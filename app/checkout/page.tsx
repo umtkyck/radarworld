@@ -21,15 +21,15 @@ export default function CheckoutPage() {
 
   if (items.length === 0) {
     return (
-      <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center px-6">
+      <div className="min-h-screen bg-[#050505] flex items-center justify-center px-6">
         <div className="text-center max-w-md">
           <div className="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-6">
             <ShoppingBag size={40} className="text-zinc-600" />
           </div>
-          <h1 className="text-3xl font-bold text-white mb-4">No Items to Checkout</h1>
+          <h1 className="text-3xl font-medium tracking-tight text-white mb-4">No Items to Checkout</h1>
           <p className="text-zinc-400 mb-8">Your cart is empty.</p>
           <Link href="/shop">
-            <button className="px-8 py-4 bg-white text-black rounded-full font-semibold hover:bg-zinc-200 transition-colors inline-flex items-center gap-2">
+            <button className="px-8 py-4 bg-white text-black font-medium hover:bg-zinc-200 transition-colors inline-flex items-center gap-2">
               Browse Products
               <ArrowRight size={20} />
             </button>
@@ -76,9 +76,9 @@ export default function CheckoutPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-[#050505]">
       {/* Header */}
-      <div className="border-b border-white/5">
+      <div className="border-b border-white/10">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center gap-2 text-sm">
             <Link href="/" className="text-zinc-500 hover:text-white transition-colors">Home</Link>
@@ -96,17 +96,17 @@ export default function CheckoutPage() {
           Back to Cart
         </Link>
 
-        <h1 className="text-3xl font-bold text-white mb-8">Checkout</h1>
+        <h1 className="text-3xl font-medium tracking-tight text-white mb-8">Checkout</h1>
 
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Order Items */}
           <div className="lg:col-span-2 space-y-6">
-            <div className="bg-white/[0.02] border border-white/5 rounded-2xl p-6">
-              <h2 className="text-xl font-bold text-white mb-6">Order Items ({items.length})</h2>
+            <div className="bg-white/[0.02] border border-white/10 p-6">
+              <h2 className="text-xl font-medium tracking-tight text-white mb-6">Order Items ({items.length})</h2>
               <div className="space-y-4">
                 {items.map((item) => (
-                  <div key={item.id} className="flex gap-4 pb-4 border-b border-white/5 last:border-0 last:pb-0">
-                    <div className="w-20 h-20 bg-zinc-900 rounded-xl overflow-hidden flex-shrink-0 relative">
+                  <div key={item.id} className="flex gap-4 pb-4 border-b border-white/10 last:border-0 last:pb-0">
+                    <div className="w-20 h-20 bg-zinc-900 overflow-hidden flex-shrink-0 relative">
                       <Image
                         src={item.image}
                         alt={item.name}
@@ -120,7 +120,7 @@ export default function CheckoutPage() {
                     <div className="flex-grow min-w-0">
                       <h3 className="font-semibold text-white truncate">{item.name}</h3>
                       <p className="text-sm text-zinc-500">Qty: {item.quantity}</p>
-                      <p className="text-lg font-bold text-white mt-1">
+                      <p className="text-lg font-medium tracking-tight text-white mt-1">
                         ${(item.price * item.quantity).toLocaleString()}
                       </p>
                     </div>
@@ -130,8 +130,8 @@ export default function CheckoutPage() {
             </div>
 
             {/* Shipping Info */}
-            <div className="bg-white/[0.02] border border-white/5 rounded-2xl p-6">
-              <h2 className="text-xl font-bold text-white mb-4">Shipping Information</h2>
+            <div className="bg-white/[0.02] border border-white/10 p-6">
+              <h2 className="text-xl font-medium tracking-tight text-white mb-4">Shipping Information</h2>
               <p className="text-zinc-400 mb-4">
                 You'll enter your shipping address on the secure Stripe checkout page.
               </p>
@@ -142,7 +142,7 @@ export default function CheckoutPage() {
             </div>
 
             {/* Security Notice */}
-            <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-2xl p-6">
+            <div className="bg-emerald-500/10 border border-emerald-500/20 p-6">
               <div className="flex items-start gap-4">
                 <Lock size={24} className="text-emerald-400 flex-shrink-0 mt-1" />
                 <div>
@@ -158,8 +158,8 @@ export default function CheckoutPage() {
 
           {/* Payment Summary */}
           <div className="lg:col-span-1">
-            <div className="bg-white/[0.02] border border-white/5 rounded-2xl p-6 sticky top-24">
-              <h2 className="text-xl font-bold text-white mb-6">Payment Summary</h2>
+            <div className="bg-white/[0.02] border border-white/10 p-6 sticky top-24">
+              <h2 className="text-xl font-medium tracking-tight text-white mb-6">Payment Summary</h2>
 
               <div className="space-y-4 mb-6">
                 <div className="flex justify-between text-zinc-400">
@@ -180,12 +180,12 @@ export default function CheckoutPage() {
                 </div>
                 <div className="border-t border-white/10 pt-4 flex justify-between">
                   <span className="text-lg font-semibold text-white">Total</span>
-                  <span className="text-2xl font-bold text-white">${finalTotal.toLocaleString()}</span>
+                  <span className="text-2xl font-medium tracking-tight text-white">${finalTotal.toLocaleString()}</span>
                 </div>
               </div>
 
               {error && (
-                <div className="bg-red-500/10 border border-red-500/20 rounded-xl p-4 mb-4">
+                <div className="bg-red-500/10 border border-red-500/20 p-4 mb-4">
                   <p className="text-red-400 text-sm">{error}</p>
                 </div>
               )}
@@ -193,7 +193,7 @@ export default function CheckoutPage() {
               <button
                 onClick={handleCheckout}
                 disabled={loading}
-                className="w-full py-4 bg-white text-black rounded-xl font-semibold hover:bg-zinc-200 transition-colors disabled:bg-zinc-700 disabled:text-zinc-400 disabled:cursor-not-allowed flex items-center justify-center gap-2 mb-4"
+                className="w-full py-4 bg-white text-black font-semibold hover:bg-zinc-200 transition-colors disabled:bg-zinc-700 disabled:text-zinc-400 disabled:cursor-not-allowed flex items-center justify-center gap-2 mb-4"
               >
                 {loading ? (
                   "Processing..."

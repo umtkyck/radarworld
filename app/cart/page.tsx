@@ -4,7 +4,6 @@ import { useCart } from "@/context/CartContext";
 import Link from "next/link";
 import Image from "next/image";
 import { ShoppingBag, Trash2, Minus, Plus, ArrowRight, Truck, Shield, ChevronLeft } from "lucide-react";
-import { categoryColors } from "@/lib/constants";
 
 export default function CartPage() {
   const { items, removeFromCart, updateQuantity, total } = useCart();
@@ -14,17 +13,17 @@ export default function CartPage() {
 
   if (items.length === 0) {
     return (
-      <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center px-6">
+      <div className="min-h-screen bg-[#050505] flex items-center justify-center px-6">
         <div className="text-center max-w-md">
           <div className="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-6">
             <ShoppingBag size={40} className="text-zinc-600" />
           </div>
-          <h1 className="text-3xl font-bold text-white mb-4">Your Cart is Empty</h1>
+          <h1 className="text-3xl font-medium tracking-tight text-white mb-4">Your Cart is Empty</h1>
           <p className="text-zinc-400 mb-8">
             Looks like you haven't added any radar systems to your cart yet.
           </p>
           <Link href="/shop">
-            <button className="px-8 py-4 bg-white text-black rounded-full font-semibold hover:bg-zinc-200 transition-colors inline-flex items-center gap-2">
+            <button className="px-8 py-4 bg-white text-black font-medium hover:bg-zinc-200 transition-colors inline-flex items-center gap-2">
               Browse Products
               <ArrowRight size={20} />
             </button>
@@ -35,9 +34,9 @@ export default function CartPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-[#050505]">
       {/* Header */}
-      <div className="border-b border-white/5">
+      <div className="border-b border-white/10">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center gap-2 text-sm">
             <Link href="/" className="text-zinc-500 hover:text-white transition-colors">Home</Link>
@@ -53,15 +52,15 @@ export default function CartPage() {
           Continue Shopping
         </Link>
 
-        <h1 className="text-3xl font-bold text-white mb-8">Shopping Cart ({items.length})</h1>
+        <h1 className="text-3xl font-medium tracking-tight text-white mb-8">Shopping Cart ({items.length})</h1>
 
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Cart Items */}
           <div className="lg:col-span-2 space-y-4">
             {items.map((item) => (
-              <div key={item.id} className="bg-white/[0.02] border border-white/5 rounded-2xl p-6">
+              <div key={item.id} className="bg-white/[0.02] border border-white/10 p-6">
                 <div className="flex gap-6">
-                  <Link href={`/product/${item.id}`} className="w-32 h-32 bg-zinc-900 rounded-xl overflow-hidden flex-shrink-0 relative">
+                  <Link href={`/product/${item.id}`} className="w-32 h-32 bg-zinc-900 overflow-hidden flex-shrink-0 relative">
                     <Image
                       src={item.image}
                       alt={item.name}
@@ -81,15 +80,13 @@ export default function CartPage() {
                             {item.name}
                           </h3>
                         </Link>
-                        <span className={`inline-block px-2 py-0.5 rounded text-xs font-medium mt-1 capitalize ${
-                          categoryColors[item.category] || categoryColors.industrial
-                        }`}>
+                        <span className="mt-1 inline-block font-mono text-[11px] uppercase tracking-widest text-zinc-500">
                           {item.category.replaceAll("-", " ")}
                         </span>
                       </div>
                       <button
                         onClick={() => removeFromCart(item.id)}
-                        className="p-2 text-zinc-500 hover:text-red-400 hover:bg-red-500/10 rounded-lg transition-colors"
+                        className="p-2 text-zinc-500 hover:text-red-400 hover:bg-red-500/10 transition-colors"
                         aria-label="Remove item"
                       >
                         <Trash2 size={18} />
@@ -99,7 +96,7 @@ export default function CartPage() {
                     <p className="text-zinc-500 text-sm mb-4 line-clamp-1">{item.shortDescription}</p>
 
                     <div className="flex flex-wrap justify-between items-center gap-4">
-                      <div className="flex items-center bg-white/5 rounded-lg border border-white/10">
+                      <div className="flex items-center bg-white/5 border border-white/10">
                         <button
                           onClick={() => updateQuantity(item.id, item.quantity - 1)}
                           className="p-2 hover:bg-white/5 transition-colors text-zinc-400 hover:text-white"
@@ -121,7 +118,7 @@ export default function CartPage() {
                         <p className="text-xs text-zinc-500">
                           ${item.price.toLocaleString()} × {item.quantity}
                         </p>
-                        <p className="text-xl font-bold text-white">
+                        <p className="text-xl font-medium tracking-tight text-white">
                           ${(item.price * item.quantity).toLocaleString()}
                         </p>
                       </div>
@@ -134,8 +131,8 @@ export default function CartPage() {
 
           {/* Order Summary */}
           <div className="lg:col-span-1">
-            <div className="bg-white/[0.02] border border-white/5 rounded-2xl p-6 sticky top-24">
-              <h2 className="text-xl font-bold text-white mb-6">Order Summary</h2>
+            <div className="bg-white/[0.02] border border-white/10 p-6 sticky top-24">
+              <h2 className="text-xl font-medium tracking-tight text-white mb-6">Order Summary</h2>
 
               <div className="space-y-4 mb-6">
                 <div className="flex justify-between text-zinc-400">
@@ -157,12 +154,12 @@ export default function CartPage() {
                 )}
                 <div className="border-t border-white/10 pt-4 flex justify-between">
                   <span className="text-lg font-semibold text-white">Total</span>
-                  <span className="text-2xl font-bold text-white">${finalTotal.toLocaleString()}</span>
+                  <span className="text-2xl font-medium tracking-tight text-white">${finalTotal.toLocaleString()}</span>
                 </div>
               </div>
 
               <Link href="/checkout">
-                <button className="w-full py-4 bg-white text-black rounded-xl font-semibold hover:bg-zinc-200 transition-colors flex items-center justify-center gap-2 mb-4">
+                <button className="w-full py-4 bg-white text-black font-semibold hover:bg-zinc-200 transition-colors flex items-center justify-center gap-2 mb-4">
                   Proceed to Checkout
                   <ArrowRight size={20} />
                 </button>

@@ -41,18 +41,18 @@ export default function ContactPage() {
 
   if (submitted) {
     return (
-      <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center px-6">
+      <div className="min-h-screen bg-[#050505] flex items-center justify-center px-6">
         <div className="text-center max-w-md">
           <div className="w-20 h-20 bg-emerald-500/10 rounded-full flex items-center justify-center mx-auto mb-6">
             <Send size={40} className="text-emerald-400" />
           </div>
-          <h1 className="text-3xl font-bold text-white mb-4">Message Sent!</h1>
+          <h1 className="text-3xl font-medium tracking-tight text-white mb-4">Message Sent!</h1>
           <p className="text-zinc-400 mb-8">
             Thank you for contacting us. We'll get back to you within 24 hours.
           </p>
           <button
             onClick={() => setSubmitted(false)}
-            className="px-8 py-4 bg-white text-black rounded-full font-semibold hover:bg-zinc-200 transition-colors"
+            className="px-8 py-4 bg-white text-black font-medium hover:bg-zinc-200 transition-colors"
           >
             Send Another Message
           </button>
@@ -62,11 +62,11 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-[#050505]">
       {/* Header */}
-      <div className="border-b border-white/5 py-16">
+      <div className="border-b border-white/10 py-16">
         <div className="container mx-auto px-6">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Contact Us</h1>
+          <h1 className="text-4xl md:text-5xl font-medium tracking-tight text-white mb-4">Contact Us</h1>
           <p className="text-zinc-400 text-lg max-w-xl">
             Have questions about our radar systems? Our team is here to help.
           </p>
@@ -78,10 +78,10 @@ export default function ContactPage() {
           {/* Contact Info */}
           <div className="lg:col-span-1 space-y-8">
             <div>
-              <h2 className="text-xl font-bold text-white mb-6">Get in Touch</h2>
+              <h2 className="text-xl font-medium tracking-tight text-white mb-6">Get in Touch</h2>
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-emerald-500/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 bg-emerald-500/10 flex items-center justify-center flex-shrink-0">
                     <Mail size={24} className="text-emerald-400" />
                   </div>
                   <div>
@@ -94,7 +94,7 @@ export default function ContactPage() {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-emerald-500/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 bg-emerald-500/10 flex items-center justify-center flex-shrink-0">
                     <Mail size={24} className="text-emerald-400" />
                   </div>
                   <div>
@@ -108,7 +108,7 @@ export default function ContactPage() {
               </div>
             </div>
 
-            <div className="p-6 bg-white/[0.02] rounded-2xl border border-white/5">
+            <div className="p-6 bg-white/[0.02] border border-white/10">
               <h3 className="text-white font-semibold mb-4 flex items-center gap-2">
                 <Clock size={20} className="text-emerald-400" />
                 Business Hours
@@ -129,7 +129,7 @@ export default function ContactPage() {
               </div>
             </div>
 
-            <div className="p-6 bg-white/[0.02] rounded-2xl border border-white/5">
+            <div className="p-6 bg-white/[0.02] border border-white/10">
               <h3 className="text-white font-semibold mb-4 flex items-center gap-2">
                 <Globe size={20} className="text-emerald-400" />
                 International Sales
@@ -145,8 +145,8 @@ export default function ContactPage() {
 
           {/* Contact Form */}
           <div className="lg:col-span-2">
-            <div className="bg-white/[0.02] border border-white/5 rounded-2xl p-8">
-              <h2 className="text-xl font-bold text-white mb-6">Send us a Message</h2>
+            <div className="bg-white/[0.02] border border-white/10 p-8">
+              <h2 className="text-xl font-medium tracking-tight text-white mb-6">Send us a Message</h2>
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
@@ -161,7 +161,7 @@ export default function ContactPage() {
                       required
                       value={formData.name}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-zinc-500 focus:outline-none focus:border-emerald-500/50 transition-colors"
+                      className="w-full px-4 py-3 bg-white/5 border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:border-emerald-500/50 transition-colors"
                       placeholder="John Doe"
                     />
                   </div>
@@ -176,7 +176,7 @@ export default function ContactPage() {
                       required
                       value={formData.email}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-zinc-500 focus:outline-none focus:border-emerald-500/50 transition-colors"
+                      className="w-full px-4 py-3 bg-white/5 border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:border-emerald-500/50 transition-colors"
                       placeholder="john@company.com"
                     />
                   </div>
@@ -193,7 +193,7 @@ export default function ContactPage() {
                       name="company"
                       value={formData.company}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-zinc-500 focus:outline-none focus:border-emerald-500/50 transition-colors"
+                      className="w-full px-4 py-3 bg-white/5 border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:border-emerald-500/50 transition-colors"
                       placeholder="Company Name"
                     />
                   </div>
@@ -207,7 +207,7 @@ export default function ContactPage() {
                       required
                       value={formData.subject}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-emerald-500/50 transition-colors"
+                      className="w-full px-4 py-3 bg-white/5 border border-white/10 text-white focus:outline-none focus:border-emerald-500/50 transition-colors"
                     >
                       <option value="" className="bg-zinc-900">Select a subject</option>
                       <option value="sales" className="bg-zinc-900">Sales Inquiry</option>
@@ -230,13 +230,13 @@ export default function ContactPage() {
                     rows={6}
                     value={formData.message}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-zinc-500 focus:outline-none focus:border-emerald-500/50 transition-colors resize-none"
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:border-emerald-500/50 transition-colors resize-none"
                     placeholder="Tell us about your project or question..."
                   />
                 </div>
 
                 {error && (
-                  <div className="bg-red-500/10 border border-red-500/20 rounded-xl p-4">
+                  <div className="bg-red-500/10 border border-red-500/20 p-4">
                     <p className="text-red-400 text-sm">{error}</p>
                   </div>
                 )}
@@ -244,7 +244,7 @@ export default function ContactPage() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full md:w-auto px-8 py-4 bg-white text-black rounded-xl font-semibold hover:bg-zinc-200 transition-colors flex items-center justify-center gap-2 disabled:bg-zinc-700 disabled:text-zinc-400 disabled:cursor-not-allowed"
+                  className="w-full md:w-auto px-8 py-4 bg-white text-black font-semibold hover:bg-zinc-200 transition-colors flex items-center justify-center gap-2 disabled:bg-zinc-700 disabled:text-zinc-400 disabled:cursor-not-allowed"
                 >
                   {loading ? (
                     <>
