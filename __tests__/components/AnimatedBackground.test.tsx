@@ -28,32 +28,11 @@ describe('AnimatedBackground Component', () => {
     expect(floatingParticles.length).toBeGreaterThan(0);
   });
 
-  it('renders shooting lines', () => {
-    const { container } = render(<AnimatedBackground />);
-
-    const shootingLines = container.querySelectorAll('.animate-shooting-line');
-    expect(shootingLines.length).toBeGreaterThan(0);
-  });
-
   it('renders radar sweep effect', () => {
     const { container } = render(<AnimatedBackground />);
 
     const radarSweep = container.querySelector('.animate-radar-sweep');
     expect(radarSweep).toBeInTheDocument();
-  });
-
-  it('renders vertical scan line', () => {
-    const { container } = render(<AnimatedBackground />);
-
-    const scanLine = container.querySelector('.animate-scan-vertical');
-    expect(scanLine).toBeInTheDocument();
-  });
-
-  it('renders pulsing rings with ping animation', () => {
-    const { container } = render(<AnimatedBackground />);
-
-    const pingingElements = container.querySelectorAll('.animate-ping');
-    expect(pingingElements.length).toBeGreaterThan(0);
   });
 
   it('has pointer-events-none to not block interactions', () => {

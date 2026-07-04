@@ -19,11 +19,11 @@ const quickReplies = [
 
 const botResponses: Record<string, string> = {
   greeting: "Hello! Welcome to Radar Cart. I'm here to help you find the perfect radar equipment for your needs. How can I assist you today?",
-  products: "We offer a wide range of radar systems including:\n\n• **Commercial Radars** - Maritime navigation, traffic monitoring, weather detection\n• **Industrial Sensors** - Level sensors, flow meters, distance measurement\n\nAll our products range from 24GHz to 120GHz frequency bands. Would you like me to help you find a specific type?",
+  products: "We offer professional millimeter wave radar sensors for:\n\n• **Traffic** - Speed measurement and vehicle detection\n• **Agriculture** - True ground speed sensors\n• **Security** - Perimeter protection and intrusion detection\n• **Automotive** - ADAS and blind spot detection\n• **Water Level** - Non-contact level measurement\n• **UAV/Drone** - Altitude and collision avoidance\n• **Industrial** - Flow rate, silo and tank monitoring\n\nAll products range from 24GHz to 120GHz frequency bands. Would you like me to help you find a specific type?",
   shipping: "We offer **free worldwide shipping** on orders over $1,000! For orders under $1,000, shipping is $99.\n\n• Ships to 150+ countries\n• Processing time: 2-3 business days\n• Delivery tracking provided\n\nNeed help with a specific shipping question?",
   warranty: "All Radar Cart products come with a **2-year manufacturer warranty** covering:\n\n• Manufacturing defects\n• Component failures\n• Technical support\n\nExtended warranty options are also available. Would you like more details?",
-  support: "You can reach our support team through:\n\n• **Email:** support@radarcart.com\n• **Sales:** sales@radarcart.com\n• **Phone:** +1 (234) 567-890\n\nOur team is available Monday-Friday, 9am-6pm EST. How else can I help?",
-  price: "Our radar systems range from **$1,500 to $85,000** depending on the application:\n\n• Industrial sensors: $1,500 - $15,000\n• Commercial radars: $15,000 - $85,000\n\nWould you like recommendations based on your budget?",
+  support: "You can reach our support team through:\n\n• **Email:** support@radarcart.com\n• **Sales:** sales@radarcart.com\n\nOur team is available Monday-Friday, 9am-6pm EST. How else can I help?",
+  price: "Our radar sensors range from **$189 to $3,490** depending on the application:\n\n• Speed and detection sensors: $189 - $600\n• Water level and industrial sensors: $275 - $800\n• Security and perimeter systems: $1,890 - $3,490\n\nWould you like recommendations based on your budget?",
   default: "I'm here to help! You can ask me about:\n\n• Our product range\n• Shipping and delivery\n• Warranties and support\n• Pricing information\n\nOr feel free to ask any specific question about radar equipment!",
 };
 

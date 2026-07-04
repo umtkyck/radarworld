@@ -82,15 +82,6 @@
   }
 }
 
-@keyframes shimmer {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
-}
-
 .animate-float {
   animation: float 6s ease-in-out infinite;
 }
@@ -105,54 +96,4 @@
 
 .animate-radar-sweep {
   animation: radar-sweep 8s linear infinite;
-}
-
-.animate-shimmer {
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-  background-size: 200% 100%;
-  animation: shimmer 3s linear infinite;
-}
-
-/* Shooting line animation */
-@keyframes shooting-line {
-  0% {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(calc(100vw + 100%));
-    opacity: 0;
-  }
-}
-
-.animate-shooting-line {
-  animation: shooting-line 6s ease-in-out infinite;
-}
-
-/* Vertical scan animation */
-@keyframes scan-vertical {
-  0% {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
-  5% {
-    opacity: 1;
-  }
-  95% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(100vw);
-    opacity: 0;
-  }
-}
-
-.animate-scan-vertical {
-  animation: scan-vertical 10s linear infinite;
 }

@@ -16,7 +16,7 @@ export default function LoginPage() {
         <div className="bg-white/[0.02] border border-white/5 rounded-2xl p-8">
           <div className="text-center mb-8">
             <h1 className="text-3xl font-bold text-white mb-2">Welcome Back</h1>
-            <p className="text-zinc-400">Sign in to your RadarWorld account</p>
+            <p className="text-zinc-400">Sign in to your Radar Cart account</p>
           </div>
 
           <button
@@ -46,14 +46,7 @@ export default function LoginPage() {
 
           <div className="mt-6 text-center">
             <p className="text-zinc-500 text-sm">
-              By signing in, you agree to our{" "}
-              <Link href="#" className="text-emerald-400 hover:text-emerald-300">
-                Terms of Service
-              </Link>{" "}
-              and{" "}
-              <Link href="#" className="text-emerald-400 hover:text-emerald-300">
-                Privacy Policy
-              </Link>
+              We only use your Google account to identify you. No passwords are stored.
             </p>
           </div>
         </div>

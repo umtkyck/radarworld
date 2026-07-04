@@ -6,6 +6,7 @@ import { useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { CheckCircle, ArrowRight, Package, Mail, Loader2 } from "lucide-react";
+import { createOrder } from "@/lib/firestore";
 
 function SuccessContent() {
   const { items, clearCart, total } = useCart();
@@ -23,9 +24,6 @@ function SuccessContent() {
       }
 
       try {
-        // Dynamically import to avoid SSR issues
-        const { createOrder } = await import("@/lib/firestore");
-
         const shipping = total >= 1000 ? 0 : 99;
 
         await createOrder({

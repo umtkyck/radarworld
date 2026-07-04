@@ -45,13 +45,6 @@ describe('Footer Component', () => {
     expect(emailLink).toHaveAttribute('href', 'mailto:info@radarcart.com');
   });
 
-  it('has correct phone link', () => {
-    render(<Footer />);
-
-    const phoneLink = screen.getByRole('link', { name: /\+1 \(234\) 567-890/i });
-    expect(phoneLink).toHaveAttribute('href', 'tel:+1234567890');
-  });
-
   it('has correct product category links', () => {
     render(<Footer />);
 

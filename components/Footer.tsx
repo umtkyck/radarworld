@@ -14,7 +14,7 @@ export default function Footer() {
           <div className="md:col-span-2">
             <Logo size="md" />
             <p className="mt-4 text-zinc-500 text-sm max-w-sm">
-              Commercial and industrial radar solutions for precision detection and monitoring.
+              Professional millimeter wave radar sensors for precision detection and monitoring.
             </p>
           </div>
 
@@ -57,11 +57,6 @@ export default function Footer() {
               <li>
                 <a href="mailto:info@radarcart.com" className="text-zinc-500 hover:text-white text-sm transition-colors">
                   info@radarcart.com
-                </a>
-              </li>
-              <li>
-                <a href="tel:+1234567890" className="text-zinc-500 hover:text-white text-sm transition-colors">
-                  +1 (234) 567-890
                 </a>
               </li>
             </ul>

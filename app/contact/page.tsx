@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Mail, Phone, MapPin, Send, Clock, Globe, Loader2 } from "lucide-react";
+import { Mail, Send, Clock, Globe, Loader2 } from "lucide-react";
 import { saveContactMessage } from "@/lib/firestore";
 
 export default function ContactPage() {
@@ -95,28 +95,14 @@ export default function ContactPage() {
 
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 bg-emerald-500/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Phone size={24} className="text-emerald-400" />
+                    <Mail size={24} className="text-emerald-400" />
                   </div>
                   <div>
-                    <h3 className="text-white font-semibold mb-1">Phone</h3>
-                    <a href="tel:+1234567890" className="text-zinc-400 hover:text-emerald-400 transition-colors">
-                      +1 (234) 567-890
+                    <h3 className="text-white font-semibold mb-1">Technical Support</h3>
+                    <a href="mailto:support@radarcart.com" className="text-zinc-400 hover:text-emerald-400 transition-colors">
+                      support@radarcart.com
                     </a>
-                    <p className="text-zinc-500 text-sm mt-1">Mon-Fri, 9am-6pm EST</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-emerald-500/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <MapPin size={24} className="text-emerald-400" />
-                  </div>
-                  <div>
-                    <h3 className="text-white font-semibold mb-1">Address</h3>
-                    <p className="text-zinc-400">
-                      123 Radar Street<br />
-                      San Francisco, CA 94102<br />
-                      United States
-                    </p>
+                    <p className="text-zinc-500 text-sm mt-1">Product and integration help</p>
                   </div>
                 </div>
               </div>
