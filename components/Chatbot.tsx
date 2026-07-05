@@ -24,6 +24,7 @@ const botResponses: Record<string, string> = {
   warranty: "All Radar Cart products come with a 2-year manufacturer warranty covering:\n\n• Manufacturing defects\n• Component failures\n• Technical support\n\nExtended warranty options are also available. Would you like more details?",
   support: "You can reach our support team through:\n\n• Phone: +1 (224) 629-9664\n• Email: support@radarcart.com\n• Sales: sales@radarcart.com\n• Address: 1109 W Bauer Rd, Naperville, IL 60563, US\n\nOur team is available Monday-Friday, 9am-6pm CT. How else can I help?",
   price: "Our current pricing:\n\n• True Ground Speed Sensor (ZLYTGSS01): $245\n• Ball & Swing Tracking Radar (ZLYSPT01): $389\n\nVolume and OEM pricing is available - contact sales@radarcart.com for a quote. Custom variants are priced per project.",
+  payment: "We accept two payment methods:\n\n• Credit / debit card - secure checkout via Stripe\n• Bank transfer (ACH or wire, domestic and international) - payable to Melis Electronics LLC\n\nFor bank transfers, select Bank Transfer at checkout to see the remittance details, or email sales@radarcart.com for a pro forma invoice.",
   custom: "Yes - custom engineering is our core strength! We adapt both platforms to your application:\n\n• Custom firmware and detection profiles\n• Interfaces: Pulse, CAN, RS-485, UART, SPI, or proprietary\n• Custom housings and mounting options\n• Antenna and beam pattern design\n\nTell our engineers about your project at sales@radarcart.com.",
   default: "I'm here to help! You can ask me about:\n\n• Our ground speed and sports tracking radars\n• Custom engineering options\n• Shipping and delivery\n• Warranties and support\n• Pricing information\n\nOr feel free to ask any specific question about radar equipment!",
 };
@@ -48,6 +49,9 @@ function getBotResponse(message: string): string {
   }
   if (lowerMessage.includes("support") || lowerMessage.includes("contact") || lowerMessage.includes("help") || lowerMessage.includes("email") || lowerMessage.includes("phone")) {
     return botResponses.support;
+  }
+  if (lowerMessage.includes("pay") || lowerMessage.includes("wire") || lowerMessage.includes("bank") || lowerMessage.includes("ach") || lowerMessage.includes("invoice") || lowerMessage.includes("transfer")) {
+    return botResponses.payment;
   }
   if (lowerMessage.includes("price") || lowerMessage.includes("cost") || lowerMessage.includes("expensive") || lowerMessage.includes("cheap") || lowerMessage.includes("budget")) {
     return botResponses.price;

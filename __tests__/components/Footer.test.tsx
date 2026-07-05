@@ -28,7 +28,7 @@ describe('Footer Component', () => {
     render(<Footer />);
 
     const currentYear = new Date().getFullYear();
-    expect(screen.getByText(`© ${currentYear} Radar Cart. All rights reserved.`)).toBeInTheDocument();
+    expect(screen.getByText(`© ${currentYear} Radar Cart · Melis Electronics LLC. All rights reserved.`)).toBeInTheDocument();
   });
 
   it('renders system status indicator', () => {

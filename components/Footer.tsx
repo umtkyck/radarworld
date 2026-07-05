@@ -72,7 +72,7 @@ export default function Footer() {
         {/* Bottom */}
         <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-slate-200 pt-8 md:flex-row">
           <p className="text-sm text-slate-400">
-            © {currentYear} Radar Cart. All rights reserved.
+            © {currentYear} Radar Cart · Melis Electronics LLC. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
             <span className="text-sm text-slate-400">CE Certified · FCC Compliant · RoHS</span>
