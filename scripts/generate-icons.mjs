@@ -33,6 +33,10 @@ const ogSvg = Buffer.from(`
 </svg>
 `);
 
+// Next's apple-icon file convention does not support SVG, so ship a PNG.
+const appleSvg = iconSvg.toString().replace('rx="24"', 'rx="0"');
+await sharp(Buffer.from(appleSvg), { density: 300 }).resize(180, 180).png().toFile(path.join(root, "app", "apple-icon.png"));
+
 await sharp(iconSvg, { density: 300 }).resize(192, 192).png().toFile(path.join(root, "public", "icon-192.png"));
 await sharp(iconSvg, { density: 300 }).resize(512, 512).png().toFile(path.join(root, "public", "icon-512.png"));
 await sharp(ogSvg, { density: 150 }).resize(1200, 630).png().toFile(path.join(root, "app", "opengraph-image.png"));
