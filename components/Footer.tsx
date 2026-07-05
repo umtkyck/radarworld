@@ -59,6 +59,16 @@ export default function Footer() {
                   info@radarcart.com
                 </a>
               </li>
+              <li>
+                <a href="tel:+12246299664" className="text-sm text-zinc-500 transition-colors hover:text-white">
+                  +1 (224) 629-9664
+                </a>
+              </li>
+              <li className="text-sm leading-relaxed text-zinc-500">
+                1109 W Bauer Rd
+                <br />
+                Naperville, IL 60563, US
+              </li>
             </ul>
           </div>
         </div>
