@@ -23,10 +23,10 @@ jest.mock('next-auth/react', () => ({
   SessionProvider: ({ children }: { children: React.ReactNode }) => children,
 }));
 
-// Mock Firebase
-jest.mock('@/lib/firebase', () => ({
+// Mock Firebase Admin (server-side Firestore)
+jest.mock('@/lib/firebase-admin', () => ({
   db: null,
-  auth: null,
+  isFirebaseAdminConfigured: () => false,
 }));
 
 // Mock scrollIntoView (not available in JSDOM)

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Mail, Phone, MapPin, Send, Clock, Globe, Loader2 } from "lucide-react";
-import { saveContactMessage } from "@/lib/firestore";
+import { CONTACT_EMAIL } from "@/lib/contact";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -22,8 +22,13 @@ export default function ContactPage() {
     setError("");
 
     try {
-      const result = await saveContactMessage(formData);
-      if (result.success) {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      const result = await res.json();
+      if (res.ok && result.success) {
         setSubmitted(true);
       } else {
         setError("Failed to send message. Please try again.");
@@ -86,8 +91,8 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="mb-1 font-semibold text-slate-900">Email</h3>
-                    <a href="mailto:info@radarcart.com" className="text-slate-500 transition-colors hover:text-slate-900">
-                      info@radarcart.com
+                    <a href={`mailto:${CONTACT_EMAIL}`} className="text-slate-500 transition-colors hover:text-slate-900">
+                      {CONTACT_EMAIL}
                     </a>
                     <p className="mt-1 text-sm text-slate-400">For general inquiries</p>
                   </div>
@@ -99,8 +104,8 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="mb-1 font-semibold text-slate-900">Technical Support</h3>
-                    <a href="mailto:support@radarcart.com" className="text-slate-500 transition-colors hover:text-slate-900">
-                      support@radarcart.com
+                    <a href={`mailto:${CONTACT_EMAIL}`} className="text-slate-500 transition-colors hover:text-slate-900">
+                      {CONTACT_EMAIL}
                     </a>
                     <p className="mt-1 text-sm text-slate-400">Product and integration help</p>
                   </div>
@@ -167,8 +172,8 @@ export default function ContactPage() {
                 We ship across North America (US, Canada, Mexico) via UPS, FedEx, and USPS.
                 For orders outside North America, contact our sales team for a quote.
               </p>
-              <a href="mailto:sales@radarcart.com" className="mt-2 inline-block text-sm font-medium text-slate-900 transition-colors hover:text-slate-600">
-                sales@radarcart.com
+              <a href={`mailto:${CONTACT_EMAIL}`} className="mt-2 inline-block text-sm font-medium text-slate-900 transition-colors hover:text-slate-600">
+                {CONTACT_EMAIL}
               </a>
             </div>
           </div>

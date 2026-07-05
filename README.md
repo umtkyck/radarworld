@@ -10,7 +10,7 @@ Built with Next.js 15 (App Router), React 19, TypeScript, and Tailwind CSS.
 - **Shopping cart** — localStorage persistence with real-time updates
 - **Stripe checkout** — secure payment via Stripe Checkout Sessions
 - **Google sign-in** — authentication with NextAuth v5
-- **Firebase (optional)** — orders and contact messages stored in Firestore when configured
+- **Firebase** — contact messages and orders stored in Firestore via server API routes (Firebase Admin SDK)
 - **Support chatbot** — rule-based assistant for common questions
 
 ## Getting Started
@@ -33,7 +33,9 @@ Copy `.env.local.example` to `.env.local` and fill in the values:
 | `NEXT_PUBLIC_DOMAIN` | Site URL (used for checkout redirects and metadata) |
 | `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET` | Google OAuth for sign-in |
 | `AUTH_SECRET` | NextAuth session encryption |
-| `NEXT_PUBLIC_FIREBASE_*` | Firebase config (optional; app works without it) |
+| `NEXT_PUBLIC_FIREBASE_*` | Firebase client config (project: `radarcart-b64b9`) |
+| `FIREBASE_SERVICE_ACCOUNT_JSON` | Firebase Admin service account (required for Firestore writes) |
+| `ADMIN_EMAIL` / `ADMIN_PASSWORD_SHA256` | Admin credentials login |
 
 See `STRIPE_SETUP.md` for Stripe configuration and `VERCEL_DEPLOY.md` for deployment.
 

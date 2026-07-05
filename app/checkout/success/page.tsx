@@ -6,7 +6,6 @@ import { useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { CheckCircle, ArrowRight, Package, Mail, Loader2 } from "lucide-react";
-import { createOrder } from "@/lib/firestore";
 
 function SuccessContent() {
   const { items, clearCart, total } = useCart();
@@ -41,25 +40,30 @@ function SuccessContent() {
           // Keep local fallback values
         }
 
-        await createOrder({
-          userId: session?.user?.id,
-          userEmail: session?.user?.email || undefined,
-          items: items.map(item => ({
-            productId: item.id,
-            name: item.name,
-            price: item.price,
-            quantity: item.quantity,
-            image: item.image,
-          })),
-          subtotal,
-          shipping,
-          total: orderTotal,
-          status: "pending",
-          stripeSessionId: sessionId,
+        const res = await fetch("/api/orders", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            sessionId,
+            userId: session?.user?.id,
+            userEmail: session?.user?.email,
+            items: items.map((item) => ({
+              productId: item.id,
+              name: item.name,
+              price: item.price,
+              quantity: item.quantity,
+              image: item.image,
+            })),
+            subtotal,
+            shipping,
+            total: orderTotal,
+          }),
         });
 
-        setOrderSaved(true);
-        clearCart();
+        if (res.ok) {
+          setOrderSaved(true);
+          clearCart();
+        }
       } catch (error) {
         console.error("Error saving order:", error);
       } finally {

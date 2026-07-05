@@ -5,12 +5,12 @@ import {
   getOrder,
   getUserOrders,
   getOrderByStripeSession,
-} from '@/lib/firestore';
+} from '@/lib/firestore-admin';
 
-// Mock Firebase
-jest.mock('@/lib/firebase', () => ({
-  db: null, // Simulate Firebase not configured
-  auth: null,
+// Mock Firebase Admin
+jest.mock('@/lib/firebase-admin', () => ({
+  db: null,
+  isFirebaseAdminConfigured: () => false,
 }));
 
 describe('Firestore Functions', () => {

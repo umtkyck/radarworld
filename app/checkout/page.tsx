@@ -39,7 +39,7 @@ export default function CheckoutPage() {
     .map((item) => `${item.quantity}x ${item.model || item.name} - $${(item.price * item.quantity).toLocaleString()}`)
     .join("%0D%0A");
   const wireOrderMailto =
-    `mailto:sales@radarcart.com?subject=${encodeURIComponent("Bank Transfer Order - Radar Cart")}` +
+    `mailto:umtkyck@gmail.com?subject=${encodeURIComponent("Bank Transfer Order - Radar Cart")}` +
     `&body=Hello,%0D%0A%0D%0AI would like to place the following order and pay by bank transfer:%0D%0A%0D%0A` +
     `${orderSummaryLines}%0D%0A%0D%0ASubtotal: $${total.toLocaleString()}%0D%0A%0D%0A` +
     `Company:%0D%0AShipping address:%0D%0APhone:%0D%0A`;

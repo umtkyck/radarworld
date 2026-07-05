@@ -51,8 +51,8 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <a href="mailto:info@radarcart.com" className="text-sm text-slate-500 transition-colors hover:text-slate-900">
-                  info@radarcart.com
+                <a href="mailto:umtkyck@gmail.com" className="text-sm text-slate-500 transition-colors hover:text-slate-900">
+                  umtkyck@gmail.com
                 </a>
               </li>
               <li>

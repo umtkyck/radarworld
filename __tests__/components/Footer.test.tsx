@@ -21,7 +21,7 @@ describe('Footer Component', () => {
     render(<Footer />);
 
     expect(screen.getByText('Contact Us')).toBeInTheDocument();
-    expect(screen.getByText('info@radarcart.com')).toBeInTheDocument();
+    expect(screen.getByText('umtkyck@gmail.com')).toBeInTheDocument();
   });
 
   it('renders copyright with current year', () => {
@@ -40,8 +40,8 @@ describe('Footer Component', () => {
   it('has correct email link', () => {
     render(<Footer />);
 
-    const emailLink = screen.getByRole('link', { name: /info@radarcart.com/i });
-    expect(emailLink).toHaveAttribute('href', 'mailto:info@radarcart.com');
+    const emailLink = screen.getByRole('link', { name: /umtkyck@gmail.com/i });
+    expect(emailLink).toHaveAttribute('href', 'mailto:umtkyck@gmail.com');
   });
 
   it('has correct product category links', () => {

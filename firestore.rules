@@ -1,0 +1,15 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // All reads and writes go through Firebase Admin SDK (Next.js API routes).
+    // Client SDK access is denied to keep contact forms and orders secure.
+    match /contacts/{document=**} {
+      allow read, write: if false;
+    }
+
+    match /orders/{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
