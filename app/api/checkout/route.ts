@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getStripe } from "@/lib/stripe";
 import { getProductImageSrc } from "@/lib/constants";
+import { buildShippingOptions, NORTH_AMERICA_COUNTRIES } from "@/lib/shipping";
 import { CartItem } from "@/types/product";
 
 export async function POST(request: NextRequest) {
@@ -37,7 +38,10 @@ export async function POST(request: NextRequest) {
       quantity: item.quantity,
     }));
 
-    // Create Stripe checkout session
+    const subtotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+    // Create Stripe checkout session with North American carrier options
+    // (UPS, FedEx, USPS) — the customer picks carrier and service level.
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
       line_items: lineItems,
@@ -45,8 +49,9 @@ export async function POST(request: NextRequest) {
       success_url: `${process.env.NEXT_PUBLIC_DOMAIN}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${process.env.NEXT_PUBLIC_DOMAIN}/checkout/cancel`,
       shipping_address_collection: {
-        allowed_countries: ["US", "CA", "GB", "DE", "FR", "TR"], // Add more countries as needed
+        allowed_countries: [...NORTH_AMERICA_COUNTRIES],
       },
+      shipping_options: buildShippingOptions(subtotal),
       billing_address_collection: "required",
     });
 

@@ -161,10 +161,11 @@ export default function ContactPage() {
             <div className="p-6 bg-white/[0.02] border border-white/10">
               <h3 className="text-white font-semibold mb-4 flex items-center gap-2">
                 <Globe size={20} className="text-emerald-400" />
-                International Sales
+                Shipping
               </h3>
               <p className="text-zinc-400 text-sm">
-                We ship to over 150 countries. Contact our international sales team for quotes and shipping information.
+                We ship across North America (US, Canada, Mexico) via UPS, FedEx, and USPS.
+                For orders outside North America, contact our sales team for a quote.
               </p>
               <a href="mailto:sales@radarcart.com" className="text-emerald-400 text-sm hover:text-emerald-300 transition-colors mt-2 inline-block">
                 sales@radarcart.com

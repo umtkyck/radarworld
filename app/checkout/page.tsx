@@ -7,6 +7,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Lock, CreditCard, ShoppingBag, ArrowRight, ChevronLeft, Truck, Shield } from "lucide-react";
 import { getProductImageSrc } from "@/lib/constants";
+import { FREE_SHIPPING_THRESHOLD, cheapestRate } from "@/lib/shipping";
 
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || ""
@@ -17,8 +18,7 @@ export default function CheckoutPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const shipping = total >= 1000 ? 0 : 99;
-  const finalTotal = total + shipping;
+  const freeShipping = total >= FREE_SHIPPING_THRESHOLD;
 
   if (items.length === 0) {
     return (
@@ -134,11 +134,18 @@ export default function CheckoutPage() {
             <div className="bg-white/[0.02] border border-white/10 p-6">
               <h2 className="text-xl font-medium tracking-tight text-white mb-4">Shipping Information</h2>
               <p className="text-zinc-400 mb-4">
-                You'll enter your shipping address on the secure Stripe checkout page.
+                You&apos;ll enter your shipping address and choose your carrier
+                &mdash; UPS, FedEx, or USPS &mdash; on the secure Stripe checkout page.
               </p>
-              <div className="flex items-center gap-3 text-sm text-zinc-400">
-                <Truck size={18} className="text-emerald-400" />
-                <span>We ship worldwide to 150+ countries</span>
+              <div className="space-y-2 text-sm text-zinc-400">
+                <div className="flex items-center gap-3">
+                  <Truck size={18} className="text-emerald-400" />
+                  <span>Shipping across the US, Canada, and Mexico</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Truck size={18} className="text-emerald-400" />
+                  <span>Ground, 2-day, and overnight services available</span>
+                </div>
               </div>
             </div>
 
@@ -169,10 +176,10 @@ export default function CheckoutPage() {
                 </div>
                 <div className="flex justify-between text-zinc-400">
                   <span>Shipping</span>
-                  {shipping === 0 ? (
+                  {freeShipping ? (
                     <span className="text-emerald-400">FREE</span>
                   ) : (
-                    <span className="text-white">${shipping}</span>
+                    <span className="text-zinc-500">From ${cheapestRate} &mdash; select carrier</span>
                   )}
                 </div>
                 <div className="flex justify-between text-zinc-400">
@@ -181,7 +188,10 @@ export default function CheckoutPage() {
                 </div>
                 <div className="border-t border-white/10 pt-4 flex justify-between">
                   <span className="text-lg font-semibold text-white">Total</span>
-                  <span className="text-2xl font-medium tracking-tight text-white">${finalTotal.toLocaleString()}</span>
+                  <span className="text-2xl font-medium tracking-tight text-white">
+                    ${total.toLocaleString()}
+                    {!freeShipping && <span className="text-sm text-zinc-500"> + shipping</span>}
+                  </span>
                 </div>
               </div>
 

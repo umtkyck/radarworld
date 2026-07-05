@@ -24,7 +24,22 @@ function SuccessContent() {
       }
 
       try {
-        const shipping = total >= 1000 ? 0 : 99;
+        // Pull the real amounts (including the carrier chosen at Stripe
+        // checkout) from the session; fall back to a local estimate.
+        let subtotal = total;
+        let shipping = 0;
+        let orderTotal = total;
+        try {
+          const res = await fetch(`/api/checkout/session?session_id=${sessionId}`);
+          if (res.ok) {
+            const data = await res.json();
+            subtotal = data.subtotal ?? total;
+            shipping = data.shipping ?? 0;
+            orderTotal = data.total ?? subtotal + shipping;
+          }
+        } catch {
+          // Keep local fallback values
+        }
 
         await createOrder({
           userId: session?.user?.id,
@@ -36,9 +51,9 @@ function SuccessContent() {
             quantity: item.quantity,
             image: item.image,
           })),
-          subtotal: total,
+          subtotal,
           shipping,
-          total: total + shipping,
+          total: orderTotal,
           status: "pending",
           stripeSessionId: sessionId,
         });

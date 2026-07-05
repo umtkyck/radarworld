@@ -201,7 +201,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
             <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 font-mono text-[11px] uppercase tracking-widest text-zinc-600">
               <span>Free shipping $1,000+</span>
               <span>2 year warranty</span>
-              <span>Ships worldwide</span>
+              <span>UPS &middot; FedEx &middot; USPS</span>
             </div>
 
             {/* Applications */}

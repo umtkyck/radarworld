@@ -5,12 +5,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { ShoppingBag, Trash2, Minus, Plus, ArrowRight, Truck, Shield, ChevronLeft } from "lucide-react";
 import { getProductImageSrc } from "@/lib/constants";
+import { FREE_SHIPPING_THRESHOLD, cheapestRate } from "@/lib/shipping";
 
 export default function CartPage() {
   const { items, removeFromCart, updateQuantity, total } = useCart();
 
-  const shipping = total >= 1000 ? 0 : 99;
-  const finalTotal = total + shipping;
+  const freeShipping = total >= FREE_SHIPPING_THRESHOLD;
 
   if (items.length === 0) {
     return (
@@ -142,20 +142,23 @@ export default function CartPage() {
                 </div>
                 <div className="flex justify-between text-zinc-400">
                   <span>Shipping</span>
-                  {shipping === 0 ? (
+                  {freeShipping ? (
                     <span className="text-emerald-400">FREE</span>
                   ) : (
-                    <span className="text-white">${shipping}</span>
+                    <span className="text-white">From ${cheapestRate}</span>
                   )}
                 </div>
-                {shipping > 0 && (
-                  <p className="text-xs text-zinc-500">
-                    Add ${(1000 - total).toLocaleString()} more for free shipping
-                  </p>
-                )}
+                <p className="text-xs text-zinc-500">
+                  {freeShipping
+                    ? "Free ground shipping — express options at checkout"
+                    : `UPS, FedEx, or USPS — select at checkout. Add $${(FREE_SHIPPING_THRESHOLD - total).toLocaleString()} more for free shipping`}
+                </p>
                 <div className="border-t border-white/10 pt-4 flex justify-between">
                   <span className="text-lg font-semibold text-white">Total</span>
-                  <span className="text-2xl font-medium tracking-tight text-white">${finalTotal.toLocaleString()}</span>
+                  <span className="text-2xl font-medium tracking-tight text-white">
+                    ${total.toLocaleString()}
+                    {!freeShipping && <span className="text-sm text-zinc-500"> + shipping</span>}
+                  </span>
                 </div>
               </div>
 
@@ -170,7 +173,7 @@ export default function CartPage() {
               <div className="space-y-3 pt-4 border-t border-white/10">
                 <div className="flex items-center gap-3 text-sm text-zinc-400">
                   <Truck size={18} className="text-emerald-400" />
-                  <span>Free shipping on orders over $1,000</span>
+                  <span>UPS, FedEx &amp; USPS &mdash; free over $1,000</span>
                 </div>
                 <div className="flex items-center gap-3 text-sm text-zinc-400">
                   <Shield size={18} className="text-emerald-400" />
