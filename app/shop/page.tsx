@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { products, categoryInfo, problemTagInfo, searchProducts } from "@/data/products";
 import { ProductCategory, ProblemTag } from "@/types/product";
 import ProductCard from "@/components/ProductCard";
+import RadarGL from "@/components/RadarGL";
 import { Search, X, SlidersHorizontal, ChevronDown } from "lucide-react";
 
 // Pre-compute category and tag counts (static data)
@@ -105,8 +106,12 @@ function ShopPageContent() {
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <div className="border-b border-slate-200 bg-slate-50 py-16 md:py-20">
-        <div className="mx-auto max-w-6xl px-6">
+      <div className="relative overflow-hidden border-b border-slate-200 bg-slate-50 py-16 md:py-20">
+        <div className="absolute inset-0">
+          <RadarGL />
+        </div>
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-slate-50 via-slate-50/70 to-transparent" />
+        <div className="relative mx-auto max-w-6xl px-6">
           <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
             Catalog
           </p>
