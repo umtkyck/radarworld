@@ -22,15 +22,15 @@ export default function CheckoutPage() {
 
   if (items.length === 0) {
     return (
-      <div className="min-h-screen bg-[#050505] flex items-center justify-center px-6">
-        <div className="text-center max-w-md">
-          <div className="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-6">
-            <ShoppingBag size={40} className="text-zinc-600" />
+      <div className="flex min-h-screen items-center justify-center bg-white px-6">
+        <div className="max-w-md text-center">
+          <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-slate-100">
+            <ShoppingBag size={40} className="text-slate-400" />
           </div>
-          <h1 className="text-3xl font-medium tracking-tight text-white mb-4">No Items to Checkout</h1>
-          <p className="text-zinc-400 mb-8">Your cart is empty.</p>
+          <h1 className="mb-4 text-3xl font-bold tracking-tight text-slate-900">No Items to Checkout</h1>
+          <p className="mb-8 text-slate-500">Your cart is empty.</p>
           <Link href="/shop">
-            <button className="px-8 py-4 bg-white text-black font-medium hover:bg-zinc-200 transition-colors inline-flex items-center gap-2">
+            <button className="inline-flex items-center gap-2 rounded-lg bg-slate-900 px-8 py-4 font-medium text-white transition-colors hover:bg-slate-800">
               Browse Products
               <ArrowRight size={20} />
             </button>
@@ -77,37 +77,37 @@ export default function CheckoutPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#050505]">
+    <div className="min-h-screen bg-white">
       {/* Header */}
-      <div className="border-b border-white/10">
+      <div className="border-b border-slate-200 bg-slate-50">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center gap-2 text-sm">
-            <Link href="/" className="text-zinc-500 hover:text-white transition-colors">Home</Link>
-            <span className="text-zinc-600">/</span>
-            <Link href="/cart" className="text-zinc-500 hover:text-white transition-colors">Cart</Link>
-            <span className="text-zinc-600">/</span>
-            <span className="text-zinc-400">Checkout</span>
+            <Link href="/" className="text-slate-400 transition-colors hover:text-slate-900">Home</Link>
+            <span className="text-slate-300">/</span>
+            <Link href="/cart" className="text-slate-400 transition-colors hover:text-slate-900">Cart</Link>
+            <span className="text-slate-300">/</span>
+            <span className="text-slate-600">Checkout</span>
           </div>
         </div>
       </div>
 
       <div className="container mx-auto px-6 py-8">
-        <Link href="/cart" className="inline-flex items-center gap-2 text-zinc-400 hover:text-white transition-colors mb-8">
+        <Link href="/cart" className="mb-8 inline-flex items-center gap-2 text-slate-500 transition-colors hover:text-slate-900">
           <ChevronLeft size={20} />
           Back to Cart
         </Link>
 
-        <h1 className="text-3xl font-medium tracking-tight text-white mb-8">Checkout</h1>
+        <h1 className="mb-8 text-3xl font-bold tracking-tight text-slate-900">Checkout</h1>
 
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="grid gap-8 lg:grid-cols-3">
           {/* Order Items */}
-          <div className="lg:col-span-2 space-y-6">
-            <div className="bg-white/[0.02] border border-white/10 p-6">
-              <h2 className="text-xl font-medium tracking-tight text-white mb-6">Order Items ({items.length})</h2>
+          <div className="space-y-6 lg:col-span-2">
+            <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+              <h2 className="mb-6 text-xl font-bold tracking-tight text-slate-900">Order Items ({items.length})</h2>
               <div className="space-y-4">
                 {items.map((item) => (
-                  <div key={item.id} className="flex gap-4 pb-4 border-b border-white/10 last:border-0 last:pb-0">
-                    <div className="w-20 h-20 bg-zinc-900 overflow-hidden flex-shrink-0 relative">
+                  <div key={item.id} className="flex gap-4 border-b border-slate-100 pb-4 last:border-0 last:pb-0">
+                    <div className="relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-lg bg-slate-100">
                       <Image
                         src={getProductImageSrc(item.image, item.category, false)}
                         alt={item.name}
@@ -118,10 +118,10 @@ export default function CheckoutPage() {
                         quality={75}
                       />
                     </div>
-                    <div className="flex-grow min-w-0">
-                      <h3 className="font-semibold text-white truncate">{item.name}</h3>
-                      <p className="text-sm text-zinc-500">Qty: {item.quantity}</p>
-                      <p className="text-lg font-medium tracking-tight text-white mt-1">
+                    <div className="min-w-0 flex-grow">
+                      <h3 className="truncate font-semibold text-slate-900">{item.name}</h3>
+                      <p className="text-sm text-slate-500">Qty: {item.quantity}</p>
+                      <p className="mt-1 text-lg font-bold tracking-tight text-slate-900">
                         ${(item.price * item.quantity).toLocaleString()}
                       </p>
                     </div>
@@ -131,33 +131,33 @@ export default function CheckoutPage() {
             </div>
 
             {/* Shipping Info */}
-            <div className="bg-white/[0.02] border border-white/10 p-6">
-              <h2 className="text-xl font-medium tracking-tight text-white mb-4">Shipping Information</h2>
-              <p className="text-zinc-400 mb-4">
+            <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+              <h2 className="mb-4 text-xl font-bold tracking-tight text-slate-900">Shipping Information</h2>
+              <p className="mb-4 text-slate-500">
                 You&apos;ll enter your shipping address and choose your carrier
                 &mdash; UPS, FedEx, or USPS &mdash; on the secure Stripe checkout page.
               </p>
-              <div className="space-y-2 text-sm text-zinc-400">
+              <div className="space-y-2 text-sm text-slate-500">
                 <div className="flex items-center gap-3">
-                  <Truck size={18} className="text-emerald-400" />
+                  <Truck size={18} className="text-slate-900" />
                   <span>Shipping across the US, Canada, and Mexico</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <Truck size={18} className="text-emerald-400" />
+                  <Truck size={18} className="text-slate-900" />
                   <span>Ground, 2-day, and overnight services available</span>
                 </div>
               </div>
             </div>
 
             {/* Security Notice */}
-            <div className="bg-emerald-500/10 border border-emerald-500/20 p-6">
+            <div className="rounded-xl border border-slate-200 bg-slate-50 p-6">
               <div className="flex items-start gap-4">
-                <Lock size={24} className="text-emerald-400 flex-shrink-0 mt-1" />
+                <Lock size={24} className="mt-1 flex-shrink-0 text-slate-900" />
                 <div>
-                  <h3 className="font-semibold text-white mb-2">Secure Payment</h3>
-                  <p className="text-sm text-zinc-400">
+                  <h3 className="mb-2 font-semibold text-slate-900">Secure Payment</h3>
+                  <p className="text-sm text-slate-500">
                     Your payment will be processed securely through Stripe. We never store your card details.
-                    You'll be redirected to Stripe's secure checkout page to complete your purchase.
+                    You&apos;ll be redirected to Stripe&apos;s secure checkout page to complete your purchase.
                   </p>
                 </div>
               </div>
@@ -166,45 +166,45 @@ export default function CheckoutPage() {
 
           {/* Payment Summary */}
           <div className="lg:col-span-1">
-            <div className="bg-white/[0.02] border border-white/10 p-6 sticky top-24">
-              <h2 className="text-xl font-medium tracking-tight text-white mb-6">Payment Summary</h2>
+            <div className="sticky top-24 rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+              <h2 className="mb-6 text-xl font-bold tracking-tight text-slate-900">Payment Summary</h2>
 
-              <div className="space-y-4 mb-6">
-                <div className="flex justify-between text-zinc-400">
+              <div className="mb-6 space-y-4">
+                <div className="flex justify-between text-slate-500">
                   <span>Subtotal</span>
-                  <span className="text-white">${total.toLocaleString()}</span>
+                  <span className="font-medium text-slate-900">${total.toLocaleString()}</span>
                 </div>
-                <div className="flex justify-between text-zinc-400">
+                <div className="flex justify-between text-slate-500">
                   <span>Shipping</span>
                   {freeShipping ? (
-                    <span className="text-emerald-400">FREE</span>
+                    <span className="font-medium text-emerald-600">FREE</span>
                   ) : (
-                    <span className="text-zinc-500">From ${cheapestRate} &mdash; select carrier</span>
+                    <span className="text-slate-400">From ${cheapestRate} &mdash; select carrier</span>
                   )}
                 </div>
-                <div className="flex justify-between text-zinc-400">
+                <div className="flex justify-between text-slate-500">
                   <span>Tax</span>
-                  <span className="text-zinc-500">Calculated at checkout</span>
+                  <span className="text-slate-400">Calculated at checkout</span>
                 </div>
-                <div className="border-t border-white/10 pt-4 flex justify-between">
-                  <span className="text-lg font-semibold text-white">Total</span>
-                  <span className="text-2xl font-medium tracking-tight text-white">
+                <div className="flex justify-between border-t border-slate-200 pt-4">
+                  <span className="text-lg font-semibold text-slate-900">Total</span>
+                  <span className="text-2xl font-bold tracking-tight text-slate-900">
                     ${total.toLocaleString()}
-                    {!freeShipping && <span className="text-sm text-zinc-500"> + shipping</span>}
+                    {!freeShipping && <span className="text-sm font-normal text-slate-400"> + shipping</span>}
                   </span>
                 </div>
               </div>
 
               {error && (
-                <div className="bg-red-500/10 border border-red-500/20 p-4 mb-4">
-                  <p className="text-red-400 text-sm">{error}</p>
+                <div className="mb-4 rounded-lg border border-red-200 bg-red-50 p-4">
+                  <p className="text-sm text-red-600">{error}</p>
                 </div>
               )}
 
               <button
                 onClick={handleCheckout}
                 disabled={loading}
-                className="w-full py-4 bg-white text-black font-semibold hover:bg-zinc-200 transition-colors disabled:bg-zinc-700 disabled:text-zinc-400 disabled:cursor-not-allowed flex items-center justify-center gap-2 mb-4"
+                className="mb-4 flex w-full items-center justify-center gap-2 rounded-lg bg-slate-900 py-4 font-semibold text-white transition-colors hover:bg-slate-800 disabled:cursor-not-allowed disabled:bg-slate-300"
               >
                 {loading ? (
                   "Processing..."
@@ -216,19 +216,19 @@ export default function CheckoutPage() {
                 )}
               </button>
 
-              <div className="flex items-center justify-center gap-2 text-sm text-zinc-500">
+              <div className="flex items-center justify-center gap-2 text-sm text-slate-400">
                 <Lock size={16} />
                 <span>Secured by Stripe</span>
               </div>
 
               {/* Trust badges */}
-              <div className="mt-6 pt-6 border-t border-white/10 space-y-3">
-                <div className="flex items-center gap-3 text-sm text-zinc-400">
-                  <Shield size={18} className="text-emerald-400" />
+              <div className="mt-6 space-y-3 border-t border-slate-200 pt-6">
+                <div className="flex items-center gap-3 text-sm text-slate-500">
+                  <Shield size={18} className="text-slate-900" />
                   <span>2 Year Manufacturer Warranty</span>
                 </div>
-                <div className="flex items-center gap-3 text-sm text-zinc-400">
-                  <Truck size={18} className="text-emerald-400" />
+                <div className="flex items-center gap-3 text-sm text-slate-500">
+                  <Truck size={18} className="text-slate-900" />
                   <span>Ships within 2-3 business days</span>
                 </div>
               </div>

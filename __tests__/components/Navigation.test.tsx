@@ -60,9 +60,9 @@ describe('Navigation Component', () => {
   it('has correct link hrefs', () => {
     renderWithProviders(<Navigation />);
 
-    const homeLink = screen.getByRole('link', { name: /home/i });
-    const shopLink = screen.getByRole('link', { name: /shop/i });
-    const contactLink = screen.getByRole('link', { name: /contact/i });
+    const homeLink = screen.getByRole('link', { name: 'Home' });
+    const shopLink = screen.getByRole('link', { name: 'Shop' });
+    const contactLink = screen.getByRole('link', { name: 'Contact' });
 
     expect(homeLink).toHaveAttribute('href', '/');
     expect(shopLink).toHaveAttribute('href', '/shop');

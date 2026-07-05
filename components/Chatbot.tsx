@@ -121,8 +121,8 @@ export default function Chatbot() {
         onClick={() => setIsOpen(!isOpen)}
         className={`fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full shadow-lg transition-all duration-300 flex items-center justify-center ${
           isOpen
-            ? "bg-zinc-800 hover:bg-zinc-700"
-            : "bg-emerald-500 hover:bg-emerald-600"
+            ? "bg-slate-700 hover:bg-slate-600"
+            : "bg-slate-900 hover:bg-slate-800"
         }`}
         aria-label={isOpen ? "Close chat" : "Open chat"}
       >
@@ -135,17 +135,17 @@ export default function Chatbot() {
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-24 right-6 z-50 w-[380px] max-w-[calc(100vw-3rem)] bg-zinc-900 border border-white/10 rounded-2xl shadow-2xl overflow-hidden flex flex-col animate-in slide-in-from-bottom-4 duration-300">
+        <div className="fixed bottom-24 right-6 z-50 w-[380px] max-w-[calc(100vw-3rem)] bg-white border border-slate-200 rounded-2xl shadow-2xl overflow-hidden flex flex-col animate-in slide-in-from-bottom-4 duration-300">
           {/* Header */}
-          <div className="bg-emerald-500/10 border-b border-white/10 p-4">
+          <div className="bg-slate-50 border-b border-slate-200 p-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center">
-                <Bot size={20} className="text-emerald-400" />
+              <div className="w-10 h-10 rounded-full bg-slate-900 flex items-center justify-center">
+                <Bot size={20} className="text-white" />
               </div>
               <div>
-                <h3 className="font-semibold text-white">Radar Cart Support</h3>
-                <p className="text-xs text-emerald-400 flex items-center gap-1">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                <h3 className="font-semibold text-slate-900">Radar Cart Support</h3>
+                <p className="text-xs text-emerald-600 flex items-center gap-1">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                   Online
                 </p>
               </div>
@@ -169,21 +169,21 @@ export default function Chatbot() {
                   <div
                     className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
                       message.sender === "user"
-                        ? "bg-emerald-500/20"
-                        : "bg-white/10"
+                        ? "bg-slate-900"
+                        : "bg-slate-100"
                     }`}
                   >
                     {message.sender === "user" ? (
-                      <User size={16} className="text-emerald-400" />
+                      <User size={16} className="text-white" />
                     ) : (
-                      <Bot size={16} className="text-zinc-400" />
+                      <Bot size={16} className="text-slate-500" />
                     )}
                   </div>
                   <div
                     className={`rounded-2xl px-4 py-2 ${
                       message.sender === "user"
-                        ? "bg-emerald-500 text-white"
-                        : "bg-white/5 text-zinc-300"
+                        ? "bg-slate-900 text-white"
+                        : "bg-slate-100 text-slate-700"
                     }`}
                   >
                     <p className="text-sm whitespace-pre-wrap">{message.text}</p>
@@ -195,14 +195,14 @@ export default function Chatbot() {
             {isTyping && (
               <div className="flex justify-start">
                 <div className="flex items-start gap-2">
-                  <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center">
-                    <Bot size={16} className="text-zinc-400" />
+                  <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center">
+                    <Bot size={16} className="text-slate-500" />
                   </div>
-                  <div className="bg-white/5 rounded-2xl px-4 py-3">
+                  <div className="bg-slate-100 rounded-2xl px-4 py-3">
                     <div className="flex gap-1">
-                      <span className="w-2 h-2 bg-zinc-500 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
-                      <span className="w-2 h-2 bg-zinc-500 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
-                      <span className="w-2 h-2 bg-zinc-500 rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
+                      <span className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
+                      <span className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
+                      <span className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
                     </div>
                   </div>
                 </div>
@@ -220,7 +220,7 @@ export default function Chatbot() {
                   <button
                     key={reply}
                     onClick={() => handleQuickReply(reply)}
-                    className="text-xs px-3 py-1.5 bg-white/5 hover:bg-white/10 text-zinc-400 hover:text-white rounded-full border border-white/10 transition-colors"
+                    className="text-xs px-3 py-1.5 bg-slate-50 hover:bg-slate-100 text-slate-600 hover:text-slate-900 rounded-full border border-slate-200 transition-colors"
                   >
                     {reply}
                   </button>
@@ -230,19 +230,19 @@ export default function Chatbot() {
           )}
 
           {/* Input */}
-          <form onSubmit={handleSubmit} className="p-4 border-t border-white/10">
+          <form onSubmit={handleSubmit} className="p-4 border-t border-slate-200">
             <div className="flex gap-2">
               <input
                 type="text"
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 placeholder="Type your message..."
-                className="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-2 text-white placeholder-zinc-500 focus:outline-none focus:border-emerald-500/50 text-sm"
+                className="flex-1 bg-white border border-slate-200 rounded-xl px-4 py-2 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-slate-400 text-sm"
               />
               <button
                 type="submit"
                 disabled={!inputValue.trim()}
-                className="w-10 h-10 bg-emerald-500 hover:bg-emerald-600 disabled:bg-zinc-700 disabled:cursor-not-allowed rounded-xl flex items-center justify-center transition-colors"
+                className="w-10 h-10 bg-slate-900 hover:bg-slate-800 disabled:bg-slate-200 disabled:cursor-not-allowed rounded-xl flex items-center justify-center transition-colors"
               >
                 <Send size={18} className="text-white" />
               </button>

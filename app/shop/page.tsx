@@ -25,8 +25,8 @@ export default function ShopPage() {
 
 function ShopPageLoading() {
   return (
-    <div className="min-h-screen bg-[#050505] flex items-center justify-center">
-      <div className="font-mono text-sm text-zinc-500">Loading&hellip;</div>
+    <div className="flex min-h-screen items-center justify-center bg-white">
+      <div className="text-sm text-slate-400">Loading&hellip;</div>
     </div>
   );
 }
@@ -103,17 +103,17 @@ function ShopPageContent() {
   const hasActiveFilters = selectedCategory !== "all" || selectedProblem !== "all" || searchQuery.trim();
 
   return (
-    <div className="min-h-screen bg-[#050505]">
+    <div className="min-h-screen bg-white">
       {/* Header */}
-      <div className="border-b border-white/10 py-16 md:py-20">
+      <div className="border-b border-slate-200 bg-slate-50 py-16 md:py-20">
         <div className="mx-auto max-w-6xl px-6">
-          <p className="mb-4 font-mono text-xs uppercase tracking-[0.3em] text-emerald-500">
+          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
             Catalog
           </p>
-          <h1 className="text-3xl font-medium tracking-tight text-white md:text-5xl">
+          <h1 className="text-3xl font-bold tracking-tight text-slate-900 md:text-5xl">
             Radar Sensors
           </h1>
-          <p className="mt-4 max-w-2xl text-zinc-500">
+          <p className="mt-4 max-w-2xl text-slate-500">
             True ground speed sensing for rail and agriculture, and ball &amp; swing
             tracking for sports electronics. Both platforms are available with
             custom engineering for OEM applications.
@@ -124,18 +124,18 @@ function ShopPageContent() {
       <div className="mx-auto max-w-6xl px-6 py-10">
         {/* Search Bar */}
         <div className="relative mb-6">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-600" size={18} />
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search by name, model, application, or problem..."
-            className="w-full border border-white/10 bg-transparent py-3 pl-12 pr-12 text-sm text-white placeholder:text-zinc-600 transition-colors focus:border-emerald-500/50 focus:outline-none"
+            className="w-full rounded-lg border border-slate-200 bg-white py-3 pl-12 pr-12 text-sm text-slate-900 placeholder:text-slate-400 transition-colors focus:border-slate-400 focus:outline-none"
           />
           {searchQuery && (
             <button
               onClick={() => setSearchQuery("")}
-              className="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-500 transition-colors hover:text-white"
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 transition-colors hover:text-slate-900"
             >
               <X size={18} />
             </button>
@@ -146,27 +146,27 @@ function ShopPageContent() {
         <div className="mb-6 flex flex-wrap gap-2">
           <button
             onClick={() => setSelectedCategory("all")}
-            className={`border px-4 py-2 text-sm font-medium transition-colors ${
+            className={`rounded-lg border px-4 py-2 text-sm font-medium transition-colors ${
               selectedCategory === "all"
-                ? "border-emerald-500/50 bg-emerald-500/10 text-emerald-400"
-                : "border-white/10 text-zinc-500 hover:border-white/30 hover:text-white"
+                ? "border-slate-900 bg-slate-900 text-white"
+                : "border-slate-200 text-slate-500 hover:border-slate-400 hover:text-slate-900"
             }`}
           >
             All
-            <span className="ml-2 font-mono text-xs opacity-60">{products.length}</span>
+            <span className="ml-2 text-xs opacity-60">{products.length}</span>
           </button>
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`border px-4 py-2 text-sm font-medium transition-colors ${
+              className={`rounded-lg border px-4 py-2 text-sm font-medium transition-colors ${
                 selectedCategory === cat
-                  ? "border-emerald-500/50 bg-emerald-500/10 text-emerald-400"
-                  : "border-white/10 text-zinc-500 hover:border-white/30 hover:text-white"
+                  ? "border-slate-900 bg-slate-900 text-white"
+                  : "border-slate-200 text-slate-500 hover:border-slate-400 hover:text-slate-900"
               }`}
             >
               {categoryInfo[cat].name}
-              <span className="ml-2 font-mono text-xs opacity-60">{categoryCounts[cat]}</span>
+              <span className="ml-2 text-xs opacity-60">{categoryCounts[cat]}</span>
             </button>
           ))}
         </div>
@@ -177,10 +177,10 @@ function ShopPageContent() {
             {/* Problem Filter Dropdown */}
             <button
               onClick={() => setShowFilters(!showFilters)}
-              className={`flex items-center gap-2 border px-4 py-2 text-sm font-medium transition-colors ${
+              className={`flex items-center gap-2 rounded-lg border px-4 py-2 text-sm font-medium transition-colors ${
                 selectedProblem !== "all"
-                  ? "border-emerald-500/50 bg-emerald-500/10 text-emerald-400"
-                  : "border-white/10 text-zinc-500 hover:border-white/30 hover:text-white"
+                  ? "border-slate-900 bg-slate-900 text-white"
+                  : "border-slate-200 text-slate-500 hover:border-slate-400 hover:text-slate-900"
               }`}
             >
               <SlidersHorizontal size={14} />
@@ -192,7 +192,7 @@ function ShopPageContent() {
             {hasActiveFilters && (
               <button
                 onClick={clearFilters}
-                className="flex items-center gap-1 px-3 py-2 text-sm text-zinc-500 transition-colors hover:text-white"
+                className="flex items-center gap-1 px-3 py-2 text-sm text-slate-500 transition-colors hover:text-slate-900"
               >
                 <X size={14} />
                 Clear
@@ -202,11 +202,11 @@ function ShopPageContent() {
 
           {/* Sort Dropdown */}
           <div className="flex items-center gap-2">
-            <span className="font-mono text-xs uppercase tracking-wider text-zinc-600">Sort</span>
+            <span className="text-xs font-medium uppercase tracking-wider text-slate-400">Sort</span>
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as typeof sortBy)}
-              className="border border-white/10 bg-[#050505] px-3 py-2 text-sm text-white focus:border-emerald-500/50 focus:outline-none"
+              className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 focus:border-slate-400 focus:outline-none"
             >
               <option value="featured">Featured</option>
               <option value="price-asc">Price: Low to High</option>
@@ -218,17 +218,17 @@ function ShopPageContent() {
 
         {/* Problem Tags Filter Panel */}
         {showFilters && (
-          <div className="mb-6 border border-white/10 p-5">
-            <h3 className="mb-4 font-mono text-xs uppercase tracking-wider text-zinc-500">
+          <div className="mb-6 rounded-xl border border-slate-200 bg-slate-50 p-5">
+            <h3 className="mb-4 text-xs font-semibold uppercase tracking-wider text-slate-500">
               What problem are you solving?
             </h3>
             <div className="flex flex-wrap gap-2">
               <button
                 onClick={() => setSelectedProblem("all")}
-                className={`border px-3 py-1.5 text-xs font-medium transition-colors ${
+                className={`rounded-lg border px-3 py-1.5 text-xs font-medium transition-colors ${
                   selectedProblem === "all"
-                    ? "border-emerald-500/50 bg-emerald-500/10 text-emerald-400"
-                    : "border-white/10 text-zinc-500 hover:border-white/30 hover:text-white"
+                    ? "border-slate-900 bg-slate-900 text-white"
+                    : "border-slate-200 bg-white text-slate-500 hover:border-slate-400 hover:text-slate-900"
                 }`}
               >
                 All problems
@@ -237,14 +237,14 @@ function ShopPageContent() {
                 <button
                   key={tag}
                   onClick={() => setSelectedProblem(tag)}
-                  className={`border px-3 py-1.5 text-xs font-medium transition-colors ${
+                  className={`rounded-lg border px-3 py-1.5 text-xs font-medium transition-colors ${
                     selectedProblem === tag
-                      ? "border-emerald-500/50 bg-emerald-500/10 text-emerald-400"
-                      : "border-white/10 text-zinc-500 hover:border-white/30 hover:text-white"
+                      ? "border-slate-900 bg-slate-900 text-white"
+                      : "border-slate-200 bg-white text-slate-500 hover:border-slate-400 hover:text-slate-900"
                   }`}
                 >
                   {problemTagInfo[tag].name}
-                  <span className="ml-1 font-mono opacity-60">({problemTagCounts[tag]})</span>
+                  <span className="ml-1 opacity-60">({problemTagCounts[tag]})</span>
                 </button>
               ))}
             </div>
@@ -254,27 +254,27 @@ function ShopPageContent() {
         {/* Active Filter Tags */}
         {hasActiveFilters && (
           <div className="mb-6 flex flex-wrap items-center gap-2">
-            <span className="font-mono text-xs uppercase tracking-wider text-zinc-600">Active</span>
+            <span className="text-xs font-medium uppercase tracking-wider text-slate-400">Active</span>
             {searchQuery && (
-              <span className="inline-flex items-center gap-2 border border-white/15 px-2.5 py-1 text-xs text-white">
+              <span className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs text-slate-700">
                 &ldquo;{searchQuery}&rdquo;
-                <button onClick={() => setSearchQuery("")} className="hover:text-emerald-400">
+                <button onClick={() => setSearchQuery("")} className="hover:text-slate-900">
                   <X size={12} />
                 </button>
               </span>
             )}
             {selectedCategory !== "all" && (
-              <span className="inline-flex items-center gap-2 border border-white/15 px-2.5 py-1 text-xs text-white">
+              <span className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs text-slate-700">
                 {categoryInfo[selectedCategory].name}
-                <button onClick={() => setSelectedCategory("all")} className="hover:text-emerald-400">
+                <button onClick={() => setSelectedCategory("all")} className="hover:text-slate-900">
                   <X size={12} />
                 </button>
               </span>
             )}
             {selectedProblem !== "all" && (
-              <span className="inline-flex items-center gap-2 border border-white/15 px-2.5 py-1 text-xs text-white">
+              <span className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs text-slate-700">
                 {problemTagInfo[selectedProblem].name}
-                <button onClick={() => setSelectedProblem("all")} className="hover:text-emerald-400">
+                <button onClick={() => setSelectedProblem("all")} className="hover:text-slate-900">
                   <X size={12} />
                 </button>
               </span>
@@ -284,22 +284,24 @@ function ShopPageContent() {
 
         {/* Product Grid */}
         {filteredProducts.length > 0 && (
-          <div className="grid gap-px border border-white/10 bg-white/10 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {filteredProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
+              <div key={product.id} className="overflow-hidden rounded-xl border border-slate-200 shadow-sm transition-shadow hover:shadow-md">
+                <ProductCard product={product} />
+              </div>
             ))}
           </div>
         )}
 
         {filteredProducts.length === 0 && (
-          <div className="border border-white/10 py-24 text-center">
-            <h3 className="text-lg font-medium text-white">No products found</h3>
-            <p className="mx-auto mt-2 max-w-sm text-sm text-zinc-500">
+          <div className="rounded-xl border border-slate-200 py-24 text-center">
+            <h3 className="text-lg font-semibold text-slate-900">No products found</h3>
+            <p className="mx-auto mt-2 max-w-sm text-sm text-slate-500">
               Try adjusting your search or filters to find what you&apos;re looking for.
             </p>
             <button
               onClick={clearFilters}
-              className="mt-6 border border-white/15 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:border-white/40"
+              className="mt-6 rounded-lg border border-slate-200 px-5 py-2.5 text-sm font-medium text-slate-900 transition-colors hover:bg-slate-50"
             >
               Clear all filters
             </button>
@@ -308,7 +310,7 @@ function ShopPageContent() {
 
         {/* Results count */}
         {filteredProducts.length > 0 && (
-          <p className="mt-8 font-mono text-xs text-zinc-600">
+          <p className="mt-8 text-xs text-slate-400">
             Showing {filteredProducts.length} of {products.length} products
           </p>
         )}

@@ -6,24 +6,24 @@ import { ChevronLeft } from "lucide-react";
 
 export default function LoginPage() {
   return (
-    <div className="min-h-screen bg-[#050505] flex items-center justify-center px-6">
+    <div className="flex min-h-screen items-center justify-center bg-slate-50 px-6">
       <div className="w-full max-w-md">
-        <Link href="/" className="inline-flex items-center gap-2 text-zinc-400 hover:text-white transition-colors mb-8">
+        <Link href="/" className="mb-8 inline-flex items-center gap-2 text-slate-500 transition-colors hover:text-slate-900">
           <ChevronLeft size={20} />
           Back to Home
         </Link>
 
-        <div className="bg-white/[0.02] border border-white/10 p-8">
-          <div className="text-center mb-8">
-            <h1 className="text-3xl font-medium tracking-tight text-white mb-2">Welcome Back</h1>
-            <p className="text-zinc-400">Sign in to your Radar Cart account</p>
+        <div className="rounded-xl border border-slate-200 bg-white p-8 shadow-sm">
+          <div className="mb-8 text-center">
+            <h1 className="mb-2 text-3xl font-bold tracking-tight text-slate-900">Welcome Back</h1>
+            <p className="text-slate-500">Sign in to your Radar Cart account</p>
           </div>
 
           <button
             onClick={() => signIn("google", { callbackUrl: "/" })}
-            className="w-full py-4 bg-white text-black font-semibold hover:bg-zinc-200 transition-colors flex items-center justify-center gap-3"
+            className="flex w-full items-center justify-center gap-3 rounded-lg bg-slate-900 py-4 font-semibold text-white transition-colors hover:bg-slate-800"
           >
-            <svg className="w-5 h-5" viewBox="0 0 24 24">
+            <svg className="h-5 w-5" viewBox="0 0 24 24">
               <path
                 fill="currentColor"
                 d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
@@ -45,14 +45,14 @@ export default function LoginPage() {
           </button>
 
           <div className="mt-6 text-center">
-            <p className="text-zinc-500 text-sm">
+            <p className="text-sm text-slate-400">
               We only use your Google account to identify you. No passwords are stored.
             </p>
           </div>
         </div>
 
-        <p className="text-center text-zinc-600 text-sm mt-6">
-          Don't have an account? Sign in with Google to create one automatically.
+        <p className="mt-6 text-center text-sm text-slate-400">
+          Don&apos;t have an account? Sign in with Google to create one automatically.
         </p>
       </div>
     </div>

@@ -3,27 +3,27 @@ import { XCircle, ArrowRight, ShoppingCart, Headphones } from "lucide-react";
 
 export default function CheckoutCancelPage() {
   return (
-    <div className="min-h-screen bg-[#050505] flex items-center justify-center px-6">
-      <div className="max-w-lg w-full text-center">
+    <div className="flex min-h-screen items-center justify-center bg-white px-6">
+      <div className="w-full max-w-lg text-center">
         {/* Cancel Icon */}
-        <div className="w-24 h-24 bg-red-500/10 rounded-full flex items-center justify-center mx-auto mb-8">
-          <XCircle size={48} className="text-red-400" />
+        <div className="mx-auto mb-8 flex h-24 w-24 items-center justify-center rounded-full bg-red-50">
+          <XCircle size={48} className="text-red-500" />
         </div>
 
-        <h1 className="text-4xl font-medium tracking-tight text-white mb-4">Checkout Cancelled</h1>
-        <p className="text-zinc-400 text-lg mb-8">
+        <h1 className="mb-4 text-4xl font-bold tracking-tight text-slate-900">Checkout Cancelled</h1>
+        <p className="mb-8 text-lg text-slate-500">
           Your payment was not processed. Your cart items are still saved.
         </p>
 
         {/* Help Notice */}
-        <div className="bg-amber-500/10 border border-amber-500/20 p-6 mb-8 text-left">
+        <div className="mb-8 rounded-xl border border-amber-200 bg-amber-50 p-6 text-left">
           <div className="flex items-start gap-4">
-            <Headphones size={24} className="text-amber-400 flex-shrink-0 mt-1" />
+            <Headphones size={24} className="mt-1 flex-shrink-0 text-amber-600" />
             <div>
-              <h3 className="font-semibold text-white mb-2">Need Help?</h3>
-              <p className="text-zinc-400 text-sm">
+              <h3 className="mb-2 font-semibold text-slate-900">Need Help?</h3>
+              <p className="text-sm text-slate-600">
                 If you experienced any issues during checkout, please contact our support team at{" "}
-                <a href="mailto:support@radarcart.com" className="text-amber-400 hover:text-amber-300">
+                <a href="mailto:support@radarcart.com" className="font-medium text-amber-700 hover:text-amber-800">
                   support@radarcart.com
                 </a>
               </p>
@@ -32,17 +32,17 @@ export default function CheckoutCancelPage() {
         </div>
 
         {/* Actions */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <div className="flex flex-col justify-center gap-4 sm:flex-row">
           <Link
             href="/cart"
-            className="px-8 py-4 bg-white text-black font-medium hover:bg-zinc-200 transition-colors inline-flex items-center justify-center gap-2"
+            className="inline-flex items-center justify-center gap-2 rounded-lg bg-slate-900 px-8 py-4 font-medium text-white transition-colors hover:bg-slate-800"
           >
             <ShoppingCart size={20} />
             Return to Cart
           </Link>
           <Link
             href="/shop"
-            className="px-8 py-4 bg-white/5 text-white font-medium hover:bg-white/10 transition-colors inline-flex items-center justify-center gap-2"
+            className="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-200 px-8 py-4 font-medium text-slate-900 transition-colors hover:bg-slate-50"
           >
             Continue Shopping
             <ArrowRight size={20} />
