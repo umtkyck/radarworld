@@ -74,7 +74,7 @@ export default function Home() {
   return (
     <div className="bg-[#050505]">
       {/* Hero */}
-      <section className="relative h-[calc(100svh-4rem)] min-h-[560px] overflow-hidden">
+      <section className="relative h-[calc(100svh-5rem)] min-h-[560px] overflow-hidden">
         <div className="absolute inset-0">
           <RadarField />
         </div>

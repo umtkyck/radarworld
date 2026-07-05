@@ -28,19 +28,19 @@ export default function Navigation() {
   return (
     <nav className="sticky top-0 z-50 bg-[#050505]/85 backdrop-blur-xl border-b border-white/10">
       <div className="mx-auto max-w-6xl px-6">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <Link href="/">
-            <Logo size="sm" />
+            <Logo size="md" />
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-10">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-sm font-medium transition-colors ${
+                className={`text-base font-medium transition-colors ${
                   isActive(link.href)
                     ? "text-white"
                     : "text-zinc-500 hover:text-white"
@@ -52,12 +52,12 @@ export default function Navigation() {
           </div>
 
           {/* Right Side - Cart & User */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-5">
             {/* Cart */}
             <Link href="/cart" className="relative p-2 text-zinc-400 hover:text-white transition-colors">
-              <ShoppingCart size={18} strokeWidth={1.5} />
+              <ShoppingCart size={22} strokeWidth={1.5} />
               {itemCount > 0 && (
-                <span className="absolute -top-0.5 -right-0.5 flex h-4 min-w-4 items-center justify-center bg-emerald-500 px-1 font-mono text-[10px] font-medium text-black">
+                <span className="absolute -top-0.5 -right-0.5 flex h-[18px] min-w-[18px] items-center justify-center bg-emerald-500 px-1 font-mono text-[11px] font-medium text-black">
                   {itemCount}
                 </span>
               )}
@@ -112,7 +112,7 @@ export default function Navigation() {
             ) : (
               <Link
                 href="/login"
-                className="hidden md:flex items-center gap-2 border border-white/15 px-4 py-1.5 text-sm font-medium text-white transition-colors hover:border-white/40"
+                className="hidden md:flex items-center gap-2 border border-white/15 px-5 py-2 text-base font-medium text-white transition-colors hover:border-white/40"
               >
                 Sign In
               </Link>
