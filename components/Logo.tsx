@@ -20,15 +20,24 @@ export default function Logo({ className = "", size = "md", showText = true }: L
       <svg
         width={icon}
         height={icon}
-        viewBox="0 0 24 24"
+        viewBox="0 0 100 100"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
       >
-        <rect width="24" height="24" rx="6" fill="#0F172A" />
-        <circle cx="12" cy="12" r="7" stroke="#ffffff" strokeWidth="1.2" opacity="0.4" fill="none" />
-        <circle cx="12" cy="12" r="4" stroke="#ffffff" strokeWidth="1.2" opacity="0.7" fill="none" />
-        <line x1="12" y1="12" x2="17" y2="7" stroke="#34D399" strokeWidth="1.4" />
-        <circle cx="12" cy="12" r="1.5" fill="#34D399" />
+        <defs>
+          <linearGradient id="logo-sweep" x1="50" y1="50" x2="74" y2="26" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stopColor="#34D399" stopOpacity="0" />
+            <stop offset="1" stopColor="#34D399" stopOpacity="0.85" />
+          </linearGradient>
+        </defs>
+        <rect width="100" height="100" rx="24" fill="#0F172A" />
+        <circle cx="50" cy="50" r="34" stroke="#FFFFFF" strokeOpacity="0.22" strokeWidth="4" />
+        <circle cx="50" cy="50" r="20" stroke="#FFFFFF" strokeOpacity="0.45" strokeWidth="4" />
+        <path d="M50 50 L50 16 A34 34 0 0 1 74 26 Z" fill="url(#logo-sweep)" />
+        <line x1="50" y1="50" x2="74" y2="26" stroke="#34D399" strokeWidth="4.5" strokeLinecap="round" />
+        <circle cx="74" cy="26" r="5.5" fill="#34D399" />
+        <circle cx="50" cy="50" r="6" fill="#FFFFFF" />
       </svg>
       {showText && (
         <span className={`${text} font-semibold tracking-tight`}>
