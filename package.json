@@ -11,6 +11,10 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "firebase:setup": "node scripts/firebase-setup.mjs",
+    "firebase:setup:full": "node scripts/firebase-setup-full.mjs",
+    "firebase:login": "node scripts/firebase-login.mjs",
+    "firebase:import-key": "node scripts/firebase-import-key.mjs",
+    "firebase:provision": "node scripts/firebase-provision.mjs",
     "firebase:deploy": "firebase deploy --only firestore --project radarcart-b64b9"
   },
   "dependencies": {
